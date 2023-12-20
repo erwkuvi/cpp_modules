@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.hpp                                  :+:      :+:    :+:   */
+/*   Sample.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:44:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/20 15:19:42 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/20 16:22:39 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/20 16:32:13 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAMPLE_CLASS_H
-# define SAMPLE_CLASS_H
+#include "Sample.class.hpp"
+#include <iostream>
 
-class Sample {
+Sample::Sample(float const f) : pi(f), qd(42){
 
-public:
+	std::cout << "Constructor called" << std::endl;
+	return ;
+}
 
-	int		foo;
+Sample::~Sample(void){
 
-	Sample( void );
-	~Sample( void );
+	std::cout << "Deconstructor called" << std::endl;
+	return ;
+}
 
-	void	bar(void);
-};
+void	Sample::bar(void) const{
 
-#endif
+	std::cout << "this->pi = " << this->pi << std::endl;
+	std::cout << "this->qd = " << this->qd << std::endl;
+	return ;
+}

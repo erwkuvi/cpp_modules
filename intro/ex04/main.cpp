@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.hpp                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:44:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/20 15:19:42 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/20 15:38:27 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/20 15:40:35 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAMPLE_CLASS_H
-# define SAMPLE_CLASS_H
+#include "Sample1.class.hpp"
+#include <iostream>
 
-class Sample {
+int	main(void)
+{
+	Sample1	instance('a', 12, 1.3f);
 
-public:
-
-	int		foo;
-
-	Sample( void );
-	~Sample( void );
-
-	void	bar(void);
-};
-
-#endif
+	return 0;
+}

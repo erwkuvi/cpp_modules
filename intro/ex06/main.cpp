@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.hpp                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:44:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/20 15:19:42 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/20 18:23:12 by ekuchel           #+#    #+#             */
+/*   Updated: 2023/12/20 18:29:56 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAMPLE_CLASS_H
-# define SAMPLE_CLASS_H
+#include <iostream>
+#include "Sample.class.hpp"
 
-class Sample {
+int	main (void)
+{
+	Sample	instance;
 
-public:
+	instance.publicfoo = 42;
+	std::cout << "instance.publicfoo: " << instance.publicfoo << std::endl;
 
-	int		foo;
+	// instance._privatefoo = 42;
+	// std::cout << "instance.privatefoo: " << instance._privatefoo << std::endl;
 
-	Sample( void );
-	~Sample( void );
+	instance.publicbar();
+	// instance._privatebar();
 
-	void	bar(void);
-};
-
-#endif
+	return (0);
+}
