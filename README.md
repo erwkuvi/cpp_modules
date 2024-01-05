@@ -6,5 +6,9 @@ This will be the starting point of learning C++. Many languages are recommended
 to learn OOP, but since C++ is derived from C, it seems like a more proper choice.
 Because this is a complex language, and in order to keep things simple, code will
 comply with the C++98 standard.
-Modern C++ is way different in a lot of aspects. 
+Modern C++ is way different in a lot of aspects.
 The exercises will progressively increase in complexity.
+
+Conclusions:
+Initialization Lists.
+const function and its usage.
