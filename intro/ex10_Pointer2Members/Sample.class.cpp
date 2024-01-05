@@ -3,34 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   Sample.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 18:27:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2023/12/21 18:43:41 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/01/05 20:42:13 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/05 22:37:07 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Sample.class.hpp"
+#include <iostream>
 
-Sample::Sample(void){
-
-	std::cout << "Constructor called" << std::endl;
+Sample::Sample(void) : foo(0)
+{
+	std::cout << "Constructor is called" << std::endl;
 	return ;
 }
 
-Sample::~Sample(void){
-
-	std::cout << "Deconstructor called" << std::endl;
+Sample::~Sample(void)
+{
+	std::cout << "Destructor is called" << std::endl;
 	return ;
 }
 
-int		Sample::getFoo(void) const{
-
-	return this->_foo;
+void	Sample::bar(void) const
+{
+	std::cout << "Bar Function is called" << std::endl;
+	return ;
 }
 
-void	Sample::setFoo(int	f){
-	if (f >= 0)
-		this->_foo = f;
-}
+

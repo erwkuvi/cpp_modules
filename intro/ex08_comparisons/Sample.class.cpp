@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.cpp                                  :+:      :+:    :+:   */
+/*   Sample.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:42:54 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/01/05 14:31:02 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/01/05 20:42:13 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/05 21:19:19 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Sample.class.hpp"
 #include <iostream>
-#include "Sample.class2.hpp"
 
-/* "::" - scope resolution operator. */
-
-Sample::Sample(void) {
-
-	std::cout << "Constructor called" << std::endl;
-
-	this->foo = 42;
-	std::cout << "Value of foo is: " << this->foo << std::endl;
-
-	this->bar();
-
+Sample::Sample(int v) : _foo(v)
+{
+	std::cout << "Constructor is called" << std::endl;
 	return ;
 }
 
-Sample::~Sample(void) {
-
-	std::cout << "Destructor called" << std::endl;
-	return;
+Sample::~Sample(void)
+{
+	std::cout << "Destructor is called" << std::endl;
+	return ;
 }
 
-void	Sample::bar(void) {
+int	Sample::getFoo(void) const
+{
+	return this->_foo;
+}
 
-	std::cout << "Member function bar called" << std::endl;
-	return ;
-
+int	Sample::compare(Sample * other) const
+{
+	if (this->_foo < other->getFoo())
+		return -1;
+	else if (this->_foo > other->getFoo())
+		return 1;
+	return 0;
 }

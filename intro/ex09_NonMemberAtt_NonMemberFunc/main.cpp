@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.cpp                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:42:54 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/01/05 14:31:02 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/01/05 20:38:59 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/05 21:56:13 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Sample.class2.hpp"
+#include "Sample.class.hpp"
 
-/* "::" - scope resolution operator. */
+void	f0(void)
+{
+	Sample	instance;
 
-Sample::Sample(void) {
-
-	std::cout << "Constructor called" << std::endl;
-
-	this->foo = 42;
-	std::cout << "Value of foo is: " << this->foo << std::endl;
-
-	this->bar();
-
+	std::cout << "Number of inst: " << Sample::getNbInst() << std::endl;
 	return ;
 }
 
-Sample::~Sample(void) {
 
-	std::cout << "Destructor called" << std::endl;
-	return;
+void	f1(void)
+{
+	Sample	instance;
+
+	std::cout << "Number of inst: " << Sample::getNbInst() << std::endl;
+	f0();
+	return ;
 }
 
-void	Sample::bar(void) {
-
-	std::cout << "Member function bar called" << std::endl;
-	return ;
-
+int	main(void)
+{
+	std::cout << "Number of inst: " << Sample::getNbInst() << std::endl;
+	f1();
+	std::cout << "Number of inst: " << Sample::getNbInst() << std::endl;
+	return (0);
 }

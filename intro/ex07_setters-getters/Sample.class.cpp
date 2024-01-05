@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.cpp                                  :+:      :+:    :+:   */
+/*   Sample.class.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:42:54 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/01/05 14:31:02 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/21 18:27:07 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/05 20:29:22 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Sample.class2.hpp"
+#include "Sample.class.hpp"
 
-/* "::" - scope resolution operator. */
-
-Sample::Sample(void) {
+Sample::Sample(void){
 
 	std::cout << "Constructor called" << std::endl;
-
-	this->foo = 42;
-	std::cout << "Value of foo is: " << this->foo << std::endl;
-
-	this->bar();
-
 	return ;
 }
 
-Sample::~Sample(void) {
+Sample::~Sample(void){
 
-	std::cout << "Destructor called" << std::endl;
-	return;
+	std::cout << "Deconstructor called" << std::endl;
+	return ;
 }
 
-void	Sample::bar(void) {
+int		Sample::getFoo(void) const{
 
-	std::cout << "Member function bar called" << std::endl;
-	return ;
+	return this->_foo;
+}
 
+bool	Sample::setFoo(int	f){
+	if (f >= 0){
+		this->_foo = f;
+		return true;
+	}
+	else
+		return false;
 }

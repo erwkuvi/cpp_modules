@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.cpp                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:42:54 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/01/05 14:31:02 by ekuchel          ###   ########.fr       */
+/*   Created: 2023/12/21 18:26:29 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/05 20:32:47 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Sample.class.hpp"
 #include <iostream>
-#include "Sample.class2.hpp"
 
-/* "::" - scope resolution operator. */
+int	main(void)
+{
+	Sample	instance;
 
-Sample::Sample(void) {
+	instance.setFoo(12);
+	std::cout << "Value of foo is: " << instance.getFoo() << std::endl;
 
-	std::cout << "Constructor called" << std::endl;
+	// instance.setFoo(422);
+	std::cout << "Status setfoo is: " << instance.setFoo(-422) << std::endl;
+	std::cout << "Value of foo is: " << instance.getFoo() << std::endl;
 
-	this->foo = 42;
-	std::cout << "Value of foo is: " << this->foo << std::endl;
-
-	this->bar();
-
-	return ;
-}
-
-Sample::~Sample(void) {
-
-	std::cout << "Destructor called" << std::endl;
-	return;
-}
-
-void	Sample::bar(void) {
-
-	std::cout << "Member function bar called" << std::endl;
-	return ;
-
+	return 0;
 }
