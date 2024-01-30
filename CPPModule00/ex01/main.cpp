@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Sample.class2.hpp                                  :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 15:44:31 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/01/30 16:55:54 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/01/30 15:38:37 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/01/30 15:46:49 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAMPLE_CLASS_H
-# define SAMPLE_CLASS_H
+#include <iomanip>
+#include <iostream>
 
-class Sample {
-
-public:
-
-	int		foo;
-
-	Sample( void );
-	~Sample( void );
-
-	void	bar(void);
-};
-
-#endif
+int main(int argc, char **argv)
+{
+    std::cout << std::setfill('x') << std::setw(10); //The new fill character for the stream. Number of characters to be used as field width.
+}
