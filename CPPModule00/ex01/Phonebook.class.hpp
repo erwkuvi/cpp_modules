@@ -3,25 +3,23 @@
 
 class Contact
 {
-public:
-
-    FirstName;
-    LastName;
-    NickName;
-    PhoneNumber;
-
-private:
-
+	std::string _firstname;
+	std::string _lastname;
+	std::string _nickname;
+	std::string _phone;
 };
 
 class PhoneBook
 {
 public:
-    PhoneBook(void);
-    ~PhoneBook(void);
 
-    Contact contact[8];
-private:
+	PhoneBook(void);
+	~PhoneBook(void);
+
+	void add_contact(int i);
+	void search_contact(std::string contact);
+	void exit_program(void) const;
+	Contact contact[8];
 
 };
 
