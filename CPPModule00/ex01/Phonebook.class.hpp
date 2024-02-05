@@ -14,7 +14,7 @@ private:
 	std::string _lastName;
 	std::string _nickName;
 	std::string _phone;
-    std::string _darkestSecret
+    std::string _darkestSecret;
 };
 
 class PhoneBook
@@ -23,7 +23,7 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	bool addContact(Contact contact, int index);
+	void addContact(int index);
 	bool searchContact(Contact *contact, std::string name);
 	void exitProgram(void) const;
 
