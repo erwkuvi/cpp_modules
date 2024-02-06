@@ -6,87 +6,62 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:48:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/05 19:34:21 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/06 19:06:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.class.hpp"
+#include "Contact.class.hpp"
 #include <iostream>
+#include <iomanip>
 
 PhoneBook::PhoneBook(void)
 {
+	std::cout << "PhoneBook constructor called" << std::endl;
 	return;
 }
 
 PhoneBook::~PhoneBook(void)
 {
+	std::cout << "PhoneBook destructor called" << std::endl;
 	return;
 }
 
-std::string Contact::getName(std::string column)
+bool	isInputValid(std::string &str, int currContacts)
 {
-	if (column.compare("firstName") == 0)
-		return (this->_firstName);
-	else if (column.compare("lastName") == 0)
-		return (this->_lastName);
-	else if (column.compare("nickName") == 0)
-		return (this->_nickName);
-	else if (column.compare("phone") == 0)
-		return (this->_phone);
-	else if (column.compare("darkestSecret") == 0)
-		return (this->_darkestSecret);
-
-	return 0;
-}
-
-
-bool	Contact::setName(std::string input, std::string column)
-{
-	if (input.length() >= 10)
-		input = input.substr(0, 9) + '.';
-	if (column.compare("firstName") == 0)
-		this->_firstName = input;
-	else if (column.compare("lastName") == 0)
-		this->_lastName = input;
-	else if (column.compare("nickName") == 0)
-		this->_nickName = input;
-	else if (column.compare("phone") == 0)
-		this->_phone = input;
-	else if (column.compare("darkestSecret") == 0)
-		this->_darkestSecret = input;
-	else
-		return false;
+	size_t	i = 0;
+	for (std::string::iterator it = str.begin(); it != str.end(); ++it)
+	{
+		if (i >= 1)
+			return false;
+		if (!isdigit(*it))
+			return false;
+		if (*it - '0' > currContacts)
+			return false;
+		i++;
+	}
 	return true;
 }
 
 bool	EmptyString(std::string &str)
 {
-    // Initialize an index to 0
     std::size_t index = 0;
 
-    // Initialize a flag to true
     bool allWhitespace = true;
 
-    // Iterate through each character using a while loop
-    while (index < str.length()) {
-        char c = str[index];
-
-        // Check if the character is not a whitespace character
-        if (!std::isspace(static_cast<unsigned char>(c))) {
-            // If any non-whitespace character is found, set the flag to false and break
-            allWhitespace = false;
-            break;
-        }
-
-        // Move to the next character
-        ++index;
-    }
-
-    // Return true if the string is empty or contains only whitespace characters
-    return allWhitespace || str.empty();
+	while (index < str.length()) {
+		char c = str[index];
+		if (!std::isspace(c))
+		{
+			allWhitespace = false;
+			break;
+		}
+		index++;
+	}
+	return allWhitespace || str.empty();
 }
 
-std::string	InputLoop(std::string column)
+std::string	InputLoop(std::string column, int currContacts)
 {
 	std::string input;
 	std::string message;
@@ -101,12 +76,16 @@ std::string	InputLoop(std::string column)
 		message = "Phone: ";
 	else if (column == "darkestSecret")
 		message = "Darkest Secret: ";
+	else if (column == "index")
+		message = "Type a contact index: ";
 	while (true)
 	{
 		std::cout << message;
 		std::getline(std::cin, input);
 		if (EmptyString(input))
 			std::cout << "No empty fields allowed, try again!" << std::endl;
+		else if (column == "index" && !isInputValid(input, currContacts))
+			std::cout << "Input not valid or out of range, try again!" << std::endl;
 		else
 			break;
 	}
@@ -115,18 +94,59 @@ std::string	InputLoop(std::string column)
 
 void	PhoneBook::addContact(int index)
 {
-	std::string str;
-	str = InputLoop("firstName");
-	_contact[index].setName(str, "firstName");
-	str = InputLoop("lastName");
-	_contact[index].setName(str, "lastName");
-	str = InputLoop("nickName");
-	_contact[index].setName(str, "nickName");
-	str = InputLoop("phone");
-	_contact[index].setName(str, "phone");
-	str = InputLoop("darkestSecret");
-	_contact[index].setName(str, "darkestSecret");
-	std::cout << std::endl;
+	_contact[index].setName(InputLoop("firstName", 0), "firstName");
+	_contact[index].setName(InputLoop("lastName", 0), "lastName");
+	_contact[index].setName(InputLoop("nickName", 0), "nickName");
+	_contact[index].setName(InputLoop("phone", 0), "phone");
+	_contact[index].setName(InputLoop("darkestSecret", 0), "darkestSecret");
 	std::cout << "NEW CONTACT ADDED!!!" << std::endl;
-	std::cout << std::endl;
+	_contact[index].filled = 1;
+}
+
+void	resizeField(std::string str)
+{
+	if(str.length() >= 10)
+		std::cout << std::setw(10) << str.substr(0, 9) + '.';
+	else
+		std::cout << std::setw(10) << str;
+}
+
+void	PhoneBook::searchContact(void)
+{
+	int	currContacts = 0;
+
+	for (size_t i = 0; i < 8; i++)
+	{
+		if (_contact[i].filled)
+		{
+			std::cout << std::setw(10) << i + 1;
+			std::cout << "|";
+			resizeField(_contact[i].getName("firstName"));
+			std::cout << "|";
+			resizeField(_contact[i].getName("lastName"));
+			std::cout << "|";
+			resizeField(_contact[i].getName("nickName"));
+			std::cout << std::endl;
+			if (currContacts < 8)
+				currContacts++;
+		}
+
+	}
+	if (currContacts)
+	{
+		std::string str = InputLoop("index", currContacts);
+		currContacts = (str[0] - '0') - 1;
+		std::cout << "First Name: ";
+		std::cout << _contact[currContacts].getName("firstName") << std::endl;
+		std::cout << "Last Name: ";
+		std::cout << _contact[currContacts].getName("lastName") << std::endl;
+		std::cout << "Nickname: ";
+		std::cout << _contact[currContacts].getName("nickName") << std::endl;
+		std::cout << "Phone: ";
+		std::cout << _contact[currContacts].getName("phone") << std::endl;
+		std::cout << "Darkest secret: ";
+		std::cout << _contact[currContacts].getName("darkestSecret") << std::endl;
+	}
+	else
+		std::cout << "No contacts added yet, please add some." << std::endl;
 }

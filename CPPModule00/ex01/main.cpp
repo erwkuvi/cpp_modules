@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:38:37 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/05 17:55:27 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/06 19:03:11 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string>
 #include <iostream>
 #include "Phonebook.class.hpp"
+#include "Contact.class.hpp"
 
 int main(int argc, char **argv)
 {
@@ -35,7 +36,7 @@ int main(int argc, char **argv)
 			idx++;
 		}
 		else if (prompt == "SEARCH"){
-
+			instance.searchContact();
 		}
 		else if (prompt == "EXIT"){
 			break;
@@ -44,7 +45,7 @@ int main(int argc, char **argv)
 			std::cerr << "Error, wrong arguments" << std::endl;
 		}
 	}
-		std::cout << "You're out " << prompt << std::endl;
+		std::cout << "BYEEEE!!!" << std::endl;
 	return 0;
 	// PhoneBook instance;
     // std::cout << std::setfill('x') << std::setw(10); //The new fill character for the stream. Number of characters to be used as field width.
