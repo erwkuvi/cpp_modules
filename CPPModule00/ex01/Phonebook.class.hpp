@@ -11,12 +11,10 @@ public:
 
 	void addContact(int index);
 	void searchContact(void);
-	// void exitProgram(void) const;
 
 private:
 	Contact _contact[8];
 };
-
 
 #endif
 

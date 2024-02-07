@@ -6,13 +6,17 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:39:30 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/06 18:45:40 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/07 11:13:05 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Phonebook.class.hpp"
 #include "Contact.class.hpp"
 #include <iostream>
+#define RESET	"\033[0m"
+#define YELLOW	"\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
 
 Contact::Contact(void) : filled(0)
 {
@@ -38,15 +42,11 @@ std::string Contact::getName(std::string column)
 		return (this->_phone);
 	else if (column.compare("darkestSecret") == 0)
 		return (this->_darkestSecret);
-
 	return 0;
 }
 
-
 bool	Contact::setName(std::string input, std::string column)
 {
-	// if (input.length() >= 10)
-	// 	input = input.substr(0, 9) + '.';
 	if (column.compare("firstName") == 0)
 		this->_firstName = input;
 	else if (column.compare("lastName") == 0)

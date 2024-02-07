@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:48:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/06 19:06:24 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/07 11:24:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #include "Contact.class.hpp"
 #include <iostream>
 #include <iomanip>
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
 
 PhoneBook::PhoneBook(void)
 {
@@ -49,7 +55,8 @@ bool	EmptyString(std::string &str)
 
     bool allWhitespace = true;
 
-	while (index < str.length()) {
+	while (index < str.length()) 
+	{
 		char c = str[index];
 		if (!std::isspace(c))
 		{
@@ -83,9 +90,9 @@ std::string	InputLoop(std::string column, int currContacts)
 		std::cout << message;
 		std::getline(std::cin, input);
 		if (EmptyString(input))
-			std::cout << "No empty fields allowed, try again!" << std::endl;
+			std::cerr << RED << "Error, no empty fields allowed, try again!" << RESET << std::endl;
 		else if (column == "index" && !isInputValid(input, currContacts))
-			std::cout << "Input not valid or out of range, try again!" << std::endl;
+			std::cerr << RED << "Error, input not valid or out of range, try again!" << RESET << std::endl;
 		else
 			break;
 	}
@@ -99,7 +106,7 @@ void	PhoneBook::addContact(int index)
 	_contact[index].setName(InputLoop("nickName", 0), "nickName");
 	_contact[index].setName(InputLoop("phone", 0), "phone");
 	_contact[index].setName(InputLoop("darkestSecret", 0), "darkestSecret");
-	std::cout << "NEW CONTACT ADDED!!!" << std::endl;
+	std::cout << GREEN << "NEW CONTACT ADDED!!!" << RESET << std::endl;
 	_contact[index].filled = 1;
 }
 
@@ -120,33 +127,32 @@ void	PhoneBook::searchContact(void)
 		if (_contact[i].filled)
 		{
 			std::cout << std::setw(10) << i + 1;
-			std::cout << "|";
+			std::cout << GREEN << "|" << RESET;
 			resizeField(_contact[i].getName("firstName"));
-			std::cout << "|";
+			std::cout << GREEN << "|" << RESET;
 			resizeField(_contact[i].getName("lastName"));
-			std::cout << "|";
+			std::cout << GREEN << "|" << RESET;
 			resizeField(_contact[i].getName("nickName"));
 			std::cout << std::endl;
 			if (currContacts < 8)
 				currContacts++;
 		}
-
 	}
 	if (currContacts)
 	{
 		std::string str = InputLoop("index", currContacts);
 		currContacts = (str[0] - '0') - 1;
-		std::cout << "First Name: ";
+		std::cout << MAGENTA << "First Name: " << RESET;
 		std::cout << _contact[currContacts].getName("firstName") << std::endl;
-		std::cout << "Last Name: ";
+		std::cout << MAGENTA << "Last Name: " << RESET;
 		std::cout << _contact[currContacts].getName("lastName") << std::endl;
-		std::cout << "Nickname: ";
+		std::cout << MAGENTA << "Nickname: " << RESET;
 		std::cout << _contact[currContacts].getName("nickName") << std::endl;
-		std::cout << "Phone: ";
+		std::cout << MAGENTA << "Phone: " << RESET;
 		std::cout << _contact[currContacts].getName("phone") << std::endl;
-		std::cout << "Darkest secret: ";
+		std::cout << MAGENTA << "Darkest secret: " << RESET;
 		std::cout << _contact[currContacts].getName("darkestSecret") << std::endl;
 	}
 	else
-		std::cout << "No contacts added yet, please add some." << std::endl;
+		std::cerr << RED << "Error, no contacts added yet, please add some." << RESET << std::endl;
 }
