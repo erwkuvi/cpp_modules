@@ -6,7 +6,7 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:27:27 by ekuchel           #+#    #+#              #
-#    Updated: 2024/02/06 15:53:19 by ekuchel          ###   ########.fr        #
+#    Updated: 2024/02/09 13:43:34 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,4 @@ fclean: clean
 
 re: fclean all
 
-git: fclean
-	git add ./
-	git commit -m "$m"
-	git push
-
-.PHONY: all re clean fclean git
+.PHONY: all re clean fclean

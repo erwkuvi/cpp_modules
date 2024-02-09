@@ -6,15 +6,14 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:27:27 by ekuchel           #+#    #+#              #
-#    Updated: 2024/02/06 15:53:19 by ekuchel          ###   ########.fr        #
+#    Updated: 2024/02/09 16:13:55 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = account
 
-SRC = main.cpp \
-	Phonebook.class.cpp \
-	Contact.class.cpp \
+SRC = tests.cpp \
+	Account.cpp \
 
 CFLAGS = -Wall -Wextra -Werror
 STDFLAG = -std=c++98
@@ -33,9 +32,5 @@ fclean: clean
 
 re: fclean all
 
-git: fclean
-	git add ./
-	git commit -m "$m"
-	git push
 
 .PHONY: all re clean fclean git
