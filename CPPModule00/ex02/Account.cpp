@@ -6,7 +6,7 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 12:56:23 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/09 18:38:48 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/09 18:42:59 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 #include <iostream>
 #include <ctime>
 #include <iomanip>
-
-#define RESET   "\033[0m"
-#define MAGENTA "\033[35m"
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
