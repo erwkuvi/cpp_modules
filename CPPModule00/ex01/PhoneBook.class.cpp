@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Phonebook.class.cpp                                :+:      :+:    :+:   */
+/*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 17:48:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/07 11:24:24 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/13 15:44:13 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Phonebook.class.hpp"
+#include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
 #include <iostream>
 #include <iomanip>
@@ -23,13 +23,13 @@
 
 PhoneBook::PhoneBook(void)
 {
-	std::cout << "PhoneBook constructor called" << std::endl;
+	// std::cout << "PhoneBook constructor called" << std::endl;
 	return;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	std::cout << "PhoneBook destructor called" << std::endl;
+	// std::cout << "PhoneBook destructor called" << std::endl;
 	return;
 }
 
@@ -42,7 +42,7 @@ bool	isInputValid(std::string &str, int currContacts)
 			return false;
 		if (!isdigit(*it))
 			return false;
-		if (*it - '0' > currContacts)
+		if (*it - '0' > currContacts || *it == '0')
 			return false;
 		i++;
 	}
@@ -55,7 +55,7 @@ bool	EmptyString(std::string &str)
 
     bool allWhitespace = true;
 
-	while (index < str.length()) 
+	while (index < str.length())
 	{
 		char c = str[index];
 		if (!std::isspace(c))

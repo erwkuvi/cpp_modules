@@ -7,6 +7,7 @@ class Contact
 public:
 	Contact(void);
 	~Contact(void);
+
 	bool setName(std::string input, std::string column);
 	std::string getName(std::string column);
 	int	filled;

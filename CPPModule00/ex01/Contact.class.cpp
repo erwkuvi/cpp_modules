@@ -6,11 +6,11 @@
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 14:39:30 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/07 11:13:05 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/02/13 15:44:25 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Phonebook.class.hpp"
+#include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
 #include <iostream>
 #define RESET	"\033[0m"
@@ -20,13 +20,13 @@
 
 Contact::Contact(void) : filled(0)
 {
-	std::cout << "Contact constructor called" << std::endl;
+	// std::cout << "Contact constructor called" << std::endl;
 	return ;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructor called" << std::endl;
+	// std::cout << "Contact destructor called" << std::endl;
 	return ;
 }
 

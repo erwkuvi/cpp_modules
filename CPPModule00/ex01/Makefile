@@ -6,14 +6,14 @@
 #    By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 12:27:27 by ekuchel           #+#    #+#              #
-#    Updated: 2024/02/09 13:43:34 by ekuchel          ###   ########.fr        #
+#    Updated: 2024/02/13 11:31:51 by ekuchel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
 SRC = main.cpp \
-	Phonebook.class.cpp \
+	PhoneBook.class.cpp \
 	Contact.class.cpp \
 
 CFLAGS = -Wall -Wextra -Werror
