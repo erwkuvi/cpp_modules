@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:07:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/15 18:52:52 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/02/15 17:42:00 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/02/15 18:35:24 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main (void)
+Zombie*	Zombie::newZombie(std::string name)
 {
-	Zombie instance("InstanceZombie");
-
-	Zombie	*zombCopy = instance.newZombie("AllocZombie");
-	zombCopy->announce();
-	instance.randomChump("StackZombie");
-	delete zombCopy;
-	return 0;
+	return new Zombie(name);
 }
-

@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:07:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/14 18:51:29 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/02/15 17:46:00 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/02/15 17:55:28 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main (void)
+void Zombie::randomChump(std::string name)
 {
-	Zombie	instance;
-
-
-
-	return 0;
+	Zombie zombie(name);
+	zombie.announce();
 }
-
