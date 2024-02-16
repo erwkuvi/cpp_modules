@@ -1,9 +1,8 @@
-NAME = zombie
+NAME = horde
 
 SRC = main.cpp \
 	Zombie.cpp \
-	newZombie.cpp \
-	randomChump.cpp \
+	zombieHorde.cpp
 
 CC = c++
 STDFLAG = -std=c++98
