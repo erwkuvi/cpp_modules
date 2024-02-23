@@ -5,27 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 18:23:08 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/15 18:52:06 by ekuchel          ###   ########.fr       */
+/*   Created: 2024/02/16 18:09:34 by ekuchel           #+#    #+#             */
+/*   Updated: 2024/02/21 09:39:41 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) : _name(name){}
-
-Zombie::~Zombie(void)
-{
-	std::cout << _name << ": destroyed" << std::endl;
-}
-
 Zombie*	Zombie::zombieHorde(int N, std::string name)
 {
 
+	for(int i = 0, i < N, i++)
+	{
+
+	}
+
+	return Zombie[0];
 }
 
-void	Zombie::zombieDestroyer(int N, Zombie* horde)
-{
 
-}
 
