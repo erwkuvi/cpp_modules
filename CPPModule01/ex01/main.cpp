@@ -14,7 +14,7 @@
 
 int main (void)
 {
-	Zombie instance("InstanceZombie");
+	Zombie instance("InstancedZombie");
 
 	Zombie	*zombCopy = instance.newZombie("AllocZombie");
 	zombCopy->announce();
