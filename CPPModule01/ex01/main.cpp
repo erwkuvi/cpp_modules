@@ -14,12 +14,14 @@
 
 int main (void)
 {
-	Zombie instance("InstancedZombie");
+	Zombie instance("leader");
 
-	Zombie	*zombCopy = instance.newZombie("AllocZombie");
-	zombCopy->announce();
-	instance.randomChump("StackZombie");
-	delete zombCopy;
+	Zombie *leader = instance.zombieHorde(5, "zombhord");
+	
+		for(int i = 0; i < 5; i++)
+	{
+		std::cout << leader[i].getName() << std::endl;
+	}
 	return 0;
 }
 

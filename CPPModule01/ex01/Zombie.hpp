@@ -14,7 +14,7 @@ public:
 
 	void		announce(void) const;
 	Zombie*		zombieHorde(int N, std::string name);
-	void		randomChump(std::string name);
+	Zombie*		newZombie(std::string name);
 	std::string	getName(void) const;
 	void		setName(std::string name);
 

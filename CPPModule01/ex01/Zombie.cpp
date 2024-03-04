@@ -24,10 +24,17 @@ void	Zombie::announce(void) const
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void	Zombie::zombieDestroyer(int N, Zombie* horde)
+Zombie*	Zombie::newZombie(std::string name)
 {
-
+	return new Zombie(name);
 }
 
-
+//void	Zombie::zombieDestroyer(int N, Zombie* horde)
+//{
+//	for (int i; i < N; i++)
+//	{
+//		 delete horde[i];
+//	}
+//	delete horde;
+//}
 
