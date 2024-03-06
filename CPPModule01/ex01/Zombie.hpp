@@ -16,7 +16,7 @@ public:
 	std::string	getName(void) const;
 	void		setName(std::string name);
 };
-
 Zombie *zombieHorde(int N, std::string name);
+
 #endif
 
