@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   megaphone.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de    +#+  +:+       +#+        */
+/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:37:02 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/02/13 15:29:55 by ekuchel          ###   ########.fr       */
+/*   Updated: 2024/03/06 15:25:51 by ekuchel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
