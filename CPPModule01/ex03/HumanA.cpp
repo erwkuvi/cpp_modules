@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-HumanA::HumanA(std::string humanAName, std::string humanAWeapon) : _name(humanAName), _weaponA(humanAWeapon){}
+HumanA::HumanA(std::string humanAName, Weapon& humanAWeapon) : _name(humanAName), _weaponA(humanAWeapon){}
 
 HumanA::~HumanA(void)
 {
@@ -11,5 +11,5 @@ HumanA::~HumanA(void)
 
 void HumanA::attack(void)
 {
-	std::cout << _name << "attacks with their" << _weaponA.getType() << std::endl;
+	std::cout << _name << " attacks with his " << _weaponA.getType() << std::endl;
 }

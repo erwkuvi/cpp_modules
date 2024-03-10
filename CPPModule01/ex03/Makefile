@@ -1,7 +1,9 @@
-
 NAME = weapon
 
 SRC = main.cpp \
+			HumanA.cpp \
+			HumanB.cpp \
+			Weapon.cpp 
 
 CC = c++
 STDFLAG = -std=c++98
@@ -20,7 +22,6 @@ clean :
 
 fclean : clean
 	$(RM) -f $(NAME)
-	$(RM) -r *.out
 
 re : fclean all
 
