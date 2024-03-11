@@ -1,8 +1,6 @@
 #ifndef SEDISFORLOSERS_HPP
 # define SEDISFORLOSERS_HPP
 # include <string>
-# include <iostream>
-# include <fstream>
 
 class Sed
 {

@@ -1,8 +1,9 @@
 #include "SedIsForLosers.hpp"
 
+
 Sed::Sed(std::string filename) : _infile(filename)
 { 
-
+	_outfile = _infile + ".ft_replace";
 }
 
 Sed::~Sed(void)
