@@ -1,18 +1,19 @@
 #ifndef SEDISFORLOSERS_HPP
 # define SEDISFORLOSERS_HPP
 # include <string>
+# include <iostream>
+# include <fstream>
 
 class Sed
 {
 private:
-	std::string _olgword;
-	std::string _newword;
+	std::string _infile;
+	std::string _outfile;
 
 public:
-	Sed(std::string word);
+	Sed(std::string filename);
 	~Sed(void);
-	std::string getWord() const;
-	void 				set_word(std::string newWord);
+	void ft_replace(std::string oldword, std::string newword);
 };
 
 #endif
