@@ -2,7 +2,6 @@
 NAME = sed
 
 SRC = main.cpp \
-			SedIsForLosers.cpp \
 
 CC = c++
 STDFLAG = -std=c++98

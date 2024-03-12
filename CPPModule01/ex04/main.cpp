@@ -1,6 +1,4 @@
-//#include "SedIsForLosers.hpp"
 #include <fstream>
-#include <ios>
 #include <iostream>
 #include <string>
 
@@ -8,7 +6,10 @@ int execute_sed(std::string filename, std::string oldword, std::string newword)
 {
 	std::fstream infile;
 	std::fstream outfile;
-	std::ofstream test;
+	std::string  line;
+	std::size_t found;
+	std::string tmp;
+	int pos;
 
 	infile.open(filename, std::ios::in);
 	if(!infile.is_open())
@@ -17,6 +18,18 @@ int execute_sed(std::string filename, std::string oldword, std::string newword)
 		return 1;
 	}
 	outfile.open(filename + ".replace", std::ios::out);
+	while (getline(infile, line))
+	{
+		pos = 0;
+		while ((found = line.find(oldword, pos)) != std::string::npos)
+		{
+			tmp = line.substr(found + oldword.length());
+			line.erase(found, std::string::npos);
+			line += newword + tmp;
+			pos = found + newword.length();
+		}
+		outfile << line << std::endl;
+	}
 	infile.close();
 	outfile.close();
 	return 0;
