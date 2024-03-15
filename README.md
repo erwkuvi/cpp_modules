@@ -14,10 +14,12 @@ Initialization Lists.
 const function and its usage.
 
 General rules:
-- Compiling with		c++		and the flags		-Wall -Werror -Wextra
-- Code should still compile with the flag		-std=c++98
+
+- Compiling with c++ and the flag -Wall -Werror -Wextra
+- Code should still compile with the flag -std=c++98
 
 Formatting and naming conventions:
+
 - Class names in UpperCamelCase format. ex: ClassName.hpp/ClassName.h, ClassName.cpp Then, if a header file contains the definition of a class "BrickWall" standing for a brick wall, its name will be BrickWall.hpp
 - Output messages must be ended by a new-line character and displayed to the standard output.
 - Allowed use only of the standard library, any other external library is forbidden.

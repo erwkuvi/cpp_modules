@@ -1,8 +1,9 @@
 #ifndef HUMANB_HPP
-# define HUMANB_HPP
+#define HUMANB_HPP
 
-# include "Weapon.hpp"
-# include <string>
+#include "Weapon.hpp"
+#include <string>
+
 
 class HumanB
 {
@@ -17,7 +18,7 @@ class HumanB
 	~HumanB(void);
 
 	void setWeapon(const Weapon& newWeapon);
-	void attack(void);
+	void attack(void) const;
 };
 
 #endif // HUMANB_HPP

@@ -1,7 +1,7 @@
 #ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-# include <string>
-# include <iostream>
+#define ZOMBIE_HPP
+
+#include <string>
 
 class Zombie
 {
@@ -20,6 +20,4 @@ public:
 
 };
 
-
-#endif
-
+#endif // ZOMBIE_HPP

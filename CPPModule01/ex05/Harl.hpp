@@ -1,6 +1,7 @@
 #ifndef HARL_HPP
 #define HARL_HPP
-# include <string>
+
+#include <string>
 
 class Harl
 {
@@ -18,4 +19,4 @@ public:
 };
 
 
-#endif
+#endif // HARL_HPP

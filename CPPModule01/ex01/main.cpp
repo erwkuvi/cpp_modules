@@ -1,28 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ekuchel <ekuchel@student.42wolfsburg.de>   +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 13:07:07 by ekuchel           #+#    #+#             */
-/*   Updated: 2024/03/06 18:03:25 by ekuchel          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Zombie.hpp"
 
 int main (void)
 {
-	Zombie* leaderHorde = zombieHorde(5, "zombhord");
+	Zombie* manyZombies = zombieHorde(5, "genericZombie");
 
+	manyZombies->setName("leader zombie");
+	manyZombies[3].setName("Gregorio Perez");
 		for(int i = 0; i < 5; i++)
 	{
-		std::cout << i << " ";
-		leaderHorde[i].announce();
+		std::cout << i << ": ";
+		manyZombies[i].announce();
 	}
 
-	delete[] leaderHorde;
+	delete[] manyZombies;
 	return 0;
 }
 

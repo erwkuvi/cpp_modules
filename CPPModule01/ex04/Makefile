@@ -1,4 +1,3 @@
-
 NAME = sed
 
 SRC = main.cpp \
@@ -20,10 +19,11 @@ clean :
 
 fclean : clean
 	$(RM) -f $(NAME)
+	$(RM) -f *.replace
 
 re : fclean all
 
 val :
 	valgrind --leak-check=full ./$(NAME)
 
-.PHONY: all fclean clean re
+.PHONY: all fclean clean re val

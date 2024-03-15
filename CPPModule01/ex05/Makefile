@@ -26,4 +26,4 @@ re : fclean all
 val :
 	valgrind --leak-check=full ./$(NAME)
 
-.PHONY: all fclean clean re
+.PHONY: all fclean clean re val

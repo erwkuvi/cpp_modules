@@ -1,5 +1,6 @@
 #include "Harl.hpp"
 #include <iostream>
+
 #include <string>
 
 Harl::Harl() {}
@@ -25,7 +26,6 @@ void Harl::_error(void)
 {
 	std::cout << "[ERROR] This is unacceptable! I want to speak to the manager now." << std::endl;
 }
-
 
 void Harl::complain(std::string level)
 {
