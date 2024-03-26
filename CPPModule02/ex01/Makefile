@@ -1,4 +1,3 @@
-
 NAME = fixed
 
 SRC = main.cpp \
