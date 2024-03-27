@@ -1,7 +1,6 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-const int Fixed::_nFractBits = 8;
 
 Fixed::Fixed(void) : _fixedPoint(0) 
 {
@@ -22,7 +21,8 @@ Fixed::~Fixed(void)
 Fixed& Fixed::operator= (const Fixed& rhs) //ASSIGNMENT OPERATOR
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->_fixedPoint = rhs.getRawBits();
+	if (this != &rhs)
+		this->setRawBits(rhs.getRawBits());
 	return *this;
 }
 

@@ -4,7 +4,7 @@
 class Fixed {
 private:
   int _fixedPoint;
-  static const int _nFractBits;
+  static const int _nFractBits = 8;
 
 public:
   Fixed(void);
