@@ -1,5 +1,6 @@
 #include "Fixed.hpp"
 #include <iostream>
+#include <ostream>
 
 Fixed::Fixed(void)
 {
@@ -56,5 +57,7 @@ int Fixed::toInt(void) const
 	int n = this->getRawBits();
 	return n;
 }
+
+std::ostream
 
 
