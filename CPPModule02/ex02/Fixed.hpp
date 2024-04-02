@@ -1,4 +1,6 @@
 #ifndef FIXED_HPP
+#define FIXED_HPP
+#include <iostream>
 
 class Fixed {
 	private:
@@ -17,27 +19,25 @@ class Fixed {
 		bool operator!=(const Fixed &rhs) const;
 		bool operator>=(const Fixed &rhs) const;
 		bool operator<=(const Fixed &rhs) const;
-		Fixed &operator+(const Fixed &rhs);
-		Fixed &operator-(const Fixed &rhs);
-		Fixed &operator*(const Fixed &rhs);
-		Fixed &operator/(const Fixed &rhs);
+		Fixed operator+(const Fixed &rhs)const;
+		Fixed operator-(const Fixed &rhs)const;
+		Fixed operator*(const Fixed &rhs)const;
+		Fixed operator/(const Fixed &rhs)const;
 		Fixed &operator++();
 		Fixed operator++(int dummy);
 
-  ~Fixed(void);
+		~Fixed(void);
 
-	static int &min(int &fixedp1, int &fixedp2);
-	static int &min(const int &fixedp1, const int &fixedp2);
-	static int &max(int &fixedp1, int &fixedp2);
-	static int &max(const int &fixedp1, const int &fixedp2);
+		int getRawBits(void) const;
+		void setRawBits(int const raw);
+		float toFloat(void) const;
+		int toInt(void) const;
 
-
-  int getRawBits(void) const;
-  void setRawBits(int const raw);
-	float toFloat(void) const;
-
-
-	int toInt(void) const;
+		static Fixed &min(Fixed &fixedp1, Fixed &fixedp2);
+		static const Fixed &min(const Fixed &fixedp1, const Fixed &fixedp2);
+		static Fixed &max(Fixed &fixedp1, Fixed &fixedp2);
+		static const Fixed &max(const Fixed &fixedp1, const Fixed &fixedp2);
 };
 
+std::ostream& operator<<(std::ostream& output, const Fixed& other);
 #endif

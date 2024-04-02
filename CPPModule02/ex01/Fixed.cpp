@@ -3,7 +3,7 @@
 #include <cmath>
 
 
-Fixed::Fixed(void)
+Fixed::Fixed(void) : _fixedPoint(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
