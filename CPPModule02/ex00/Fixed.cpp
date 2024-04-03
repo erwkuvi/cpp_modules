@@ -18,7 +18,7 @@ Fixed::~Fixed(void)
 	std::cout << "Destructor called" << std::endl;
 }
 
-Fixed& Fixed::operator= (const Fixed& rhs) //ASSIGNMENT OPERATOR
+Fixed& Fixed::operator= (const Fixed& rhs) //COPY ASSIGNMENT OPERATOR OVERLOAD
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &rhs)

@@ -101,7 +101,7 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 
 bool	Fixed::operator<(const Fixed& rhs) const
 {
-	return !(*this > rhs);
+	return !(*this > rhs) && *this != rhs;
 }
 
 bool Fixed::operator==(const Fixed &rhs) const
@@ -168,8 +168,3 @@ const Fixed& Fixed::max(const Fixed &fixedp1, const Fixed &fixedp2)
 	return fixedp2;
 }
 
-
-
-
-
-//bottom part
