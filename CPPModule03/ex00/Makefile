@@ -1,8 +1,8 @@
 
-NAME = fixed
+NAME = claptrap
 
 SRC = main.cpp \
-			Fixed.cpp
+			ClapTrap.cpp
 
 CC = c++
 STDFLAG = -std=c++98
