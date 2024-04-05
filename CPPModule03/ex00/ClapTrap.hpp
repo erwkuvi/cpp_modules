@@ -24,8 +24,10 @@ public:
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	//PRINTING INFOS
+	//EXTRA GETTERS & SETTERS
 	unsigned int getter(std::string prop) const;
+	void setDamagePowerUp(int amount);
+	std::string namegetter(void) const;
 };
 
 std::ostream& operator<<(std::ostream& output, const ClapTrap& instance);

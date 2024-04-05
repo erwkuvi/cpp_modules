@@ -19,15 +19,15 @@ void  ClapTrap::attack(const std::string& target) //<target> loses _attackDamage
 		std::cout << RED << "No energy points available" << RESET << std::endl;
 	else
 	{
-		std::cout << YELLOW << _name << RESET << "attacks " << target << ", causing" <<  _attackDamage << "points of damage!" << std::endl;
-		std::cout << YELLOW << "-1 Energy Point" << RESET << std::endl;
+		std::cout << YELLOW << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << std::endl;
+		//std::cout << _name << ": -1 Energy Point" << RESET << std::endl;
 		--_energyPoints;
 	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << _name << " is being damaged, losing " << amount << " of hit points" << std::endl;  
+	std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
 	_hitPoints -= amount;
 }
 
@@ -37,9 +37,9 @@ void ClapTrap::beRepaired(unsigned int amount) //It gets <amount> _hitPoints bac
 		std::cout << RED << "No energy points available" << RESET << std::endl;
 	else
 	{
-		std::cout << _name << " is being repaired and gets " << amount << " of hit points back" << std::endl;  
+		std::cout << MAGENTA << _name << " is being repaired and gets " << amount << " of hit points back! [-1 EP]"  << RESET << std::endl;  
 		_hitPoints += amount; 
-		std::cout << YELLOW << "-1 Energy Point" << RESET << std::endl;
+		//std::cout << _name << YELLOW << ": -1 Energy Point" << RESET << std::endl;
 		--_energyPoints;
 	}
 }
@@ -55,8 +55,20 @@ unsigned int ClapTrap::getter(std::string prop) const
 	return 0;
 }
 
+void ClapTrap::setDamagePowerUp(int amount)
+{
+	if (amount < 0 && -amount <= _attackDamage)
+		_attackDamage -= -amount;
+	else
+		_attackDamage += amount;
+}
+
+std::string ClapTrap::namegetter(void) const
+{
+	return _name;
+}
 std::ostream& operator<<(std::ostream& output, const ClapTrap& instance)
 {
-	output << "->Current Hit Points:" << YELLOW << instance.getter("hp")<< RESET << " ->Energy Points:" << MAGENTA << instance.getter("ep") << RESET << " ->Attack Damage:"<< RED << instance.getter("ad") << RESET << std::endl;  
+	output << "\n" << BLUE << instance.namegetter() <<" [STATS]\nHit Points:" << instance.getter("hp") << "\nEnergy Points:" << instance.getter("ep") << "\nAttack Damage:"<< instance.getter("ad") << RESET;
 	return output;
 }
