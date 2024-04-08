@@ -2,9 +2,9 @@
 
 int main(void)
 {
-	std::cout << "test123" << std::endl; 
-	ScavTrap test("test");
-  ClapTrap a("test");
-	std::cout << "test123" << std::endl; 
-	return 0 ;
-}
+	ScavTrap a ("Scavredo");
+	ScavTrap b ("Scravgorio");
+	//ClapTrap c ("Clapfredo");
+	std::cout << a << "\n" << std::endl;
+	a.guardGate();
+return 0 ;}

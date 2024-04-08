@@ -18,6 +18,8 @@ private:
 
 public:
 	ClapTrap(std::string name); 
+	ClapTrap(const ClapTrap& instance); 
+	ClapTrap &operator=(const ClapTrap& rhs);
 	~ClapTrap(void); 
 
 	void attack(const std::string& target);
