@@ -1,11 +1,14 @@
 #ifndef SCAVTRAP_HPP
 #define SCAVTRAP_HPP
+#include "ClapTrap.hpp"
 
-class FragTrap
+class ScavTrap : public ClapTrap
 {
 	private:
 
 	public:
+		ScavTrap(std::string name); 
+		~ScavTrap(void);
 
 };
 #endif
