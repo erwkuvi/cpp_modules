@@ -10,26 +10,30 @@
 
 class ClapTrap{
 
-private:
-	std::string _name;
-	unsigned int _hitPoints; //health of the ClapTrap
-	unsigned int _energyPoints;
-	unsigned int _attackDamage;
+	private:
+		ClapTrap(void);
 
-public:
-	ClapTrap(std::string name); 
-	ClapTrap(const ClapTrap& instance); 
-	ClapTrap &operator=(const ClapTrap& rhs);
-	~ClapTrap(void); 
+	protected:
+		std::string _name;
+		unsigned int _hitPoints; //health of the ClapTrap
+		unsigned int _energyPoints;
+		unsigned int _attackDamage;
 
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	public:
+		ClapTrap(std::string name); 
+		ClapTrap(const ClapTrap& instance); 
+		ClapTrap(std::string name, int hp, int ep, int ad);
+		ClapTrap &operator=(const ClapTrap& rhs);
+		virtual ~ClapTrap(void); 
 
-	//EXTRA GETTERS & SETTERS
-	std::string namegetter(void) const;
-	unsigned int getter(std::string prop) const;
-	void setDamagePowerUp(int amount);
+		virtual void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+
+		//EXTRA GETTERS & SETTERS
+		std::string namegetter(void) const;
+		unsigned int getter(std::string prop) const;
+		void setDamagePowerUp(int amount);
 };
 
 std::ostream& operator<<(std::ostream& output, const ClapTrap& instance);

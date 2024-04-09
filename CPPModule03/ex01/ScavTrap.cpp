@@ -1,9 +1,26 @@
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name) 
+ScavTrap::ScavTrap(void) : ClapTrap("noname", 100, 50, 30)
+{
+	std::cout << RED << "ScavTrap Default constructor called" << RESET << std::endl;
+}
+
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 30) 
 {
 	std::cout << RED << "ScavTrap constructor called" << RESET << std::endl;
+}
+
+ScavTrap::ScavTrap(const ScavTrap& rhs) : ClapTrap(rhs)
+{
+	std::cout << RED << "ScavTrap copy constructor called" << RESET << std::endl;
+}
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& rhs)
+{
+	if (this != &rhs) 
+		ClapTrap::operator=(rhs);
+	return *this;
 }
 
 ScavTrap::~ScavTrap(void)
@@ -16,15 +33,13 @@ void ScavTrap::guardGate()
 	std::cout << YELLOW << "ScavTrap " << ClapTrap::namegetter() << " is now on Gate Keeper mode" << RESET << std::endl;
 }
 
-
-void attack(const std::string& target)
+void ScavTrap::attack(const std::string& target) 
 {
-	if (!_energyPoints)
-		std::cout << RED << "No energy points available" << RESET << std::endl;
+	if (!this->_energyPoints)
+		std::cout << RED << "ScavTrap: " << _name << " cannot attack, no energy points available" << RESET << std::endl;
 	else
 	{
-		std::cout << YELLOW << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << std::endl;
-		//std::cout << _name << ": -1 Energy Point" << RESET << std::endl;
+		std::cout << YELLOW << "ScavTrap: " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << RESET << std::endl;
 		--_energyPoints;
 	}
-}
+} 

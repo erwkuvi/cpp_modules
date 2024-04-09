@@ -15,6 +15,7 @@ private:
 	unsigned int _hitPoints; //health of the ClapTrap
 	unsigned int _energyPoints;
 	unsigned int _attackDamage;
+	ClapTrap(void);
 
 public:
 	ClapTrap(std::string name); 

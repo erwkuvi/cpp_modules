@@ -1,8 +1,13 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void) : _name ("noName"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "ClapTrap Default constructor is called" << std::endl;
+}
+
 ClapTrap::ClapTrap (std::string name) : _name (name), _hitPoints(10), _energyPoints(10), _attackDamage(0) 
 {
-	std::cout << "Constructor is called" << std::endl;
+	std::cout << "ClapTrap Constructor is called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& rhs)
@@ -22,18 +27,23 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
 	return *this;
 }
 
-ClapTrap::~ClapTrap(void)
+ClapTrap::ClapTrap(std::string name, int hp, int ep, int ad) : _name(name), _hitPoints(hp), _energyPoints(ep), _attackDamage(ad) 
 {
-	std::cout << "Destructor is called" << std::endl;
+	std::cout << "ClapTrap Constructor is called" << std::endl;
 }
 
-void  ClapTrap::attack(const std::string& target) //<target> loses _attackDamage hit points && loses 1 _energyPoints
+ClapTrap::~ClapTrap(void)
+{
+	std::cout << "ClapTrap Destructor is called" << std::endl;
+}
+
+void ClapTrap::attack(const std::string& target) //<target> loses _attackDamage hit points && loses 1 _energyPoints
 {
 	if (!_energyPoints)
-		std::cout << RED << "No energy points available" << RESET << std::endl;
+		std::cout << RED << _name << " cannot attack, no energy points available" << RESET << std::endl;
 	else
 	{
-		std::cout << YELLOW << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << std::endl;
+		std::cout << YELLOW << _name << "attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << RESET << std::endl;
 		//std::cout << _name << ": -1 Energy Point" << RESET << std::endl;
 		--_energyPoints;
 	}
@@ -41,14 +51,22 @@ void  ClapTrap::attack(const std::string& target) //<target> loses _attackDamage
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
-	_hitPoints -= amount;
+	if(_hitPoints > 0)
+	{
+		std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
+		if (amount < _hitPoints)
+			_hitPoints -= amount;
+		else
+			_hitPoints = 0;
+	}
+	else
+		std::cout << RED << _name << " is already dead, he owns " << ClapTrap::getter("hp") << " hit points" << RESET << std::endl;  
 }
 
 void ClapTrap::beRepaired(unsigned int amount) //It gets <amount> _hitPoints back && loses 1 _energyPoints
 {
 	if (!_energyPoints)
-		std::cout << RED << "No energy points available" << RESET << std::endl;
+		std::cout << RED << _name << " cannot be repaired, no energy points available" << RESET << std::endl;
 	else
 	{
 		std::cout << MAGENTA << _name << " is being repaired and gets " << amount << " of hit points back! [-1 EP]"  << RESET << std::endl;  
@@ -81,6 +99,7 @@ std::string ClapTrap::namegetter(void) const
 {
 	return _name;
 }
+
 std::ostream& operator<<(std::ostream& output, const ClapTrap& instance)
 {
 	output << "\n" << BLUE << instance.namegetter() <<" [STATS]\nHit Points:" << instance.getter("hp") << "\nEnergy Points:" << instance.getter("ep") << "\nAttack Damage:"<< instance.getter("ad") << RESET;

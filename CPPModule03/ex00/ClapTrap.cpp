@@ -1,5 +1,10 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap(void) : _name ("noName"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "Default constructor is called" << std::endl;
+}
+
 ClapTrap::ClapTrap (std::string name) : _name (name), _hitPoints(10), _energyPoints(10), _attackDamage(0) 
 {
 	std::cout << "Constructor is called" << std::endl;
@@ -30,7 +35,7 @@ ClapTrap::~ClapTrap(void)
 void  ClapTrap::attack(const std::string& target) //<target> loses _attackDamage hit points && loses 1 _energyPoints
 {
 	if (!_energyPoints)
-		std::cout << RED << "No energy points available" << RESET << std::endl;
+		std::cout << RED << "cannot attack, no energy points available" << RESET << std::endl;
 	else
 	{
 		std::cout << YELLOW << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage! [-1 EP]" << std::endl;
@@ -41,14 +46,22 @@ void  ClapTrap::attack(const std::string& target) //<target> loses _attackDamage
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
-	_hitPoints -= amount;
+	if(_hitPoints > 0)
+	{
+		std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
+		if (amount < _hitPoints)
+			_hitPoints -= amount;
+		else
+			_hitPoints = 0;
+	}
+	else
+		std::cout << RED << _name << " is already dead, he owns " << ClapTrap::getter("hp") << " hit points" << RESET << std::endl;  
 }
 
 void ClapTrap::beRepaired(unsigned int amount) //It gets <amount> _hitPoints back && loses 1 _energyPoints
 {
 	if (!_energyPoints)
-		std::cout << RED << "No energy points available" << RESET << std::endl;
+		std::cout << RED << _name << " cannot be repaired, no energy points available" << RESET << std::endl;
 	else
 	{
 		std::cout << MAGENTA << _name << " is being repaired and gets " << amount << " of hit points back! [-1 EP]"  << RESET << std::endl;  
