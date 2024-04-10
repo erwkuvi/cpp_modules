@@ -12,6 +12,7 @@ ClapTrap::ClapTrap (std::string name) : _name (name), _hitPoints(10), _energyPoi
 
 ClapTrap::ClapTrap(const ClapTrap& rhs)
 {
+	std::cout << "Copy Constructor is called" << std::endl;
 	operator=(rhs);
 }
 
@@ -48,11 +49,16 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if(_hitPoints > 0)
 	{
-		std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
 		if (amount < _hitPoints)
+		{
+			std::cout << RED << _name << " is being damaged, losing " << amount << " of hit points" << RESET << std::endl;  
 			_hitPoints -= amount;
+		}
 		else
+		{
+			std::cout << RED << _name << " is being damaged, losing " << _hitPoints << " of hit points" << RESET << std::endl;  
 			_hitPoints = 0;
+		}
 	}
 	else
 		std::cout << RED << _name << " is already dead, he owns " << ClapTrap::getter("hp") << " hit points" << RESET << std::endl;  
