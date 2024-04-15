@@ -1,9 +1,12 @@
 #include "FragTrap.hpp"
 #include "ClapTrap.hpp"
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << BLUE << "FragTrap: Constructor called" << RESET << std::endl; 
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 }
 
 FragTrap::FragTrap (const FragTrap& instance) : ClapTrap(instance)

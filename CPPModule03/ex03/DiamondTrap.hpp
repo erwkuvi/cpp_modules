@@ -5,7 +5,7 @@
 #include "FragTrap.hpp"
 #include <string>
 
-class DiamondTrap : virtual public FragTrap, virtual public ScavTrap
+class DiamondTrap : public FragTrap, public ScavTrap
 {
 	DiamondTrap(void);
 	std::string _name;

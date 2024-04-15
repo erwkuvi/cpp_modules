@@ -1,4 +1,3 @@
-
 NAME = fragtrap
 
 SRC = main.cpp \

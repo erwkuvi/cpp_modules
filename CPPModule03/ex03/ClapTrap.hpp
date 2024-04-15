@@ -22,7 +22,7 @@ class ClapTrap{
 	public:
 		ClapTrap(std::string name); 
 		ClapTrap(const ClapTrap& instance); 
-		ClapTrap(std::string name, int hp, int ep, int ad);
+		ClapTrap(std::string name, unsigned int hp, unsigned int ep, unsigned int ad);
 		ClapTrap &operator=(const ClapTrap& rhs);
 		virtual ~ClapTrap(void); 
 

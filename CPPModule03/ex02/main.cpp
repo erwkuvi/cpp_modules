@@ -3,9 +3,9 @@
 int main(void)
 {
 	FragTrap a ("Anton");
-	FragTrap z(a);
+	FragTrap* z = new FragTrap("Zeriberto");
 	FragTrap b ("Beto");
-	//std::cout << "z" << z << "\n" << std::endl;
+	std::cout << "z" << *z << "\n" << std::endl;
 	std::cout << "a" << a << "\n" << std::endl;
 	std::cout << "b" << b << "\n" << std::endl;
 	for(int i = 0; i < 10; i++)
@@ -13,12 +13,11 @@ int main(void)
 		a.attack("Beto");
 		b.takeDamage(a.getter("ad"));
 	}
-	z = b;
+	a = b;
 	std::cout << "a" << a << "\n" << std::endl;
 	std::cout << "b" << b << "\n" << std::endl;
-	//std::cout << "a" << a << "\n" << std::endl;
 	//std::cout << "b" << b << "\n" << std::endl;
-	//std::cout << "z" << z << "\n" << std::endl;
+	delete z; 
 	//b.beRepaired(20);
 	//std::cout << b << "\n" << std::endl;
 	a.highFives();

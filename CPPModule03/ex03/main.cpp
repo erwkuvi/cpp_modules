@@ -2,7 +2,10 @@
 
 int main(void)
 {
-	DiamondTrap a ("Anton");
-	a.whoAmI();
+	DiamondTrap g ("Gregorio");
+	g.whoAmI();
+	g.highFives();
+	g.guardGate();
+	std::cout << g << std::endl;
 	return 0 ;
 }

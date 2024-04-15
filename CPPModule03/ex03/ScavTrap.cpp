@@ -1,14 +1,13 @@
 #include "ScavTrap.hpp"
 #include "ClapTrap.hpp"
 
-ScavTrap::ScavTrap(void) : ClapTrap("noname", 100, 50, 30)
-{
-	std::cout << RED << "ScavTrap Default constructor called" << RESET << std::endl;
-}
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name, 100, 50, 30) 
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << RED << "ScavTrap constructor called" << RESET << std::endl;
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 20;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& rhs) : ClapTrap(rhs)

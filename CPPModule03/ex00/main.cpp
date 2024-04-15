@@ -2,16 +2,19 @@
 
 int main(void)
 {
-	//ClapTrap g;
 	ClapTrap b("Benny");
 	ClapTrap p("Paulo");
-	std::cout << g << std::endl;
-	std::cout << p << std::endl;
+	ClapTrap a(b);
+	std::cout << "b" << b << std::endl;
+	std::cout << "p" << p << std::endl;
+	std::cout << "a" << a << std::endl;
+	a = p;
+	std::cout << "(a) After a = p:" << a << std::endl;
 	b.attack("Paulo"); 
 	p.takeDamage(b.getter("ad"));
 	std::cout << b << std::endl;
 	std::cout << p << std::endl;
-	p.setDamagePowerUp(3);
+	//p.setDamagePowerUp(3);
 	p.attack("Benny");
 	b.takeDamage(p.getter("ad"));
 	std::cout << b << std::endl;
