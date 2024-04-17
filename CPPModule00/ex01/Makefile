@@ -16,15 +16,15 @@ SRC = main.cpp \
 	PhoneBook.class.cpp \
 	Contact.class.cpp \
 
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror
 STDFLAG = -std=c++98
 RM = rm -rf
-CC = c++
+CXX = c++
 
 all : $(NAME)
 
 $(NAME) : $(SRC)
-	$(CC) $(CFLAGS) $(STDFLAG) $(SRC) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(STDFLAG) $(SRC) -o $(NAME)
 
 clean:
 	$(RM) $(NAME)

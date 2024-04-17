@@ -5,9 +5,9 @@ SRC = main.cpp \
 			ScavTrap.cpp \
 			FragTrap.cpp
 
-CC = c++
+CXX = c++
 STDFLAG = -std=c++98
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror
 RM = rm
 
 OBJ = $(SRC:.cpp=.o)
@@ -15,7 +15,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
 
 clean :
 	$(RM) -f $(OBJ)

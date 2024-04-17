@@ -7,10 +7,10 @@ SRC = main.cpp \
 			FragTrap.cpp \
 			DiamondTrap.cpp
 
-CC = c++
+CXX = c++
 STDFLAG = -std=c++98
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -Wno-shadow #-Wshadow 
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow
+LDFLAGS = -Wno-shadow # 
 RM = rm
 
 OBJ = $(SRC:.cpp=.o)
@@ -18,7 +18,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
 
 clean :
 	$(RM) -f $(OBJ)
