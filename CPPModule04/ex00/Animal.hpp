@@ -4,15 +4,22 @@
 
 class Animal
 {
+private:
+	Animal(void);
+
 protected:
-	std::string type;
+	std::string _type;
 
 public:
-	Animal(void);
+	Animal(const std::string& type);
 	Animal(const Animal& instance);
 	Animal& operator=(const Animal& rhs);
-	~Animal(void);
-	void makeSound();
+	virtual ~Animal(void);
+	virtual void makeSound() const;
+
+	//GETTER
+	std::string getType(void) const;
 };
 
+std::ostream& operator<<(std::ostream& output, const Animal& rhs);
 #endif // !ANIMAL_HPP
