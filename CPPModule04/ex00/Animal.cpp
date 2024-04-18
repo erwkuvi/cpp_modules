@@ -1,25 +1,20 @@
 #include <iostream>
 #include "Animal.hpp"
 
-Animal::Animal(void)
+Animal::Animal(void) : _type("N/A")
 {
 	std::cout << "Animal Default Constructor called" << std::endl;
 }
 
-Animal::Animal(const std::string& type): _type(type)
+Animal::Animal(const std::string& type) : _type(type)
 {
-	std::cout << "Animal Constructor called" << std::endl;
+	std::cout << "Animal Default Constructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& instance)
 {
 	std::cout << "Animal Copy Constructor called" << std::endl;
 	operator=(instance); 
-}
-
-Animal::~Animal(void)
-{
-	std::cout << "Animal Destructor called" << std::endl;	
 }
 
 Animal& Animal::operator=(const Animal& rhs)
@@ -31,18 +26,7 @@ Animal& Animal::operator=(const Animal& rhs)
 	return *this;
 }
 
-void Animal::makeSound() const
+Animal::~Animal(void)
 {
-	std::cout << "Animal sound ..." << std::endl;
-}
-
-std::string Animal::getType(void) const
-{
-	return _type;
-}
-
-std::ostream& operator<<(std::ostream& output, const Animal& rhs)
-{
-	output << "Type: " <<  rhs.getType(); 
-	return output;
+	std::cout << "Animal Destructor called" << std::endl;
 }

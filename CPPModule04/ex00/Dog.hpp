@@ -1,18 +1,18 @@
 #ifndef DOG_HPP
 #define DOG_HPP
-#include <string>
 #include "Animal.hpp"
 
 class Dog : public Animal
 {
-protected:
-	std::string type;
-
-public:
-	Dog(void);
-	Dog(const Dog& instance);
-	Dog& operator=(const Dog& rhs);
-	~Dog(void);
+	private:
+	public:
+		Dog(void);
+		//Dog(const std::string& type);
+		Dog(const Dog& instance);
+		Dog& operator=(const Dog& rhs);
+		~Dog(void);
+		void makeSound() const;
 };
+std::ostream& operator<<(std::ostream& output, const Dog& rhs);
 
 #endif // !DOG_HPP
