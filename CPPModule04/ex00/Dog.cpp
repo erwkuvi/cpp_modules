@@ -35,7 +35,7 @@ void Dog::makeSound() const
 	std::cout << "Woof... woof.. !!!" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& output, const Animal& rhs)
+std::ostream& operator<<(std::ostream& output, const Dog& rhs)
 {
 	output << "Type: " <<  rhs.getType(); 
 	return output;

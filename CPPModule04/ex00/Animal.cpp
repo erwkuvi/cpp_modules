@@ -30,3 +30,20 @@ Animal::~Animal(void)
 {
 	std::cout << "Animal Destructor called" << std::endl;
 }
+
+void Animal::makeSound(void) const
+{
+	std::cout << "Animal Sound ..." << std::endl;
+}
+
+std::string Animal::getType(void) const
+{
+	return _type;
+}
+
+std::ostream& operator<<(std::ostream& output, const Animal& rhs)
+{
+	output << "Type: " << rhs.getType();
+	return output;
+}
+	

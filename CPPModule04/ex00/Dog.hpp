@@ -4,7 +4,7 @@
 
 class Dog : public Animal
 {
-	private:
+	
 	public:
 		Dog(void);
 		//Dog(const std::string& type);
