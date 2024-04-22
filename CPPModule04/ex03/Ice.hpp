@@ -15,7 +15,7 @@ public:
     ~Ice(void);
 		//Orthodox canonical 
 
-		virtual AMateria* clone(const AMateria& instance);//From AMateria.hpp
+		virtual AMateria* clone();//From AMateria.hpp
 		virtual void use(ICharacter& target);//From AMateria.hpp
 };
 

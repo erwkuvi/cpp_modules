@@ -1,5 +1,4 @@
 #include "Cure.hpp"
-#include <string>
 #include <iostream>
 
 Cure::Cure(void) : AMateria("cure")
@@ -7,17 +6,16 @@ Cure::Cure(void) : AMateria("cure")
 	std::cout << "Cure Default constructor called" << std::endl; 
 }
 
-Cure::Cure(const Cure& instance) : AMateria("cure")
+Cure::Cure(const Cure& instance) : AMateria(instance)
 {
 	std::cout << "Cure Copy constructor called" << std::endl; 
-	operator=(instance);
 }
 
 Cure& Cure::operator=(const Cure& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			AMateria::operator=(rhs);//implementation of the copying
 		}
 	return *this;
 }
@@ -28,5 +26,19 @@ Cure::~Cure(void) //
 }
 
 	//Further members implementations ..
-		virtual AMateria* clone(const AMateria& instance);;//From AMateria.hpp
-		virtual void use(ICharacter& target);;//From AMateria.hpp
+AMateria* Cure::clone(void)
+{
+	return new Cure(*this);
+}
+
+void Ice::use(ICharacter& target)
+{
+	std::cout << "[Cure] heals" << target.getName()<< "'s wounds" << std::endl; 
+
+
+
+
+
+
+
+}

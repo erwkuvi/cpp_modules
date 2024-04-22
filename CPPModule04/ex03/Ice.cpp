@@ -1,6 +1,4 @@
 #include "Ice.hpp"
-#include "AMateria.hpp"
-#include <string>
 #include <iostream>
 
 Ice::Ice(void) : AMateria("ice")
@@ -8,17 +6,16 @@ Ice::Ice(void) : AMateria("ice")
 	std::cout << "Ice Default constructor called" << std::endl; 
 }
 
-Ice::Ice(const Ice& instance): AMateria("cure")
+Ice::Ice(const Ice& instance): AMateria(instance)
 {
 	std::cout << "Ice Copy constructor called" << std::endl; 
-	operator=(instance);
 }
 
 Ice& Ice::operator=(const Ice& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			AMateria::operator=(rhs);//implementation of the copying
 		}
 	return *this;
 }
@@ -29,16 +26,13 @@ Ice::~Ice(void) //
 }
 
 	//Further members implementations ..
-virtual AMateria* clone(const AMateria& instance)
+AMateria* Ice::clone(void)
 {
-	if (instance.getType() == "ice")
-	{
-		AMateria* clone = new AMateria();
-
-	}
-	return clone;
+	return new Ice(*this);
 }
-virtual void use(ICharacter& target)
+
+void Ice::use(ICharacter& target)
 {
+	std::cout << "[Ice] shoots an ice bolt at " << target.getName() << std::endl; 
 
 }

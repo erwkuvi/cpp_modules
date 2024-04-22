@@ -22,7 +22,7 @@ AMateria& AMateria::operator=(const AMateria& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			_type = rhs._type;
 		}
 	return *this;
 }
