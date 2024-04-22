@@ -34,11 +34,4 @@ AMateria* Cure::clone(void)
 void Ice::use(ICharacter& target)
 {
 	std::cout << "[Cure] heals" << target.getName()<< "'s wounds" << std::endl; 
-
-
-
-
-
-
-
 }

@@ -4,9 +4,9 @@
 #include <string>
 
 class ICharacter {
-private:
-	//std::string _name;
-	//AMateria* slot[4];
+protected:
+    AMateria* _slots[4];// Add your private members here
+		std::string _name;
 
 public:
     ICharacter(void);

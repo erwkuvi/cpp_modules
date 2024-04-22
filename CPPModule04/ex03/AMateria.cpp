@@ -15,14 +15,14 @@ AMateria::AMateria(const std::string type) : _type(type)
 AMateria::AMateria(const AMateria& instance)
 {
 	std::cout << "AMateria Copy constructor called" << std::endl; 
-	operator=(instance);
+	this->operator=(instance);
 }
 
 AMateria& AMateria::operator=(const AMateria& rhs)
 {
 	if (this != &rhs)
 		{
-			_type = rhs._type;
+			this->_type = rhs._type;
 		}
 	return *this;
 }
@@ -37,4 +37,9 @@ AMateria::~AMateria(void) //
 const std::string& AMateria::getType() const
 {
 	return _type;
+}
+
+void AMateria::use(ICharacter& target)
+{
+	return;
 }
