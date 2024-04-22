@@ -1,21 +1,22 @@
 #ifndef CURE_HPP
 #define CURE_HPP
-#include <string>
 #include "AMateria.hpp"
 
-class Cure {
+class Cure : public AMateria
+{
 private:
     // Add your private members here
 
 public:
+		//Orthodox canonical 
     Cure(void);
-    //Cure(const std::string& arg); // In case you need to pass an  argument
     Cure(const Cure& instance);
     Cure&operator=(const Cure& rhs);
     ~Cure(void);
+		//Orthodox canonical 
 
-		virtual AMateria* clone(const AMateria& instance);
-		virtual void use(ICharacter& target);
+		virtual AMateria* clone(const AMateria& instance);//From AMateria.hpp
+		virtual void use(ICharacter& target); //From AMateria.hpp
 };
 
 

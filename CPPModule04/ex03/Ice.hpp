@@ -1,21 +1,22 @@
 #ifndef ICE_HPP
 #define ICE_HPP
 #include "AMateria.hpp"
-#include <string>
 
-class Ice {
+class Ice : public AMateria 
+{
 private:
     // Add your private members here
 
 public:
+		//Orthodox canonical 
     Ice(void);
-    //Ice(const std::string& arg); // In case you need to pass an  argument
     Ice(const Ice& instance);
     Ice&operator=(const Ice& rhs);
     ~Ice(void);
+		//Orthodox canonical 
 
-		virtual AMateria* clone(const AMateria& instance);
-		virtual void use(ICharacter& target);
+		virtual AMateria* clone(const AMateria& instance);//From AMateria.hpp
+		virtual void use(ICharacter& target);//From AMateria.hpp
 };
 
 

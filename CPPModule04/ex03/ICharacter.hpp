@@ -5,8 +5,8 @@
 
 class ICharacter {
 private:
-	std::string _name;
-	AMateria* slot[4];
+	//std::string _name;
+	//AMateria* slot[4];
 
 public:
     ICharacter(void);

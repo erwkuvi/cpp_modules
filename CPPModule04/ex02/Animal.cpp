@@ -8,7 +8,7 @@ Animal::Animal(void) : _type("N/A")
 
 Animal::Animal(const std::string& type) : _type(type)
 {
-	std::cout << "Animal Default Constructor called" << std::endl;
+	std::cout << "Animal Constructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& instance)

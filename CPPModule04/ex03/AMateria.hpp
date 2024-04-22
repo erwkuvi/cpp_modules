@@ -3,18 +3,21 @@
 //#include "ICharacter.hpp"
 #include <string>
 
-class AMateria {
+class AMateria 
+{
 	private:
+    AMateria(void);//Orthodox canonical
 
 	protected:
-		std::string type;
+		std::string _type;
 
-public:
-    AMateria(void);
-    AMateria(const std::string& type);
+	public:
+    AMateria(const std::string type);
+		//Orthodox canonical 
     AMateria(const AMateria& instance);
     AMateria&operator=(const AMateria& rhs);
-    ~AMateria(void);
+    virtual ~AMateria(void);
+		//Orthodox canonical 
 
 		std::string const & getType() const; // Returns the materia type
 		virtual AMateria* clone() const = 0;
