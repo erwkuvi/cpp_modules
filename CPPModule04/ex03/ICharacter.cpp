@@ -7,11 +7,10 @@ ICharacter::ICharacter(void) //: _init(some)
 	std::cout << "ICharacter Default constructor called" << std::endl; 
 }
 
-// In case you need to pass an  argument
-//ICharacter::ICharacter(const std::string& arg) //: _init(arg)
-//{
-//	std::cout << "ICharacter Constructor called" << std::endl; 
-//}
+ICharacter::ICharacter(const std::string& name) : _name(name)
+{
+	std::cout << "ICharacter Constructor called" << std::endl; 
+}
 
 ICharacter::ICharacter(const ICharacter& instance)
 {
@@ -36,9 +35,14 @@ ICharacter& ICharacter::operator=(const ICharacter& rhs)
 	return *this;
 }
 
-ICharacter::~ICharacter(void) //
+ICharacter::~ICharacter(void) 
 {
 	std::cout << "ICharacter Destructor called" << std::endl; 
+//	for(int i = 0; i < 4; i++)
+//	{
+//		if (_slots[i] != NULL)
+//			delete _slots[i];
+//	}
 }
 
 	//Further members implementations ..
