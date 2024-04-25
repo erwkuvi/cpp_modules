@@ -1,5 +1,6 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
+#include "FloorList.hpp"
 #include <string>
 #include <iostream>
 
@@ -58,8 +59,8 @@ void Character::unequip(AMateria* m)
 		return;
 	else
 	{
-		AMateria* tmp = m;
-		//LetfMateria::add(tmp); Here comes the leftmateria class implemented add function
+		const AMateria* tmp = m;
+//		FloorList::add(FloorNode(tmp)); //Here comes the leftmateria class implemented add function
 		_slots[i] = NULL;
 	}
 }

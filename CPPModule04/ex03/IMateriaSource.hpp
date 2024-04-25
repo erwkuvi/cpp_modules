@@ -3,9 +3,10 @@
 #include "AMateria.hpp"
 #include <string>
 
-class IMateriaSource {
-private:
-	AMateria* slot[4];
+class IMateriaSource 
+{
+protected:
+	AMateria* _materias[4];
 
 public:
     IMateriaSource(void);
@@ -18,5 +19,5 @@ public:
 		virtual AMateria* createMateria(std::string const& type) = 0; //returns 0 if the type in unknown
 };
 
-#endif // IMATERIASOURCE_H
+ #endif // IMATERIASOURCE_H
 

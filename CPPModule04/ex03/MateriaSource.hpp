@@ -1,8 +1,10 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
+#include "IMateriaSource.hpp"
 #include <string>
 
-class MateriaSource {
+class MateriaSource : public IMateriaSource
+{
 private:
     // Add your private members here
 
@@ -14,9 +16,9 @@ public:
     ~MateriaSource(void);
 
     // Add your class members and methods here
+		virtual void learnMateria(AMateria* materia);
+		virtual AMateria* createMateria(const std::string& type);
 };
-
-std::ostream& operator<<(std::ostream& output, const MateriaSource& instance);
 
 #endif // MATERIASOURCE_H
 

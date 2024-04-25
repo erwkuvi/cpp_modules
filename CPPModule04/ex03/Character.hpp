@@ -1,9 +1,11 @@
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
 #include "ICharacter.hpp"
+#include "FloorNode.hpp"
+#include "FloorList.hpp"
 #include <string>
 
-class Character : public ICharacter
+class Character : public ICharacter//, public FloorNode, public FloorNode
 {
 private:
     Character(void);
