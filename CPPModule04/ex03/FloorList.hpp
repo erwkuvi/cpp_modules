@@ -1,8 +1,9 @@
 #ifndef FLOORLIST_HPP
 #define FLOORLIST_HPP
-#include <string>
 #include "FloorNode.hpp"
+#include "ICharacter.hpp"
 
+class Floornode;
 class FloorList 
 {
 	private:
@@ -15,9 +16,9 @@ class FloorList
 		FloorList &operator=(const FloorList& rhs);
 		~FloorList(void);
 		//Orthodox canonical end
-		void add(const FloorNode& materia);
-	
+		void add(AMateria* materia);
+		FloorNode* getNode() const;
+		void printList() const;
 };
-
 
 #endif // FLOORLIST_HPP

@@ -1,10 +1,8 @@
 #include "FloorNode.hpp"
-#include <string>
-//#include <ostream>
 
-FloorNode(const AMateria& m) : _leftmateria(m), next(NULL) {}
+FloorNode::FloorNode(AMateria* materia) : _leftmateria(materia), next(NULL) {}
 
-FloorNode::FloorNode(void) {}
+FloorNode::FloorNode(void) : _leftmateria(NULL), next(NULL) {}
 
 FloorNode::FloorNode(const FloorNode& instance)
 {
@@ -15,7 +13,7 @@ FloorNode& FloorNode::operator=(const FloorNode& rhs)
 {
 	if (this != &rhs)
 		{
-			_leftmateria = new AMateria(rhs->_leftmateria);
+			_leftmateria = rhs._leftmateria->clone();
 			next = NULL;
 		}
 	return *this;

@@ -1,9 +1,16 @@
 NAME = interface
 
-SRC = main.cpp 
+SRC = main.cpp\
+			Ice.cpp\
+			Cure.cpp\
+			AMateria.cpp\
+			ICharacter.cpp\
+			FloorList.cpp\
+			FloorNode.cpp
+
 
 CXX = c++
-STDFLAG = -std=c++98 -Wshadow
+STDFLAG = -std=c++98 #Wshadow
 CXXFLAGS = -Wall -Wextra -Werror
 RM = rm
 
@@ -22,7 +29,7 @@ fclean : clean
 
 re : fclean all
 
-val : 
+val :
 	valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all fclean clean re val

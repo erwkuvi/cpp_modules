@@ -1,18 +1,17 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
-#include "FloorList.hpp"
+#include "ICharacter.hpp"
+//#include "FloorList.hpp"
 #include <string>
 #include <iostream>
 
-Character::Character(void) //: _init(some)
-{
-	std::cout << "Character Default constructor called" << std::endl; 
-}
 
 Character::Character(const std::string& name) : ICharacter(name)
 {
 	std::cout << "Character Constructor called" << std::endl; 
 }
+
+Character::Character(void) : ICharacter("N/A") {}
 
 Character::Character(const Character& instance)
 {
@@ -24,7 +23,7 @@ Character& Character::operator=(const Character& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			ICharacter::operator=(rhs);
 		}
 	return *this;
 }
@@ -34,9 +33,7 @@ Character::~Character(void) //
 	std::cout << "Character Destructor called" << std::endl; 
 }
 
-	//Further members implementations ..
-
-std::string const& Character::getName() const
+const std::string& Character::getName() const
 {
 	return _name;
 }
@@ -54,13 +51,13 @@ void Character::equip(AMateria* m)
 void Character::unequip(AMateria* m)
 {
 	int i = 0;
-	while (&_slots[i++] == &m && i < 4){} 
+	while (&_slots[i++] != &m && i < 4) {} 
 	if (i == 4)
 		return;
 	else
 	{
-		const AMateria* tmp = m;
-//		FloorList::add(FloorNode(tmp)); //Here comes the leftmateria class implemented add function
+		AMateria* tmp = _slots[i];
+		list.add(_slots[i]);
 		_slots[i] = NULL;
 	}
 }
@@ -72,9 +69,6 @@ void Character::use (int idx, ICharacter& target) //pass the parameter to the AM
 	else
 		return;
 }																									 
-
-
-	//output operator overload ..
 
 std::ostream& operator<<(std::ostream& output, const Character& rhs)
 {
