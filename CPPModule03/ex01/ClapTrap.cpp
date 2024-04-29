@@ -107,6 +107,7 @@ std::string ClapTrap::namegetter(void) const
 }
 
 std::ostream& operator<<(std::ostream& output, const ClapTrap& instance)
+
 {
 	output << "\n" << BLUE << instance.namegetter() <<" [STATS]\nHit Points:" << instance.getter("hp") << "\nEnergy Points:" << instance.getter("ep") << "\nAttack Damage:"<< instance.getter("ad") << RESET;
 	return output;

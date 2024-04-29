@@ -20,7 +20,7 @@ ICharacter& ICharacter::operator=(const ICharacter& rhs)
 	if (this != &rhs)
 	{
 		_name = rhs._name; 
-		for (int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; i++)
 		{
 			delete _slots[i];
 			_slots[i] = NULL;

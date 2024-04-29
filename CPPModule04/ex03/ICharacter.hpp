@@ -1,9 +1,11 @@
 #ifndef ICHARACTER_HPP
 #define ICHARACTER_HPP
+#include "FloorList.hpp"
 #include "AMateria.hpp"
 #include <string>
 
 class AMateria;
+class FloorList;
 class ICharacter {
 	protected:
 		std::string _name;
@@ -20,6 +22,7 @@ class ICharacter {
 		virtual void equip(AMateria* m) = 0;
 		virtual void unequip(AMateria* m) = 0;
 		virtual void use (int idx, ICharacter& target) = 0; //pass the parameter to the AMateria::use function
+		virtual const FloorList& getList() const = 0;
 };
 
 #endif // ICHARACTER_H

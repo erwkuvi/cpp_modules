@@ -4,6 +4,7 @@ SRC = main.cpp\
 			Ice.cpp\
 			Cure.cpp\
 			AMateria.cpp\
+			Character.cpp\
 			ICharacter.cpp\
 			FloorList.cpp\
 			FloorNode.cpp

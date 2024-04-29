@@ -1,5 +1,6 @@
 #include "Character.hpp"
 #include "AMateria.hpp"
+#include "FloorList.hpp"
 #include "ICharacter.hpp"
 //#include "FloorList.hpp"
 #include <string>
@@ -41,25 +42,38 @@ const std::string& Character::getName() const
 void Character::equip(AMateria* m)
 {
 	int i = 0;
-	while (_slots[i++] != NULL && i < 4) {}
+	int flag = 0;
+	while (_slots[i] != NULL && i < 4) 
+	{
+		if (_slots[i] == m)
+		{
+			flag = 1;
+			std::cout << RED << _name << " cannot be equiped with the same Materia object" << RESET << std::endl;
+		}
+		i++;
+	}
 	if (i == 4)
-		return;
-	else
+		std::cout << RED << _name << " cannot be equiped with " << m->getType() << RESET << std::endl;
+	if ( i != 4 && !flag)
+	{
 		_slots[i] = m;
+		std::cout << MAGENTA << i << ": "<< _name << " equips with " << _slots[i]->getType() << RESET << std::endl;
+	}
 }
 
 void Character::unequip(AMateria* m)
 {
-	int i = 0;
-	while (&_slots[i++] != &m && i < 4) {} 
-	if (i == 4)
-		return;
-	else
+	for (int i = 0; i < 4; i++)
 	{
-		AMateria* tmp = _slots[i];
-		list.add(_slots[i]);
-		_slots[i] = NULL;
+		if(_slots[i] == m && m)
+		{
+			_list.add(_slots[i]);
+			_slots[i] = NULL;
+			std::cout << GREEN << i << ": "<< _name << " unequips " << m->getType() << RESET << std::endl;
+			return;
+		}
 	}
+	std::cout << RED << "(unequip) Materia not found: "<< _name << " -> " << m->getType() << RESET << std::endl;
 }
 
 void Character::use (int idx, ICharacter& target) //pass the parameter to the AMateria::use function
@@ -70,9 +84,8 @@ void Character::use (int idx, ICharacter& target) //pass the parameter to the AM
 		return;
 }																									 
 
-std::ostream& operator<<(std::ostream& output, const Character& rhs)
+const FloorList& Character::getList() const
 {
-	output << rhs.getName(); 
-	return output;
+ return _list;
 }
 

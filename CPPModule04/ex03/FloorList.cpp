@@ -1,4 +1,5 @@
 #include "FloorList.hpp"
+#include "AMateria.hpp"
 #include <iostream>
 
 FloorList::FloorList(void) : _head(NULL) {
@@ -62,7 +63,7 @@ void FloorList::printList() const
 	int i = 1;
 	while (tmp != NULL) 
 	{
-		std::cout << i << " :" << tmp->_leftmateria->getType() << std::endl;
+		std::cout << YELLOW << "(" << i << ") Materia on the floor: " << tmp->_leftmateria->getType() << RESET << std::endl;
 		i++;
 		tmp = tmp->next;
 	}

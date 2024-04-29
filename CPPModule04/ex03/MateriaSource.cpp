@@ -29,7 +29,7 @@ MateriaSource::~MateriaSource(void) //
 void Materia::learnMateria(AMateria* materia)
 {
 	int i = 0;
-	while (_materias[i++] && i < 4) {}
+	while (_materias[i] && i < 4) {i++;}
 	if(materia && i < 4)
 		_materias[i] = materia;
 }

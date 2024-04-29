@@ -1,9 +1,11 @@
 #ifndef FLOORLIST_HPP
 #define FLOORLIST_HPP
+
+#include "AMateria.hpp"
 #include "FloorNode.hpp"
 #include "ICharacter.hpp"
-
-class Floornode;
+class AMateria;
+class FloorNode;
 class FloorList 
 {
 	private:
