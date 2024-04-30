@@ -7,7 +7,9 @@ SRC = main.cpp\
 			Character.cpp\
 			ICharacter.cpp\
 			FloorList.cpp\
-			FloorNode.cpp
+			FloorNode.cpp\
+			MateriaSource.cpp\
+			IMateriaSource.cpp
 
 
 CXX = c++
@@ -31,6 +33,6 @@ fclean : clean
 re : fclean all
 
 val :
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 .PHONY: all fclean clean re val

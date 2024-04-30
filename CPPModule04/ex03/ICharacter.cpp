@@ -2,14 +2,14 @@
 #include <string>
 #include <iostream>
 
-ICharacter::ICharacter(const std::string& name) : _name(name), _slots{NULL, NULL, NULL, NULL}
+ICharacter::ICharacter(const std::string& name) : _name(name), _slots{0, 0, 0, 0}
 {
 	std::cout << "ICharacter Constructor called" << std::endl; 
 }
 
-ICharacter::ICharacter(void) : _name("N/A"), _slots{NULL, NULL, NULL, NULL} {}
+ICharacter::ICharacter(void) : _name("N/A"), _slots{0, 0, 0, 0} {}
 
-ICharacter::ICharacter(const ICharacter& instance)
+ICharacter::ICharacter(const ICharacter& instance) : _slots{0, 0, 0, 0} 
 {
 	std::cout << "ICharacter Copy constructor called" << std::endl; 
 	operator=(instance);
@@ -17,13 +17,17 @@ ICharacter::ICharacter(const ICharacter& instance)
 
 ICharacter& ICharacter::operator=(const ICharacter& rhs)
 {
+	std::cout << "ICharacter operator=" << std::endl; 
 	if (this != &rhs)
 	{
 		_name = rhs._name; 
 		for (int i = 0; i < 4; i++)
 		{
-			delete _slots[i];
-			_slots[i] = NULL;
+			if (this->_slots[i] != NULL)
+			{
+				delete _slots[i];
+				_slots[i] = NULL;
+			}
 		}
 		for(int i = 0; i < 4; i++)
 		{

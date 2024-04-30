@@ -14,7 +14,7 @@ Character::Character(const std::string& name) : ICharacter(name)
 
 Character::Character(void) : ICharacter("N/A") {}
 
-Character::Character(const Character& instance)
+Character::Character(const Character& instance) : ICharacter(instance)
 {
 	std::cout << "Character Copy constructor called" << std::endl; 
 	operator=(instance);

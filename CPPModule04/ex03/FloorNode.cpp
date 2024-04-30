@@ -4,7 +4,7 @@ FloorNode::FloorNode(AMateria* materia) : _leftmateria(materia), next(NULL) {}
 
 FloorNode::FloorNode(void) : _leftmateria(NULL), next(NULL) {}
 
-FloorNode::FloorNode(const FloorNode& instance)
+FloorNode::FloorNode(const FloorNode& instance) : next(NULL) 
 {
 	operator=(instance);
 }
@@ -21,5 +21,6 @@ FloorNode& FloorNode::operator=(const FloorNode& rhs)
 
 FloorNode::~FloorNode(void) //
 {
-	delete _leftmateria;
+	if (_leftmateria != NULL)
+		delete _leftmateria;
 }

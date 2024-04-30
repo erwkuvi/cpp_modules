@@ -29,7 +29,7 @@ AMateria& AMateria::operator=(const AMateria& rhs)
 
 AMateria::~AMateria(void) //
 {
-	std::cout << "AMateria Destructor called" << std::endl;
+	std::cout << "AMateria Destructor called " << this->getType() << std::endl;
 }
 
 
