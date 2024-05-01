@@ -1,5 +1,4 @@
 #include "Ice.hpp"
-#include "ICharacter.hpp"
 #include <iostream>
 
 Ice::Ice() : AMateria("ice")
@@ -7,9 +6,10 @@ Ice::Ice() : AMateria("ice")
 	std::cout << "Ice Default constructor called" << std::endl;
 }
 
-Ice::Ice(const Ice& instance): AMateria(instance)
+Ice::Ice(const Ice& instance): AMateria("ice")
 {
 	std::cout << "Ice Copy constructor called" << std::endl;
+	operator=(instance);
 }
 
 Ice& Ice::operator=(const Ice& rhs)

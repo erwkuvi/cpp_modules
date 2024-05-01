@@ -1,14 +1,12 @@
 #include "MateriaSource.hpp"
-#include "AMateria.hpp"
-#include "IMateriaSource.hpp"
 #include <iostream>
 
-MateriaSource::MateriaSource(void) : IMateriaSource()
+MateriaSource::MateriaSource(void) : IMateriaSource(), _materias{NULL, NULL, NULL, NULL}
 {
 	std::cout << "MateriaSource Default constructor called" << std::endl; 
 }
 
-MateriaSource::MateriaSource(const MateriaSource& instance) : IMateriaSource(instance) 
+MateriaSource::MateriaSource(const MateriaSource& instance) : IMateriaSource(), _materias{NULL, NULL, NULL, NULL} 
 {
 	std::cout << "MateriaSource Copy constructor called" << std::endl; 
 	operator=(instance);
@@ -18,7 +16,16 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 {
 	if (this != &rhs)
 	{
-		IMateriaSource::operator= (rhs);
+		for(int i = 0; i < 4; i++)
+		{
+			if (_materias[i])
+			{
+				delete _materias[i];
+				this->_materias[i] = NULL;
+			}
+		}
+		for(int i = 0; i < 4; i++)
+			this->_materias[i] = rhs._materias[i]->clone();
 	}
 	return *this;
 }
@@ -26,6 +33,11 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 MateriaSource::~MateriaSource(void) //
 {
 	std::cout << "MateriaSource Destructor called" << std::endl; 
+	for(int i = 0; i < 4; i++)
+	{
+		if(_materias[i])
+			delete _materias[i];
+	}
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
@@ -40,7 +52,7 @@ AMateria* MateriaSource::createMateria(const std::string& type)
 {
 	for(int i = 0; i < 4; ++i)
 	{
-		if (_materias[i]->getType() == type) 
+		if (_materias[i] && _materias[i]->getType() == type) 
 			return _materias[i]->clone();
 	}
 	return 0;

@@ -1,19 +1,21 @@
 #ifndef MATERIASOURCE_HPP
 #define MATERIASOURCE_HPP
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
 #include <string>
 
 class MateriaSource : public IMateriaSource
 {
-private:
-    // Add your private members here
+protected:
+	AMateria* _materias[4];
 
 public:
+    //Orthodox canonical begin
     MateriaSource(void);
-    //MateriaSource(const std::string& arg); // In case you need to pass an  argument
     MateriaSource(const MateriaSource& instance);
     MateriaSource &operator=(const MateriaSource& rhs);
     ~MateriaSource(void);
+    //Orthodox canonical end
 
     // Add your class members and methods here
 		virtual void learnMateria(AMateria* materia);

@@ -43,7 +43,7 @@ FloorList::~FloorList(void) //
 
 void FloorList::add(AMateria* materia)
 {
-	FloorNode* newNode = new FloorNode(materia); //implement the add function ---PENDANT
+	FloorNode* newNode = new FloorNode(materia);
 	if (_head == NULL)
 	{
 		_head = newNode;

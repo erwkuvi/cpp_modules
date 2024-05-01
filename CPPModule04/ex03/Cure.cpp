@@ -6,9 +6,10 @@ Cure::Cure(void) : AMateria("cure")
 	std::cout << "Cure Default constructor called" << std::endl; 
 }
 
-Cure::Cure(const Cure& instance) : AMateria(instance)
+Cure::Cure(const Cure& instance) : AMateria("cure")
 {
 	std::cout << "Cure Copy constructor called" << std::endl; 
+	operator=(instance);
 }
 
 Cure& Cure::operator=(const Cure& rhs)

@@ -9,19 +9,20 @@ class FloorList;
 class ICharacter {
 	protected:
 		std::string _name;
-		AMateria* _slots[4];
 
 	public:
 		ICharacter(const std::string& name);
+		//Orthodox canonical form begin
 		ICharacter(void);
 		ICharacter(const ICharacter& instance);
 		ICharacter&operator=(const ICharacter& rhs);
 		virtual ~ICharacter(void);
+		//Orthodox canonical form end
 
 		virtual const std::string& getName() const = 0;
 		virtual void equip(AMateria* m) = 0;
-		virtual void unequip(AMateria* m) = 0;
-		virtual void use (int idx, ICharacter& target) = 0; //pass the parameter to the AMateria::use function
+		virtual void unequip(int idx) = 0;
+		virtual void use (int idx, ICharacter& target) = 0; 
 		virtual const FloorList& getList() const = 0;
 };
 
