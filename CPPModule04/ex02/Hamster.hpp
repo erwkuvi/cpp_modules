@@ -1,3 +1,4 @@
+
 #ifndef HAMSTER_HPP
 #define HAMSTER_HPP
 #include "Brain.hpp"
@@ -13,7 +14,9 @@ class Hamster : public A_Animal
 		Hamster(const Hamster& instance);
 		Hamster& operator=(const Hamster& rhs);
 		~Hamster(void);
-		virtual void makeSound() const;
+		void makeSound() const;
+
+		virtual Brain* getBrain() const;
 };
 
 #endif // !HAMSTER_HPP

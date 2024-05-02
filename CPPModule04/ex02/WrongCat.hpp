@@ -12,6 +12,7 @@ class WrongCat : public WrongAnimal
 		WrongCat& operator=(const WrongCat& rhs);
 		~WrongCat(void);
 		void makeSound() const;
+		virtual Brain* getBrain() const;
 };
 std::ostream& operator<<(std::ostream& output, const WrongCat& rhs);
 

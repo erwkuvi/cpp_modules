@@ -3,12 +3,12 @@
 
 MateriaSource::MateriaSource(void) : IMateriaSource(), _materias{NULL, NULL, NULL, NULL}
 {
-	std::cout << "MateriaSource Default constructor called" << std::endl; 
+	//std::cout << "MateriaSource Default constructor called" << std::endl; 
 }
 
 MateriaSource::MateriaSource(const MateriaSource& instance) : IMateriaSource(), _materias{NULL, NULL, NULL, NULL} 
 {
-	std::cout << "MateriaSource Copy constructor called" << std::endl; 
+	//std::cout << "MateriaSource Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -32,7 +32,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& rhs)
 
 MateriaSource::~MateriaSource(void) //
 {
-	std::cout << "MateriaSource Destructor called" << std::endl; 
+	//std::cout << "MateriaSource Destructor called" << std::endl; 
 	for(int i = 0; i < 4; i++)
 	{
 		if(_materias[i])

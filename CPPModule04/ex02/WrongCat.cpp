@@ -40,3 +40,8 @@ std::ostream& operator<<(std::ostream& output, const WrongCat& rhs)
 	output << "Type: " <<  rhs.getType(); 
 	return output;
 }
+
+Brain* WrongCat::getBrain() const
+{
+	return 0;
+}

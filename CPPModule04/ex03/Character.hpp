@@ -26,6 +26,7 @@ class Character : public ICharacter
 		virtual void unequip(int idx);
 		virtual void use (int idx, ICharacter& target); //pass the parameter to the AMateria::use function
 		virtual const FloorList& getList() const;
+		virtual void printSlots() const;
 };
 
 #endif // CHARACTER_HPP

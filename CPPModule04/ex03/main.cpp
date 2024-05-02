@@ -19,15 +19,24 @@ int main()
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
 	tmp = src->createMateria("test");
-	std::cout << "tmp: " << tmp << std::endl;
+//	std::cout << "tmp: " << tmp << std::endl;
 	me->equip(tmp);
 	ICharacter* bob = new Character("bob");
-	me->use(0, *bob);
-	me->use(1, *bob);
+//	me->use(0, *bob);
+//	me->use(1, *bob);
 	me->unequip(1);
 	me->unequip(4);
 	me->unequip(0);
 	me->getList().printList();
+	Character o("Clone01");
+	o.equip(new Ice());
+	o.printSlots();
+	Character o2(o);
+	o2.printSlots();
+	o2.unequip(0);
+	o2.printSlots();
+	o2.getList().printList();
+
 
 	delete bob;
 	delete me;

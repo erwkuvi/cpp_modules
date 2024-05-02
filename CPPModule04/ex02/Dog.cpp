@@ -38,6 +38,11 @@ void Dog::makeSound() const
 	std::cout << "Woof... woof.. !!!" << std::endl;
 }
 
+Brain* Dog::getBrain() const
+{
+	return _brain;
+}
+
 std::ostream& operator<<(std::ostream& output, const Dog& rhs)
 {
 	output << "Type: " <<  rhs.getType(); 

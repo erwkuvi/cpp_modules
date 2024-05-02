@@ -14,6 +14,8 @@ class Dog : public Animal
 		Dog& operator=(const Dog& rhs);
 		~Dog(void);
 		void makeSound() const;
+
+		virtual Brain* getBrain() const;
 };
 
 #endif // !DOG_HPP

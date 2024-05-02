@@ -35,7 +35,12 @@ Monkey& Monkey::operator=(const Monkey& rhs)
 
 void Monkey::makeSound() const
 {
-	std::cout << "**makes Monkey sounds!!" << std::endl;
+	std::cout << "Woof... woof.. !!!" << std::endl;
+}
+
+Brain* Monkey::getBrain() const
+{
+	return _brain;
 }
 
 std::ostream& operator<<(std::ostream& output, const Monkey& rhs)

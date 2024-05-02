@@ -47,3 +47,10 @@ std::ostream& operator<<(std::ostream& output, const Animal& rhs)
 	return output;
 }
 	
+
+Brain* Animal::getBrain() const
+{
+	return 0;
+}
+
+

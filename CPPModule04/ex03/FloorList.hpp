@@ -19,7 +19,7 @@ class FloorList
 		~FloorList(void);
 		//Orthodox canonical end
 		void add(AMateria* materia);
-		FloorNode* getNode() const;
+		//FloorNode* getNode() const;
 		void printList() const;
 };
 

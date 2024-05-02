@@ -1,6 +1,7 @@
 #ifndef A_ANIMAL_HPP
 #define A_ANIMAL_HPP
 #include <string>
+#include "Brain.hpp"
 
 class A_Animal
 {
@@ -18,6 +19,7 @@ public:
 	virtual void makeSound()const = 0;
 	//GETTER
 	std::string getType(void) const;
+	virtual Brain* getBrain() const;
 };
 
 #endif // !A_ANIMAL_HPP

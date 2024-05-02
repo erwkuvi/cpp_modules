@@ -1,9 +1,16 @@
+#include "A_Animal.hpp"
 #include "Monkey.hpp"
 #include "Hamster.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include <iostream>
 
+//int main ()
+//{
+//	Dog dog;
+//	dog.makeSound();
+//	return 0;
+//}
 int main()
 {
 	A_Animal *farm[4] =

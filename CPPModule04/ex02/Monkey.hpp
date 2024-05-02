@@ -13,7 +13,9 @@ class Monkey : public A_Animal
 		Monkey(const Monkey& instance);
 		Monkey& operator=(const Monkey& rhs);
 		~Monkey(void);
-		virtual void makeSound() const;
+		void makeSound() const;
+
+		virtual Brain* getBrain() const;
 };
 
 #endif // !MONKEY_HPP

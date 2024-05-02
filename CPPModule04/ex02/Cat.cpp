@@ -46,3 +46,9 @@ std::ostream& operator<<(std::ostream& output, const Cat& rhs)
 	output << "Type: " <<  rhs.getType(); 
 	return output;
 }
+
+
+Brain* Cat::getBrain() const
+{
+	return _brain;
+}

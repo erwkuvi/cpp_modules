@@ -13,7 +13,9 @@ class Dog : public A_Animal
 		Dog(const Dog& instance);
 		Dog& operator=(const Dog& rhs);
 		~Dog(void);
-		virtual void makeSound() const;
+		void makeSound() const;
+
+		virtual Brain* getBrain() const;
 };
 
 #endif // !DOG_HPP

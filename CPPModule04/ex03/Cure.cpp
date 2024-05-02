@@ -3,12 +3,12 @@
 
 Cure::Cure(void) : AMateria("cure")
 {
-	std::cout << "Cure Default constructor called" << std::endl; 
+	//std::cout << "Cure Default constructor called" << std::endl; 
 }
 
 Cure::Cure(const Cure& instance) : AMateria("cure")
 {
-	std::cout << "Cure Copy constructor called" << std::endl; 
+	//std::cout << "Cure Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -23,7 +23,7 @@ Cure& Cure::operator=(const Cure& rhs)
 
 Cure::~Cure(void) //
 {
-	std::cout << "Cure Destructor called" << std::endl; 
+	//std::cout << "Cure Destructor called" << std::endl; 
 }
 
 AMateria* Cure::clone(void) const

@@ -41,3 +41,7 @@ std::string A_Animal::getType(void) const
 	return _type;
 }
 
+Brain* A_Animal::getBrain() const
+{
+	return 0;
+}

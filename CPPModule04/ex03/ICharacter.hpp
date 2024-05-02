@@ -24,6 +24,7 @@ class ICharacter {
 		virtual void unequip(int idx) = 0;
 		virtual void use (int idx, ICharacter& target) = 0; 
 		virtual const FloorList& getList() const = 0;
+		virtual void printSlots() const = 0;
 };
 
 #endif // ICHARACTER_H

@@ -47,3 +47,7 @@ std::ostream& operator<<(std::ostream& output, const WrongAnimal& rhs)
 	return output;
 }
 	
+Brain* WrongAnimal::getBrain() const
+{
+	return 0;
+}

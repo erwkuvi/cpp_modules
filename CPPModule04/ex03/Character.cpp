@@ -4,14 +4,14 @@
 
 Character::Character(const std::string& name) : ICharacter(name), _slots{NULL, NULL, NULL, NULL}
 {
-	std::cout << "Character Constructor called" << std::endl; 
+	//std::cout << "Character Constructor called" << std::endl; 
 }
 
 Character::Character(void) : ICharacter("N/A") {}
 
 Character::Character(const Character& instance) : ICharacter(instance._name), _slots{NULL, NULL, NULL, NULL}
 {
-	std::cout << "Character Copy constructor called" << std::endl; 
+	//std::cout << "Character Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -36,7 +36,7 @@ Character& Character::operator=(const Character& rhs)
 
 Character::~Character(void) //
 {
-	std::cout << "Character Destructor called" << std::endl; 
+	//std::cout << "Character Destructor called" << std::endl; 
 	for(int i = 0; i < 4; i++)
 	{
 		if (_slots[i])
@@ -75,13 +75,14 @@ void Character::equip(AMateria* m)
 
 void Character::unequip(int idx)
 {
-		if(_slots[idx])
-		{
-			std::cout << GREEN << idx << ": "<< _name << " unequips " << _slots[idx]->getType() << RESET << std::endl;
-			_list.add(_slots[idx]);
-			_slots[idx] = NULL;
-			return;
-		}
+	if (idx >= 4) {return;}
+	if(_slots[idx])
+	{
+		std::cout << GREEN << idx << ": "<< _name << " unequips " << _slots[idx]->getType() << RESET << std::endl;
+		_list.add(_slots[idx]);
+		_slots[idx] = NULL;
+		return;
+	}
 	std::cout << RED << _name << ": (unequip) Materia not found: "<< idx << RESET << std::endl;
 }
 
@@ -98,3 +99,17 @@ const FloorList& Character::getList() const
 	return _list;
 }
 
+void Character::printSlots() const
+{
+	int j = 0;
+	for(int i = 0; i < 4; i++)
+	{
+		if(_slots[i])
+		{
+			j = 1;
+			std::cout << GREEN << _name << " " << i << " Slot: " << _slots[i]->getType() << RESET << std::endl; 
+		}
+	}
+	if (!j)
+		std::cout << YELLOW << _name << " no Materias found" << RESET << std::endl; 
+}

@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "Hamster.hpp"
 #include "Brain.hpp"
@@ -35,7 +36,12 @@ Hamster& Hamster::operator=(const Hamster& rhs)
 
 void Hamster::makeSound() const
 {
-	std::cout << "**Makes hamster sounds!!" << std::endl;
+	std::cout << "Woof... woof.. !!!" << std::endl;
+}
+
+Brain* Hamster::getBrain() const
+{
+	return _brain;
 }
 
 std::ostream& operator<<(std::ostream& output, const Hamster& rhs)
