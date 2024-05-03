@@ -11,7 +11,7 @@ class Cat : public Animal
 		Cat(const Cat& instance);
 		Cat& operator=(const Cat& rhs);
 		~Cat(void);
-		void makeSound() const;
+		virtual void makeSound() const;
 };
 std::ostream& operator<<(std::ostream& output, const Cat& rhs);
 #endif // !CAT_HPP

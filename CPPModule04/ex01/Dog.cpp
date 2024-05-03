@@ -8,7 +8,7 @@ Dog::Dog(void): Animal("Dog") , _brain(NULL)
 	_brain = new Brain();
 }
 
-Dog::Dog(const Dog& instance) : Animal(instance)
+Dog::Dog(const Dog& instance) : Animal("Dog"), _brain(NULL)
 {
 	std::cout << "Dog Copy Constructor called" << std::endl;
 	operator=(instance);
@@ -16,7 +16,7 @@ Dog::Dog(const Dog& instance) : Animal(instance)
 
 Dog::~Dog(void)
 {
-	if (_brain != NULL)
+	if (_brain)
 		delete _brain;
 	std::cout << "Dog Destructor called" << std::endl;	
 }
@@ -26,9 +26,9 @@ Dog& Dog::operator=(const Dog& rhs)
 	if(this != &rhs)
 	{
 		Animal::operator=(rhs);
-	if (_brain != NULL)
-		delete _brain;
-	_brain = new Brain(*rhs._brain);
+		if (_brain)
+			delete _brain;
+		_brain = new Brain(*rhs._brain);
 	}
 	return *this;
 }
@@ -40,11 +40,11 @@ void Dog::makeSound() const
 
 Brain* Dog::getBrain() const
 {
-	return _brain;
+	if (_brain != NULL)
+	{
+		return _brain;
+	}
+	else
+		return 0;
 }
 
-std::ostream& operator<<(std::ostream& output, const Dog& rhs)
-{
-	output << "Type: " <<  rhs.getType(); 
-	return output;
-}

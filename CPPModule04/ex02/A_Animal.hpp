@@ -19,7 +19,7 @@ public:
 	virtual void makeSound()const = 0;
 	//GETTER
 	std::string getType(void) const;
-	virtual Brain* getBrain() const;
+
 };
 
 #endif // !A_ANIMAL_HPP

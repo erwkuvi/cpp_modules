@@ -11,7 +11,7 @@ class Dog : public Animal
 		Dog(const Dog& instance);
 		Dog& operator= (const Dog& rhs);
 		~Dog(void);
-		void makeSound() const;
+		virtual void makeSound() const;
 };
 std::ostream& operator<<(std::ostream& output, const Dog& rhs);
 

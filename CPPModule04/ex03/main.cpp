@@ -31,10 +31,13 @@ int main()
 	Character o("Clone01");
 	o.equip(new Ice());
 	o.printSlots();
+	std::cout << "Here is 'o2' been created and copy constructed from 'o'" << std::endl;
 	Character o2(o);
 	o2.printSlots();
 	o2.unequip(0);
+	std::cout << "Here should be printed the current Materias in posession " << std::endl;
 	o2.printSlots();
+	std::cout << "Here are printed the materias on the floor" << std::endl;
 	o2.getList().printList();
 
 

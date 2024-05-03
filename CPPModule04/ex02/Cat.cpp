@@ -41,14 +41,12 @@ void Cat::makeSound() const
 	std::cout << "Miao... miao.. miao... miao... !!!" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& output, const Cat& rhs)
-{
-	output << "Type: " <<  rhs.getType(); 
-	return output;
-}
-
-
 Brain* Cat::getBrain() const
 {
-	return _brain;
+	if (_brain != NULL)
+	{
+		return _brain;
+	}
+	else
+		return 0;
 }

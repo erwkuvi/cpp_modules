@@ -31,7 +31,7 @@ Cat& Cat::operator=(const Cat& rhs)
 
 void Cat::makeSound() const
 {
-	std::cout << "Miao... miao.. miao... miao... !!!" << std::endl;
+	std::cout << GREEN << "Miao... miao.. miao... miao... !!!" << RESET << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& output, const Cat& rhs)

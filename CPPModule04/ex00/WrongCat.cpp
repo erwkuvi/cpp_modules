@@ -32,7 +32,7 @@ WrongCat& WrongCat::operator=(const WrongCat& rhs)
 
 void WrongCat::makeSound() const
 {
-	std::cout << "Miao... miao... miao...!!" << std::endl;
+	std::cout << MAGENTA << "WrongCat sound Miao... miao... miao...!!" << RESET << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& output, const WrongCat& rhs)

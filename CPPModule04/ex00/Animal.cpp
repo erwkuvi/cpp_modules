@@ -33,7 +33,7 @@ Animal::~Animal(void)
 
 void Animal::makeSound(void) const
 {
-	std::cout << "Animal Sound ..." << std::endl;
+	std::cout << BLUE << "Animal Sound ..." << RESET << std::endl;
 }
 
 std::string Animal::getType(void) const

@@ -33,7 +33,7 @@ WrongAnimal::~WrongAnimal(void)
 
 void WrongAnimal::makeSound(void) const
 {
-	std::cout << "WrongAnimal Sound ..." << std::endl;
+	std::cout << YELLOW << "WrongAnimal Sound ... wuff wuff" << RESET << std::endl;
 }
 
 std::string WrongAnimal::getType(void) const

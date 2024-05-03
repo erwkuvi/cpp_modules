@@ -32,7 +32,7 @@ Dog& Dog::operator= (const Dog& rhs)
 
 void Dog::makeSound() const
 {
-	std::cout << "Woof... woof.. !!!" << std::endl;
+	std::cout << RED << "Woof... woof.. !!!" << RESET << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& output, const Dog& rhs)

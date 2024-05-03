@@ -19,6 +19,8 @@ Animal::Animal(const Animal& instance)
 
 Animal& Animal::operator=(const Animal& rhs)
 {
+	//std::cout << "Animal operator=" << std::endl;
+
 	if(this != &rhs)
 	{
 		_type = rhs._type; 
@@ -48,9 +50,9 @@ std::ostream& operator<<(std::ostream& output, const Animal& rhs)
 }
 	
 
-Brain* Animal::getBrain() const
-{
-	return 0;
-}
+//Brain* Animal::getBrain() const
+//{
+//return NULL;
+//}
 
 

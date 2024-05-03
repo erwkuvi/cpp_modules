@@ -40,7 +40,12 @@ void Monkey::makeSound() const
 
 Brain* Monkey::getBrain() const
 {
-	return _brain;
+	if (_brain != NULL)
+	{
+		return _brain;
+	}
+	else
+		return 0;
 }
 
 std::ostream& operator<<(std::ostream& output, const Monkey& rhs)

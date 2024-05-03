@@ -40,11 +40,10 @@ void Dog::makeSound() const
 
 Brain* Dog::getBrain() const
 {
-	return _brain;
-}
-
-std::ostream& operator<<(std::ostream& output, const Dog& rhs)
-{
-	output << "Type: " <<  rhs.getType(); 
-	return output;
+	if (_brain != NULL)
+	{
+		return _brain;
+	}
+	else
+		return 0;
 }

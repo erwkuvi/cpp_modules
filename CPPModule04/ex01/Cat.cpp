@@ -6,12 +6,8 @@ Cat::Cat(void): Animal("Cat"), _brain(NULL)
 	std::cout << "Cat Constructor called" << std::endl;
 	_brain = new Brain();
 }
-//Cat::Cat(const std::string& type): Animal(type)
-//{
-//	std::cout << "Cat Constructor called" << std::endl;
-//}
 
-Cat::Cat(const Cat& instance) : Animal(instance)
+Cat::Cat(const Cat& instance) : Animal("Cat"), _brain(NULL)
 {
 	std::cout << "Cat Copy Constructor called" << std::endl;
 	operator=(instance);
@@ -41,14 +37,10 @@ void Cat::makeSound() const
 	std::cout << "Miao... miao.. miao... miao... !!!" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& output, const Cat& rhs)
-{
-	output << "Type: " <<  rhs.getType(); 
-	return output;
-}
-
-
 Brain* Cat::getBrain() const
 {
-	return _brain;
+	if (_brain)
+		return _brain;
+	else
+		return 0;
 }
