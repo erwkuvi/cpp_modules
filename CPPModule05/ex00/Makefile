@@ -1,12 +1,8 @@
 
-NAME = animal
+NAME = bureaucrat
 
 SRC = main.cpp \
-			Animal.cpp \
-			WrongAnimal.cpp \
-			Dog.cpp \
-			Cat.cpp \
-			WrongCat.cpp
+			Bureaucrat.cpp 
 
 CXX = c++
 STDFLAG = -std=c++98
@@ -27,6 +23,9 @@ fclean : clean
 	$(RM) -f $(NAME)
 
 re : fclean all
+
+run : $(NAME)
+	./$(NAME)
 
 val : 
 	valgrind --leak-check=full ./$(NAME)
