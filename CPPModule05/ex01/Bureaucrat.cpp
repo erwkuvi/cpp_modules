@@ -92,10 +92,15 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm()
 {
-	if(_grade >= _form.getGrade())
-		std::cout << _name << " signed " << _form << std::endl;
-	else
-		std::cout << _name << "couldn't sign " << _form << " because " << _reason << std::endl;
+	try
+	{
+    _form.beSigned(*this);
+    std::cout << _name << " signed " << _form.getName() << std::endl;
+  } 
+	catch (const FormNotExecutableException& e) 
+	{
+    std::cout << _name << " couldn't sign " << _form.getName() << " because " << e.what() << std::endl;
+  }
 }
 
 

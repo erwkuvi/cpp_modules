@@ -1,34 +1,55 @@
 #include "Form.hpp"
 #include <string>
 #include <iostream>
+#include <exception>
 
-Form::Form(const std::string& name, int gradeSign, int gradeExec) : _name(name),  _signed(false), _gradeSigned(gradeSign), _gradeExec(gradeExec)
+//Form::Form(void) {}
+
+Form::~Form(void) {}
+
+Form::Form(const std::string& name, int gradeSign, int gradeExec) : _name(name),  _signed(false), _gradeSigned(gradeSign), _gradeExec(gradeExec){}
+
+void Form::beSigned(Bureaucrat& bureaucrat) 
 {
-	//std::cout << "Form Default constructor called" << std::endl; 
+	if (bureaucrat.getGrade() <= _gradeSigned) 
+		_signed = true;
+	else 
+		throw GradeTooLowException();
 }
 
-// In case you need to pass an  argument
-//Form::Form(const std::string& arg) //: _init(arg)
-//{
-//	std::cout << "Form Constructor called" << std::endl; 
-//}
+const std::string& Form::getName() const {return _name;}
+
+bool Form::isSigned() const {return _signed;}
+
+int Form::getGradeSigned() const {return _gradeSigned;}
+
+int Form::getGradeExec() const {return _gradeExec;}
 
 
-Form::~Form(void) //
+Form::GradeTooHighException::GradeTooHighException() : std::exception()
 {
-	//std::cout << "Form Destructor called" << std::endl; 
+	what();
 }
 
-	//Further members implementations ..
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "Form grade is too high";
+}
 
+Form::GradeTooLowException::GradeTooLowException() : std::exception()
+{
+	what();
+}
 
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "Form grade is low high";
+}
 
-
-	//output operator overload ..
 
 std::ostream& operator<<(std::ostream& output, const Form& rhs)
 {
-	output << implemetation <<;
+	output << rhs.getName() << ", form grade to sign " << rhs.getGradeSigned() << ", form grade to execute " << rhs.getGradeExec();
 	return output;
 }
 
