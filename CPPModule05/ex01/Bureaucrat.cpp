@@ -90,6 +90,14 @@ void Bureaucrat::decrementGrade()
 		throw GradeTooLowException();
 }
 
+void Bureaucrat::signForm()
+{
+	if(_grade >= _form.getGrade())
+		std::cout << _name << " signed " << _form << std::endl;
+	else
+		std::cout << _name << "couldn't sign " << _form << " because " << _reason << std::endl;
+}
+
 
 std::ostream& operator<<(std::ostream& output, const Bureaucrat& instance)
 {
