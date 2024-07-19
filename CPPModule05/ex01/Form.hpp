@@ -1,9 +1,9 @@
 #ifndef FORM_HPP
 # define FORM_HPP
-# include <string>
 # include "Bureaucrat.hpp"
 
-//class  Bureaucrat;
+class Bureaucrat;
+
 class Form 
 {
 private:
@@ -11,7 +11,7 @@ private:
 	bool 							_signed;
 	const int 				_gradeSigned;
 	const int 				_gradeExec;
-	Form(void);
+	int checkGrade(int grade) const;
 	Form(const Form& instance);
 	Form &operator=(const Form& rhs);
 
@@ -29,6 +29,7 @@ public:
 			GradeTooLowException();
 			virtual const char* what() const throw();
 	};
+		Form(void);
     Form(const std::string& name, int gradeSign, int gradeExec); 
     ~Form(void);
 //Orthodox canonical end

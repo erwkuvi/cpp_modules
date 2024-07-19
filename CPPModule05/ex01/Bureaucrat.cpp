@@ -23,10 +23,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return "Bureaucrat grade is low high";
 }
 
-Bureaucrat::Bureaucrat(void) : _name("none"), _grade(0)
-{
-	//std::cout << "Bureaucrat Default constructor called" << std::endl; 
-}
 
 // In case you need to pass an  argument
 Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _grade(grade) 
@@ -43,26 +39,7 @@ Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _gr
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& instance)
-{
-	//std::cout << "Bureaucrat Copy constructor called" << std::endl; 
-	operator=(instance);
-}
-
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
-{
-	if (this != &rhs) 
-	{
-		//_name = rhs._name;
-		_grade = rhs._grade;
-	}
-	return *this;
-}
-
-Bureaucrat::~Bureaucrat(void) //
-{
-	//std::cout << "Bureaucrat Destructor called" << std::endl; 
-}
+Bureaucrat::~Bureaucrat(void) {}
 
 const std::string& Bureaucrat::getName() const
 {
@@ -90,16 +67,16 @@ void Bureaucrat::decrementGrade()
 		throw GradeTooLowException();
 }
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(Form& form)
 {
 	try
 	{
-    _form.beSigned(*this);
-    std::cout << _name << " signed " << _form.getName() << std::endl;
+    form.beSigned(*this);
+    std::cout << _name << " signed " << form.getName() << std::endl;
   } 
-	catch (const FormNotExecutableException& e) 
+	catch (const std::exception& e) 
 	{
-    std::cout << _name << " couldn't sign " << _form.getName() << " because " << e.what() << std::endl;
+    std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
   }
 }
 

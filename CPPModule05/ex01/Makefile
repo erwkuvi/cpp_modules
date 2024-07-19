@@ -1,9 +1,6 @@
+NAME = form
 
-NAME = bureaucrat
-
-SRC = main.cpp \
-			Bureaucrat.cpp 
-			Form.cpp
+SRC = main.cpp Bureaucrat.cpp Form.cpp 
 
 CXX = c++
 STDFLAG = -std=c++98
@@ -32,3 +29,4 @@ val :
 	valgrind --leak-check=full ./$(NAME)
 
 .PHONY: all fclean clean re val
+
