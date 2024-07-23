@@ -1,6 +1,6 @@
 NAME = form
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp 
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
 
 CXX = c++
 STDFLAG = -std=c++98

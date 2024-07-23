@@ -1,11 +1,14 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(void)
 {
 	try 
 	{
-		Form form("Form01", 100, 50);
+		PresidentialPardonForm form("Form01");
 		Bureaucrat guy("This Guy", 20);
 		guy.signForm(form);
 	} 
@@ -15,7 +18,7 @@ int main(void)
 	}
 	try 
 	{
-		Form form("Form02", 20, 10);
+		PresidentialPardonForm form("Form02");
 		Bureaucrat guy("This Guy", 30);
 		guy.signForm(form);
 	} 
@@ -25,7 +28,7 @@ int main(void)
 	}
 	try 
 	{
-		Form form("Form02", 220, 10);
+		PresidentialPardonForm form("Form02");
 		Bureaucrat guy("This Guy", 30);
 		guy.signForm(form);
 	} 

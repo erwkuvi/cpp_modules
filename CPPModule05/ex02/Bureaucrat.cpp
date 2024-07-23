@@ -2,7 +2,6 @@
 #include <exception>
 #include <iostream>
 
-
 Bureaucrat::GradeTooHighException::GradeTooHighException() : std::exception()
 {
 	what();
@@ -82,10 +81,16 @@ void Bureaucrat::signForm(AForm& form)
 
 void Bureaucrat::executedForm(const AForm& form)
 {
-	if(form.execute(*this))
+	try
+	{
+		form.execute(*this);
 		std::cout << _name << " executed " << form.getName() << std::endl;
-	else
-		std::cerr << "Form unable to be executed by " << _name << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << _name << " unable to execute form " << form.getName() << std::endl;
+
+	}
 }
 
 

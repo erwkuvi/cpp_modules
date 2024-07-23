@@ -9,12 +9,13 @@ AForm::~AForm(void) {}
 
 AForm::AForm(const std::string& name, int gradeSign, int gradeExec) : _name(name),  _signed(false), _gradeSigned(checkGrade(gradeSign)), _gradeExec(checkGrade(gradeExec)){}
 
+
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= _gradeSigned) 
 		_signed = true;
 	else 
-		throw AForm::GradeTooLowException();
+		throw AForm::GradeTooHighException();
 }
 
 const std::string& AForm::getName() const {return _name;}
