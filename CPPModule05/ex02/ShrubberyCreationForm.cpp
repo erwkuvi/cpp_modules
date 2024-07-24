@@ -3,7 +3,7 @@
 #include <fstream>
 
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 145, 137) {}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 145, 137), _target(target) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 

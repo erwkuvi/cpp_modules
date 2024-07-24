@@ -6,40 +6,20 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
+
 int main(void)
 {
-	
-	std::srand(std::time(NULL));
-	int randVal = std::rand() % 100 + 1;
-	std::cout << "Random Value on [0, " << RAND_MAX << "]: " << randVal << std::endl;
-//	try 
-//	{
-//		PresidentialPardonForm form("Form01");
-//		Bureaucrat guy("This Guy", 20);
-//		guy.signForm(form);
-//	} 
-//	catch (std::exception& e) 
-//	{
-//		std::cout << "Exception caught: " << e.what() << std::endl;
-//	}
-//	try 
-//	{
-//		PresidentialPardonForm form("Form02");
-//		Bureaucrat guy("This Guy", 30);
-//		guy.signForm(form);
-//	} 
-//	catch (std::exception& e) 
-//	{
-//		std::cout << "Exception caught: " << e.what() << std::endl;
-//	}
-//	try 
-//	{
-//		PresidentialPardonForm form("Form02");
-//		Bureaucrat guy("This Guy", 30);
-//		guy.signForm(form);
-//	} 
-//	catch (std::exception& e) 
-//	{
-//		std::cout << "Exception caught: " << e.what() << std::endl;
-//	}
+	AForm* ptr = new PresidentialPardonForm("Dude");
+	AForm* ptr2 = new RobotomyRequestForm("Girl");
+	ptr = ptr2;
+	try 
+	{
+		Bureaucrat guy("This Guy", 2);
+		ptr->beSigned(guy);
+		guy.executeForm(*ptr);
+	} 
+	catch (std::exception& e) 
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
 }
