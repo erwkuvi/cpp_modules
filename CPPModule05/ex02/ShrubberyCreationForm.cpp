@@ -24,7 +24,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 {
-	if (isSigned() && executor.getGrade() <= _gradeExec)
+	if (isSigned() && executor.getGrade() <= (*this).getGradeExec())
 	{
 		std::ofstream file(_target + "_shrubbery");
 		file << " "

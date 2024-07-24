@@ -28,7 +28,7 @@ void RobotomyRequestForm::execute(Bureaucrat const& executor) const
 {
 	std::cout << "... ** drilling sounds... **\n" << ".. ** still some drilling sounds **" << std::endl;
 
-	if (isSigned() && executor.getGrade() <= _gradeExec)
+	if (isSigned() && executor.getGrade() <= (*this).getGradeExec())
 	{
 		std::srand(static_cast<unsigned int>(std::time(NULL)));
 		int randVal = std::rand() % 100 + 1;
