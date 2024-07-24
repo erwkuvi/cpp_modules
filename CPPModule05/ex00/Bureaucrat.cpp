@@ -23,10 +23,21 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return "Bureaucrat grade is low high";
 }
 
-Bureaucrat::Bureaucrat(void) : _name("none"), _grade(0)
+
+Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name)
 {
-	//std::cout << "Bureaucrat Default constructor called" << std::endl; 
+	operator=(instance);
 }
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
+{
+	if(this != &rhs)
+		_grade = rhs.getGrade();
+
+	return *this;
+}
+
+Bureaucrat::Bureaucrat(void) : _name("none"), _grade(0) {}
 
 // In case you need to pass an  argument
 Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _grade(grade) 

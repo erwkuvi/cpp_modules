@@ -4,23 +4,26 @@
 
 PresidentialPardonForm::PresidentialPardonForm(void) {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm(target, 25, 5) {}
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Presidential Pardon Form", 25, 5), _target(target) {}
 
 PresidentialPardonForm::~PresidentialPardonForm(void) {}
 
-void PresidentialPardonForm::formSigned(Bureaucrat const& bureaucrat)
+
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& instance) : AForm(instance), _target(instance._target)
 {
-	if (bureaucrat.getGrade() <= _gradeSigned)
-		_signed = true;
-	else
-		throw AForm::GradeTooHighException();
+	operator=(instance);
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& rhs)
+{
+	return *this;
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const& executor) const
 {
 	if (isSigned() && executor.getGrade() <= _gradeExec)
 	{
-		std::cout << _name << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+		std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 	}
 	else
 		throw AForm::GradeTooLowException();

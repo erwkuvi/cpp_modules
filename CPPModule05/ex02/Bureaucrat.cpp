@@ -38,6 +38,20 @@ Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _gr
 	}
 }
 
+
+Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name)
+{
+	operator=(instance);
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
+{
+	if(this != &rhs)
+		_grade = rhs.getGrade();
+
+	return *this;
+}
+
 Bureaucrat::~Bureaucrat(void) {}
 
 const std::string& Bureaucrat::getName() const
@@ -79,7 +93,7 @@ void Bureaucrat::signForm(AForm& form)
   }
 }
 
-void Bureaucrat::executedForm(const AForm& form)
+void Bureaucrat::executeForm(const AForm& form)
 {
 	try
 	{

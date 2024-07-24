@@ -1,34 +1,61 @@
 #include "ShrubberyCreationForm.hpp"
 #include "AForm.hpp"
 #include <fstream>
-#include <iostream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(target, 145, 137) {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("Shrubbery Creation Form", 145, 137) {}
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 
-void ShrubberyCreationForm::formSigned(Bureaucrat const& bureaucrat)
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& instance) : AForm(instance), _target(instance._target)
 {
-	if (bureaucrat.getGrade() <= _gradeSigned) 
-		_signed = true;
-	else 
-		throw AForm::GradeTooHighException();
+	operator=(instance);
+}
+
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs)
+{
+	if(this != &rhs)
+	{
+
+	}
+	return *this;
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 {
 	if (isSigned() && executor.getGrade() <= _gradeExec)
 	{
-		std::ofstream file(_name + "_shrubbery");
-		file << "         $$$\n"
-			<< "       $$$$$$$\n"
-			<< "      $$$$$$$$$$\n"
-			<< "     $$$$$$$$$$$$$\n"
-			<< "    $$$$$$$$$$$$$$$$$\n"
-			<< "   $$$$$$$$$$$$$$$$$$$$$\n"
-			<< "  $$$$$$$$$$$$$$$$$$$$$$$$$\n"
-			<< " $$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
-			<< "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n";
+		std::ofstream file(_target + "_shrubbery");
+		file << " "
+				<< "		                                                         ."
+				<< "                                              .         ;  "
+				<< "                 .              .              ;%     ;;   "
+				<< "                   ,           ,                :;%  %;   "
+				<< "                    :         ;                   :;%;'     .,   "
+				<< "           ,.        %;     %;            ;        %;'    ,;"
+				<< "             ;       ;%;  %%;        ,     %;    ;%;    ,%'"
+				<< "              %;       %;%;      ,  ;       %;  ;%;   ,%;' "
+				<< "               ;%;      %;        ;%;        % ;%;  ,%;'"
+				<< "                `%;.     ;%;     %;'         `;%%;.%;'"
+				<< "                 `:;%.    ;%%. %@;        %; ;@%;%'"
+				<< "                    `:%;.  :;bd%;          %;@%;'"
+				<< "                      `@%:.  :;%.         ;@@%;'   "
+				<< "                        `@%.  `;@%.      ;@@%;         "
+				<< "                          `@%%. `@%%    ;@@%;        "
+				<< "                            ;@%. :@%%  %@@%;       "
+				<< "                              %@bd%%%bd%%:;     "
+				<< "                                #@%%%%%:;;"
+				<< "                                %@@%%%::;"
+				<< "                                %@@@%(o);  . '         "
+				<< "                                %@@@o%;:(.,'         "
+				<< "                            `.. %@@@o%::;         "
+				<< "                               `)@@@o%::;         "
+				<< "                                %@@(o)::;        "
+				<< "                               .%@@@@%::;         "
+				<< "                               ;%@@@@%::;.          "
+				<< "                              ;%@@@@%%:;;;. "
+				<< "                          ...;%@@@@@%%:;;;;,..";
 		file.close();
 	}
 	else

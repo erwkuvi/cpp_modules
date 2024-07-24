@@ -12,8 +12,7 @@ class AForm
 		const int 				_gradeSigned;
 		const int 				_gradeExec;
 		int checkGrade(int grade) const;
-		AForm(const AForm& instance);
-		AForm &operator=(const AForm& rhs);
+		AForm(void);
 
 	public:
 		class GradeTooHighException : public std::exception
@@ -29,18 +28,22 @@ class AForm
 			GradeTooLowException();
 			virtual const char* what() const throw();
 	};
-		AForm(void);
+
+//Public area of the class
+
 		AForm(const std::string& name, int gradeSign, int gradeExec); 
+		AForm(const AForm& instance);
+		AForm& operator=(const AForm& rhs);
 		virtual ~AForm(void);
-		//Orthodox canonical end
 
 		void beSigned(Bureaucrat& bureaucrat);
-		//Getter
+		//Getters
 		const std::string& getName() const;
 		bool isSigned() const;
 		int getGradeSigned() const;
 		int getGradeExec() const;
-		virtual void formSigned(Bureaucrat const& bureaucrat);
+
+		//Getters
 		virtual void execute(Bureaucrat const& executor) const = 0;
 
 };

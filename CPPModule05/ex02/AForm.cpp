@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
-
+ 
 AForm::AForm(void) : _gradeSigned(0), _gradeExec(0) {}
 
 AForm::~AForm(void) {}
@@ -16,6 +16,19 @@ void AForm::beSigned(Bureaucrat& bureaucrat)
 		_signed = true;
 	else 
 		throw AForm::GradeTooHighException();
+}
+
+
+AForm::AForm(const AForm& instance) : _name(instance._name), _gradeSigned(instance._gradeSigned), _gradeExec(instance._gradeExec)
+{
+	operator=(instance);
+}
+
+AForm& AForm::operator=(const AForm& rhs)
+{
+	if (this != &rhs)
+		_signed = rhs.isSigned();
+	return *this;
 }
 
 const std::string& AForm::getName() const {return _name;}
@@ -48,7 +61,7 @@ AForm::GradeTooHighException::GradeTooHighException() : std::exception()
 
 const char* AForm::GradeTooHighException::what() const throw()
 {
-	return "AForm grade is too high";
+	return "Form grade is too high and can't be signed or executed";
 }
 
 AForm::GradeTooLowException::GradeTooLowException() : std::exception()
@@ -58,7 +71,7 @@ AForm::GradeTooLowException::GradeTooLowException() : std::exception()
 
 const char* AForm::GradeTooLowException::what() const throw()
 {
-	return "AForm grade is too low";
+	return "Form grade is too low and can't be signed or executed";
 }
 
 

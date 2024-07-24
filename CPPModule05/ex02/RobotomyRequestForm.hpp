@@ -5,17 +5,16 @@
 class RobotomyRequestForm : public AForm 
 {
 	private:
+		const std::string _target;
 		RobotomyRequestForm(void);
-		RobotomyRequestForm(const RobotomyRequestForm& instance);
-		RobotomyRequestForm &operator=(const RobotomyRequestForm& rhs);
 
 	public:
+		RobotomyRequestForm(const RobotomyRequestForm& instance);
+		RobotomyRequestForm &operator=(const RobotomyRequestForm& rhs);
 		RobotomyRequestForm(const std::string& target); 
 		~RobotomyRequestForm(void);
 
-		virtual void formSigned(Bureaucrat const& bureaucrat);
 		virtual void execute(Bureaucrat const& executor) const;
-
 };
 
 # endif // ROBOTOMYREQUESTFORM_HPP

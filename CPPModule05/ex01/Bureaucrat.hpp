@@ -14,8 +14,6 @@ private:
 	const std::string _name;
 	int 	 						_grade;
 	Bureaucrat(void);
-	Bureaucrat(const Bureaucrat& instance);
-	Bureaucrat &operator=(const Bureaucrat& rhs);
 
 public:
 	class GradeTooHighException : public std::exception
@@ -32,6 +30,8 @@ public:
 			virtual const char* what() const throw();
 	};
     Bureaucrat(const std::string& name, size_t grade); 
+		Bureaucrat(const Bureaucrat& instance);
+		Bureaucrat &operator=(const Bureaucrat& rhs);
     ~Bureaucrat(void);
 
 		const std::string& getName() const;

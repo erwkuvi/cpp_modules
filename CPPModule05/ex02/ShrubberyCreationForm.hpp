@@ -5,15 +5,15 @@
 class ShrubberyCreationForm : public AForm
 {
 	private:
+		const std::string _target;
 		ShrubberyCreationForm(void);
-		ShrubberyCreationForm(const ShrubberyCreationForm& instance);
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm& rhs);
 
 	public:
+		ShrubberyCreationForm(const ShrubberyCreationForm& instance);
+		ShrubberyCreationForm &operator=(const ShrubberyCreationForm& rhs);
 		ShrubberyCreationForm(const std::string& target); 
 		~ShrubberyCreationForm(void);
 
-		void formSigned(Bureaucrat const& bureaucrat);
 		void execute(Bureaucrat const& executor) const;
 
 };

@@ -5,17 +5,16 @@
 class PresidentialPardonForm : public AForm 
 {
 	private:
-		PresidentialPardonForm(const PresidentialPardonForm& instance);
-		PresidentialPardonForm &operator=(const PresidentialPardonForm& rhs);
+		const std::string _target;
 		PresidentialPardonForm(void);
 
 	public:
+		PresidentialPardonForm(const PresidentialPardonForm& instance);
+		PresidentialPardonForm &operator=(const PresidentialPardonForm& rhs);
 		PresidentialPardonForm(const std::string& target); 
 		~PresidentialPardonForm(void);
 
-		virtual void formSigned(Bureaucrat const& bureaucrat);
 		virtual void execute(Bureaucrat const& executor) const;
 
 };
-
 # endif // PRESIDENTIALPARDONFORM_HPP
