@@ -24,10 +24,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 }
 
 
-Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name)
-{
-	operator=(instance);
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name), _grade(instance._grade) {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
@@ -52,22 +49,6 @@ Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _gr
 			throw GradeTooHighException();
 		}
 	}
-}
-
-Bureaucrat::Bureaucrat(const Bureaucrat& instance)
-{
-	//std::cout << "Bureaucrat Copy constructor called" << std::endl; 
-	operator=(instance);
-}
-
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
-{
-	if (this != &rhs) 
-	{
-		//_name = rhs._name;
-		_grade = rhs._grade;
-	}
-	return *this;
 }
 
 Bureaucrat::~Bureaucrat(void) //

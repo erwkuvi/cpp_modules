@@ -39,10 +39,7 @@ Bureaucrat::Bureaucrat(const std::string& name, size_t grade) : _name(name), _gr
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name)
-{
-	operator=(instance);
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& instance) : _name(instance._name), _grade((instance._grade)) {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& rhs)
 {
