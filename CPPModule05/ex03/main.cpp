@@ -28,6 +28,9 @@ int main(void)
 		b.executeForm(*ptr2);
 		ptr3->beSigned(b);
 		b.executeForm(*ptr3);
+		delete rrf;
+		delete ptr2;
+		delete ptr3;
 	} 
 	catch (std::exception& e) 
 	{
