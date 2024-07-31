@@ -13,7 +13,11 @@ AForm::AForm(const std::string& name, int gradeSign, int gradeExec) : _name(name
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() <= _gradeSigned) 
+	{
+		if (_signed)
+			std::cout << MAGENTA << _name << " is already signed" << RESET << std::endl;
 		_signed = true;
+	}
 	else 
 		throw AForm::GradeTooHighException();
 }
@@ -72,6 +76,16 @@ AForm::GradeTooLowException::GradeTooLowException() : std::exception()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return "Form grade is too low and can't be signed or executed";
+}
+
+AForm::InvalidForm::InvalidForm() : std::exception()
+{
+	what();
+}
+
+const char* AForm::InvalidForm::what() const throw()
+{
+	return "Error: Form not found";
 }
 
 

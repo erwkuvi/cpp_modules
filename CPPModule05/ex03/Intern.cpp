@@ -1,25 +1,12 @@
 #include "Intern.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 #include <cstddef>
 #include <string>
 //#include <ostream>
 
-Intern::Intern(void) //: _init(some)
-{
-	std::cout << "Intern Default constructor called" << std::endl; 
-}
-
-// In case you need to pass an  argument
-//Intern::Intern(const std::string& arg) //: _init(arg)
-//{
-//	std::cout << "Intern Constructor called" << std::endl; 
-//}
+Intern::Intern(void) {}
 
 Intern::Intern(const Intern& instance)
 {
-	std::cout << "Intern Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -40,17 +27,33 @@ AForm* Intern::makeForm(const std::string& formName, const std::string& formTarg
 	ptr[0] = new ShrubberyCreationForm(formTarget);
 	ptr[1] = new RobotomyRequestForm(formTarget);
 	ptr[2] = new PresidentialPardonForm(formTarget);
-	int i;
-	for (i = 0; i < 3; i++)
+	int i = 0;
+	std::string formCmp = lowercasify(formName);
+	while (formCmp != publicForms[i] && i < 3)
+		i++;
+	for(int j = 0; j < 3; j++)
 	{
-		if(formName == names[i])
-			break;
-		if (i == 3)
-		{
-			std::cerr << "Error" << std::endl;//REturn an error message
-			return NULL;
-		}
+		if (j != i)
+			delete ptr[j];
 	}
+	if (i == 3)
+		throw (AForm::InvalidForm());
+	std::cout << "Intern creates a " << formCmp << " form" << std::endl;  
 	return ptr[i];
 }
 
+std::string lowercasify(const std::string& str)
+{
+	std::string result(str);
+	for (size_t i = 0; i < str.length(); ++i) 
+		result[i] = tolower(str[i]); 
+	return result;
+}
+
+std::ostream& operator<<(std::ostream& output, const Intern& instance)
+{
+	(void)instance;
+	output << RED << "This intern is here just to work for free\n" << RESET;
+
+	return output;
+}

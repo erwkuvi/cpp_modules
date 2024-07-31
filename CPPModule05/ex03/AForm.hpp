@@ -1,6 +1,12 @@
 #ifndef AFORM_HPP
 # define AFORM_HPP
 # include "Bureaucrat.hpp"
+# define RESET				"\033[0m"
+# define GREEN				"\033[32m"
+# define YELLOW				"\033[33m"
+# define BLUE    			"\033[34m"
+# define MAGENTA 			"\033[35m"
+# define RED     			"\033[31m"
 
 class Bureaucrat;
 
@@ -21,6 +27,12 @@ class AForm
 			GradeTooHighException();
 			virtual const char* what() const throw();
 
+	};
+		class InvalidForm : public std::exception
+	{
+		public:
+			InvalidForm();
+			virtual const char* what() const throw();
 	};
 		class GradeTooLowException : public std::exception
 	{
