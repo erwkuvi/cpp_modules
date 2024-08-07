@@ -1,7 +1,9 @@
 
-NAME = scalar
+NAME = convert
 
-SRC = main.cpp 
+SRC = main.cpp \
+			ScalarConverter.cpp \
+			DefineVar.cpp
 
 CXX = c++
 STDFLAG = -std=c++98

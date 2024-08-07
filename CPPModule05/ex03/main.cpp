@@ -15,14 +15,9 @@ int main(void)
 	try 
 	{
 		Bureaucrat guy("This Guy", 5);
-		rrf = someRandomIntern.makeForm("preSideNtiaL pardon", "Bender");
+		rrf = someRandomIntern.makeForm("rr pardon", "Bender");
 		Bureaucrat b("The Dude", 32);
 		std::cout << someRandomIntern << std::endl;
-		if (!rrf)
-		{
-			std::string reason("No Form to execute.");
-			throw (reason);
-		}
 		rrf->beSigned(guy);
 		guy.executeForm(*rrf);
 		b.executeForm(*ptr2);

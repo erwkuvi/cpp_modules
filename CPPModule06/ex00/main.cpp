@@ -1,21 +1,26 @@
 #include <iostream>
-//#include "DefineVar.hpp"
+#include "ScalarConverter.hpp"
 
-int main ()
+int main (int argc, char** argv)
 {
 	char* term;
 
-	float val = std::strtod("NaN", &term);
+	float val = std::strtod("-inff", &term);
 	std::cout << "term: " << *term << std::endl;
-	std::cout << "val: " << val << std::endl;
+	std::cout << "value: " << static_cast<int>(val) << std::endl;
+	if (argc == 2)
+	{
+		std::string arg(argv[1]);
+		ScalarConverter::convert(arg);
+	}
+	std::cout << "Yeiiii" << std::endl;
 
-	//ScalarConverter converter;
-
+	
 	//converter.convert();
-	int i = 21;
-	double d = 2.222222222222222222222222222;
-	char c = 'c';
-	float f = 2.222222222222222222222222222f;
-	std::cout << "int: " << i << "\tdouble: " << d << "\t char: " << c << "\tfloat: " << f << std::endl;
+	//float i = 21.0f;
+	//double d = 2.222222222222222222222222222;
+	//char c = 'c';
+	//float f = 2.222222222222222222222222222f;
+	//std::cout << "float: " << i << std::endl;
 
 }
