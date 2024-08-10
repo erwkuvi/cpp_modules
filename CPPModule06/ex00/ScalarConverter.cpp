@@ -16,9 +16,10 @@ void ScalarConverter::convert( const std::string& literal)
 
 	t_define arg;
 	int type = arg.defineLiteral(literal);
-	//std::cout << "type" << type << std::endl;
+	//std::cout << "type " << type << std::endl;
 
-	switch (type) {
+	switch (type) 
+	{
 		case (CHAR):
 			arg.printChar(literal);
 			break;
@@ -28,8 +29,9 @@ void ScalarConverter::convert( const std::string& literal)
 		case (FLOAT):
 			arg.printFloat(literal);
 			break;
-		//case (DOUBLE):
-		//	printDouble(literal);
+		case (DOUBLE):
+			arg.printDouble(literal);
+			break;
 		default:
 			std::cerr << "Error: No valid argument" << std::endl;
 			break;

@@ -3,17 +3,19 @@
 
 int main (int argc, char** argv)
 {
-	char* term;
+	//char* term;
 
-	float val = std::strtod("-inff", &term);
-	std::cout << "term: " << *term << std::endl;
-	std::cout << "value: " << static_cast<int>(val) << std::endl;
+	//float val = std::strtof("19999922222", &term);
+	//std::cout << "term: " << *term << std::endl;
+	//std::cout << "float: " << val << std::endl;
+	//std::cout << "value: " << static_cast<int>(val) << std::endl;
+	//std::cout << "\nArgument given " << std::endl;
 	if (argc == 2)
 	{
 		std::string arg(argv[1]);
 		ScalarConverter::convert(arg);
 	}
-	std::cout << "Yeiiii" << std::endl;
+	//std::cout << "Yeiiii" << std::endl;
 
 	
 	//converter.convert();

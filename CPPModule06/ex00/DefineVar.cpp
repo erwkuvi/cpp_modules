@@ -53,6 +53,7 @@ void Definer::printFloat(const std::string& literal)
 {
 	char* term;
 	float f = std::strtof(literal.c_str(), &term);
+	//To char
 	std::cout << "char: ";
 	if(f >= 0 && f <= 127)
 	{
@@ -63,7 +64,13 @@ void Definer::printFloat(const std::string& literal)
 	}
 	else
 		std::cout << "impossible" << std::endl;
-	std::cout << "int: " << static_cast<int>(f) << std::endl;
+	//To int
+	std::cout << "int: ";
+	if (static_cast<int>(f) > INT_MIN && static_cast<int>(f) < INT_MAX)
+		std::cout << static_cast<int>(f) << std::endl;
+	else
+		std::cout << "impossible" << std::endl;
+	//To float
 	if (f - static_cast<int>(f))
 	{
 		std::cout << "float: " << f << 'f' << std::endl;
@@ -74,14 +81,40 @@ void Definer::printFloat(const std::string& literal)
 		std::cout << "float: " << f << ".0f" << std::endl;
 		std::cout << "double: " << static_cast<double>(f) << ".0" << std::endl;
 	}
-
 }
 
 void Definer::printDouble(const std::string& literal)
 {
-	(void)literal;
-	std::cout << "double: " << std::endl;
-
+	char* term;
+	double d = std::strtod(literal.c_str(), &term);
+	//to char
+	std::cout << "char: ";
+	if(d >= 0 && d <= 127)
+	{
+		if (isprint(d))
+			std::cout << static_cast<char>(d)<< std::endl;
+		else
+			std::cout << "Non displayable" << std::endl;
+	}
+	else
+		std::cout << "impossible" << std::endl;
+	//To int
+	std::cout << "int: ";
+	if (static_cast<int>(d) > INT_MIN && static_cast<int>(d) < INT_MAX)
+		std::cout << static_cast<int>(d) << std::endl;
+	else
+		std::cout << "impossible" << std::endl;
+	//To float
+	if (d - static_cast<int>(d))
+	{
+		std::cout << "float: " << static_cast<float>(d) << 'f' << std::endl;
+		std::cout << "double: " << d << std::endl;
+	}
+	else
+	{
+		std::cout << "float: " << static_cast<float>(d) << ".0f" << std::endl;
+		std::cout << "double: " << d << ".0" << std::endl;
+	}
 }
 
 bool Definer::isChar(const std::string &literal)
@@ -104,6 +137,8 @@ bool Definer::isInt(const std::string& literal)
 bool is_inff(const std::string& arg)
 {
 	int i = 0;
+	if (!arg.compare(i, arg.size() - i ,"nanf"))
+		return true;
 	while (arg[i] == '+' || arg[i] == '-')
 		i++;
 	if (!arg.compare(i, arg.size() - i ,"inff"))
