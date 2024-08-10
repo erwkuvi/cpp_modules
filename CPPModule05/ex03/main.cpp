@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+
 #include <cstdlib>
 #include <ctime>
 #include <exception>
@@ -15,7 +16,7 @@ int main(void)
 	try 
 	{
 		Bureaucrat guy("This Guy", 5);
-		rrf = someRandomIntern.makeForm("rr pardon", "Bender");
+		rrf = someRandomIntern.makeForm("no existing ", "Bender");
 		Bureaucrat b("The Dude", 32);
 		std::cout << someRandomIntern << std::endl;
 		rrf->beSigned(guy);
