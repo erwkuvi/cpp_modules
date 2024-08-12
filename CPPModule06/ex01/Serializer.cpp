@@ -1,17 +1,12 @@
 #include "Serializer.hpp"
 #include <string>
-//#include <ostream>
+#include <iostream>
 
 Serializer::Serializer(void) //: _init(some)
 {
 	std::cout << "Serializer Default constructor called" << std::endl; 
 }
 
-// In case you need to pass an  argument
-//Serializer::Serializer(const std::string& arg) //: _init(arg)
-//{
-//	std::cout << "Serializer Constructor called" << std::endl; 
-//}
 
 Serializer::Serializer(const Serializer& instance)
 {
@@ -21,10 +16,7 @@ Serializer::Serializer(const Serializer& instance)
 
 Serializer& Serializer::operator=(const Serializer& rhs)
 {
-	if (this != &rhs)
-		{
-			//implementation of the copying
-		}
+	if (this != &rhs){}
 	return *this;
 }
 
@@ -38,20 +30,21 @@ Serializer::~Serializer(void) //
 
 uintptr_t Serializer::serialize(Data* ptr)
 {
-	return static_cast<uintptr_t>(ptr);
+	if(ptr)
+	{
+		return reinterpret_cast<uintptr_t>(ptr);
+	}
+	std::cerr << "Error: no valid pointer" << std::endl;
+	return 0;
 }
 
 Data* Serializer::deserialize(uintptr_t raw)
 {
-
-}
-
-
-	//output operator overload ..
-
-std::ostream& operator<<(std::ostream& output, const Serializer& rhs)
-{
-	output << // implemetation <<;
-	return output;
+	if (raw == 0)
+	{
+		std::cerr << "Error: no valid raw argument" << std::endl;
+		return NULL;
+	}
+	return reinterpret_cast<Data*>(raw);
 }
 

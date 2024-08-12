@@ -3,7 +3,6 @@ NAME = serializer
 
 SRC = main.cpp \
 			Serializer.cpp \
-			Data.cpp
 
 CXX = c++
 STDFLAG = -std=c++98
