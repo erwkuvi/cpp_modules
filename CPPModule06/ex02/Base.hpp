@@ -1,24 +1,23 @@
 #ifndef BASE_HPP
 #define BASE_HPP
-#include <string>
 
+
+class A;
+class B;
+class C;
 class Base 
 {
 private:
-    // Add your private members here
+
 
 public:
-    //Base(const std::string& arg); // In case you need to pass an  argument
-//Orthodox canonical begin
     Base(void);
-    Base(const Base& instance);
-    Base &operator=(const Base& rhs);
-    ~Base(void);
-//Orthodox canonical end
+    virtual ~Base(void);
 
-    // Add your class members and methods here
+		Base* generate(void);
+		void identify(Base* p);
+		void identify(Base& p);
 };
 
-std::ostream& operator<<(std::ostream& output, const Base& instance);
 
 #endif // BASE_HPP
