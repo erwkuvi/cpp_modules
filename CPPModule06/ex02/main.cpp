@@ -1,9 +1,6 @@
 #include "Base.hpp"
 #include <iostream>
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
-
+#include "Derived.hpp"
 
 int main (void)
 {
@@ -13,8 +10,8 @@ int main (void)
 
 	Base* p = &c;
 	p->identify(p);
-	p->identify(*(&a));
-	p->identify(*p);
+	p->identify(a);
+	p->identify(b);
 	//Base* p = &a;
 	//B* b1 = dynamic_cast<B*>(p);
 	//if (b1)

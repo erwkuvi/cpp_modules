@@ -1,11 +1,9 @@
 
-NAME = cast
+NAME = identify
 
 SRC = main.cpp \
 			Base.cpp \
-			A.cpp \
-			B.cpp \
-			C.cpp 
+			Derived.cpp \
 
 CXX = c++
 STDFLAG = -std=c++98

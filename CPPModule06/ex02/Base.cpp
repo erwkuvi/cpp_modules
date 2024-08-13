@@ -2,19 +2,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
+#include <exception>
+#include "Derived.hpp"
 
-Base::Base(void) //: _init(some)
-{
-	//std::cout << "Base Default constructor called" << std::endl; 
-}
-Base::~Base(void) //
-{
-	//std::cout << "Base Destructor called" << std::endl; 
-}
-
+Base::Base(void) {}
+Base::~Base(void) {}
 
 Base* Base::generate(void)
 {
@@ -36,7 +28,7 @@ Base* Base::generate(void)
 
 void Base::identify(Base* p)
 {
-	std::cout << "This one *p" << std::endl; 
+	std::cout << RED << "\nPointer:\t" << RESET; 
 	if(dynamic_cast<A*>(p))
 		std::cout << "Object is type: A" << std::endl; 
 	if(dynamic_cast<B*>(p))
@@ -47,8 +39,32 @@ void Base::identify(Base* p)
 
 void Base::identify(Base& p)
 {
-	std::cout << "This one &p" << std::endl; 
+	std::cout << YELLOW << "\nReference:\t" << RESET; 
 	//Base* check = &p;
-	A a = static_cast<A>(p);
+	try
+	{
+		A& a = dynamic_cast<A&>(p);
+		identify(&a);
+	}
+	catch(const std::exception& e) {
+		//std::cout << "(A) Error: " << e.what() << std::endl;
+	}
+	try
+	{
+		B& b = dynamic_cast<B&>(p);
+		identify(&b);
+
+	}
+	catch (const std::exception& e) {
+		//std::cout << "(B) Error: " << e.what() << std::endl;
+	}
+	try
+	{
+		C& c = dynamic_cast<C&>(p);
+		identify(&c);
+	}
+	catch (const std::exception& e) {
+		//std::cout << "(C) Error: " << e.what() << std::endl;
+	}
 
 }
