@@ -1,6 +1,38 @@
 #include <iostream>
 #include "iter.hpp"
 
+	template<typename T>
+void print(T& a)
+{
+	std::cout << "Value: " << a << std::endl;
+}
+
+template<typename T>
+void removeLast(T& a)
+{
+	//std::string tmp(a);
+	if (a.empty())
+		return;
+	a.erase(a.length() - 1);
+}
+
+
+template<typename T>
+void removeFirst(T& a)
+{
+	if (a.empty())
+		return;
+	std::string tmp(a);
+	a = tmp.substr(1, a.length() - 1);
+}
+
+template<typename T>
+void addOne(T& a)
+{
+	a += 1.9;
+}
+
+
 int main(void)
 {
 
