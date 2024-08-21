@@ -80,7 +80,10 @@ class Array
 			if(idx < _arr_size)
 				return _array[idx];
 			else
+			{
+				//std::cout << "this: " << idx << std::endl;
 				throw std::out_of_range("Error: Out of bounds");
+			}
 		}
 
 		unsigned int size() const {return _arr_size;}
