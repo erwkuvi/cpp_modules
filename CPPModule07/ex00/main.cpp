@@ -9,20 +9,25 @@ int main(void)
 	int &x = max(z, y);
 
 	//swap(a, b);
+	std::cout << "max" << std::endl;
 
 	std::cout << "z: " << &z << " y: " << &y << std::endl;
-	std::cout << "c: " << &x << std::endl;
+	std::cout << "x: " << &x << std::endl;
 
 	std::cout << "\nstrings" << std::endl;
 
 	std::string f = "Hello";
 	std::string g = "Hellp";
 	std::string &j = max(f, g);
+	std::cout << "min(f,g): " << min(f, g) << std::endl;
 
+	std::cout << "f: " << f << " g: " << g << std::endl;
+	std::cout << "&j = max(f, g) | j = " << j << std::endl;
+	std::cout << "\nswap" << std::endl;
 	swap(f, g);
 
 	std::cout << "f: " << f << " g: " << g << std::endl;
-	std::cout << "j: " << j << std::endl;
+	std::cout << "\nmin(f, g)" << std::endl;
 	std::cout << min(f, g) << std::endl;
 
 
