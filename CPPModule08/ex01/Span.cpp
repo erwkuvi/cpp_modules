@@ -44,7 +44,7 @@ void Span::addNumber(size_t n)
 size_t Span::shortestSpan()
 {
 	if(_vector.size() <= 1)
-		throw std::runtime_error("Error: not enough values");
+		throw std::runtime_error("Error shortest span: not enough values");
 
 	std::vector<size_t> tmp(_vector);
 	std::sort(tmp.begin(), tmp.end());
@@ -62,7 +62,7 @@ size_t Span::shortestSpan()
 size_t Span::longestSpan()
 {
 	if(_vector.size() <= 1)
-		throw std::runtime_error("Error: not enough values");
+		throw std::runtime_error("Error longest span: not enough values");
 
 	std::vector<size_t> tmp(_vector);
 	std::sort(tmp.begin(), tmp.end());
@@ -77,14 +77,39 @@ size_t Span::longestSpan()
 	return longest;
 }
 
+void printVector(const std::vector<size_t> list)
+{
+	std::vector<size_t>::const_iterator it;
+
+	for (it = list.begin(); it != list.end(); it++)
+	{
+		std::cout << "Print List: " << *it << std::endl;
+	}
+}
 void Span::fillSpan(std::vector<size_t>::iterator begin, std::vector<size_t>::iterator end)
 {
-	std::copy()
-	if(nElements + _vector.size() > _maxN)
-		throw std::runtime_error("Error: maximum capacity would be reached");
-	std::srand(static_cast<unsigned int>(std::time(NULL)));
-	int randVal = std::rand() % 100 + 1;
-	std::cout << randVal;
-	//std::transform(_vector.)
+	//std::vector<size_t> myints = {42, 22};
+	size_t len = std::distance(begin, end);
+	size_t ogSize = _vector.size();
+	if(len + _vector.size() > _maxN)
+		len = _maxN - _vector.size();
+	_vector.resize(_vector.size() + len);
+	//std::cout << "\nsize: " << _vector.size() << "\n" << std::endl;
+	//printVector(_vector);
+	std::copy_n(begin, len, _vector.begin() + ogSize);
+	//std::copy_n(myints.begin(), len, _vector.begin());
+	//std::cout << "\n len " << len << std::endl;
+//	std::cout << "\n------------------: " << "\n" << std::endl;
+//	printVector(_vector);
+}
 
+const std::vector<size_t>& Span::getVector() const {return _vector;}
+
+std::ostream &operator<<(std::ostream& output, const Span& span)
+{
+	std::vector<size_t>::const_iterator it;
+	for (it = span.getVector().begin(); it != span.getVector().end(); it++)
+		output << "List: " << *it << std::endl;
+
+	return output; 
 }
