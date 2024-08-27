@@ -1,6 +1,7 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 #include <cstddef>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -28,7 +29,11 @@ public:
 	size_t shortestSpan();//if no numbers or only one, throw an exception
 	size_t longestSpan();
 void fillSpan(std::vector<size_t>::iterator begin, std::vector<size_t>::iterator end);
+
+const std::vector<size_t>& getVector() const;
+
 };
 
+std::ostream& operator<<(std::ostream& output, const Span& span);
 
 #endif // SPAN_HPP
