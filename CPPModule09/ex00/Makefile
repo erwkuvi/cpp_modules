@@ -1,6 +1,7 @@
 NAME = btc
 
-SRC = main.cpp 
+SRC = main.cpp \
+			BitcoinExchange.cpp
 
 CXX = c++
 STDFLAG = -std=c++98
@@ -23,7 +24,7 @@ fclean : clean
 re : fclean all
 
 run : $(NAME)
-	./$(NAME)
+	./$(NAME) data_ex.csv
 
 val : 
 	valgrind --leak-check=full ./$(NAME)

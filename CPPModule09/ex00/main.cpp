@@ -5,26 +5,19 @@
 #include <exception>
 #include <iostream>
 #include <fstream>
+#include <stdexcept>
 #include <string>
 
 int main(int argc, char** argv)
 {
 	try
 	{
-		(void)argc;
-		char* end = NULL;
-		float inValue = std::strtof(argv[1], &end);
+		if (argc != 2)
+			throw std::runtime_error("Error: no infile available");
 
-		//BitcoinExchange a("data.csv", inValue);
-		std::map<std::string, float> data;
-		data["first"] = 1;
-		data["second"] = 2;
-		data["third"] = 3;
-		data["fourth"] = 4;
-
-
-
-		std::cout << data["third"] << "\n" << inValue << std::endl;
+		std::string infile(argv[1]);
+		BitcoinExchange a(infile);
+		//std::string test("2009-01-08,0");
 	}
 	catch(std::exception& e)
 	{
@@ -33,3 +26,9 @@ int main(int argc, char** argv)
 
 
 }
+//std::map<std::string, float> data;
+//data["first"] = 1;
+//data["second"] = 2;
+//data["third"] = 3;
+//data["fourth"] = 4;
+//std::cout << data["third"] << "\n" << std::endl;
