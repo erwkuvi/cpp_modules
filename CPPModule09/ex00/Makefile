@@ -1,0 +1,32 @@
+NAME = btc
+
+SRC = main.cpp \
+			BitcoinExchange.cpp
+
+CXX = c++
+STDFLAG = -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror
+RM = rm
+
+OBJ = $(SRC:.cpp=.o)
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	$(CXX) $(CXXFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
+
+clean :
+	$(RM) -f $(OBJ)
+
+fclean : clean
+	$(RM) -f $(NAME)
+
+re : fclean all
+
+run : $(NAME)
+	./$(NAME) data_ex.csv
+
+val : 
+	valgrind --leak-check=full ./$(NAME)
+
+.PHONY: all fclean clean re val

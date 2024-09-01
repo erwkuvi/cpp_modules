@@ -66,7 +66,7 @@ size_t Span::longestSpan()
 
 	std::vector<size_t> tmp(_vector);
 	std::sort(tmp.begin(), tmp.end());
-	size_t longest = tmp[1] - tmp[0];
+	size_t longest = tmp[_vector.size() - 1] - tmp[0];
 	for (size_t i = 2; i < tmp.size(); ++i) 
 	{
 		size_t current = tmp[i] - tmp[i - 1];
