@@ -33,7 +33,7 @@ private:
 	int _isDateValid(std::string& date);
 	int _isValueValid(std::string& value);
 	int _isDataValid(std::string& date, std::string value);
-	float _searchNearestNode(std::string& date) const;
+	float _searchNearestNode(std::string date) const;
 	void _printError(std::string list, int error) const;
 
 

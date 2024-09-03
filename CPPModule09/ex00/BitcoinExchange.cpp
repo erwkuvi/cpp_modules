@@ -170,7 +170,7 @@ void BitcoinExchange::_store_data()
 	fd.open ("dataa.csv", std::fstream::in);
 	if(fd.is_open())
 	{
-		std::cout << "Data found!" << std::endl;
+		//std::cout << "Data found!" << std::endl;
 		if(fd.peek() != EOF)
 		{
 			std::string line;
@@ -192,7 +192,7 @@ void BitcoinExchange::_store_data()
 	}
 	else
 		std::runtime_error("Error: could not open/find data file");
-	_printDatabase(_database);
+	//_printDatabase(_database);
 }
 
 
@@ -223,8 +223,8 @@ void BitcoinExchange::_storeInFile(std::fstream& fd)
 		//std::cout << _inFile. << "\n" << std::endl;
 		//std::cout << "errorType: " << errorType << std::endl;
 	}
-	std::cout << "\ninFile size: " << _inFile.size() << std::endl;
-	_printDatabase(_inFile);
+	//std::cout << "\ninFile size: " << _inFile.size() << std::endl;
+	//_printDatabase(_inFile);
 }
 
 bool BitcoinExchange::myList::operator<(const _myList& other) const
@@ -233,21 +233,29 @@ bool BitcoinExchange::myList::operator<(const _myList& other) const
  }
 
 
-float BitcoinExchange::_searchNearestNode(std::string& date) const
+float BitcoinExchange::_searchNearestNode(std::string date) const
 {
-	float result = _database.begin()->_value;
 	std::list<_myList>::const_iterator it = _database.begin();
 	std::list<_myList>::const_iterator ite = _database.end();
+	std::list<_myList>::const_iterator tmpit = _database.begin();
+	//float res = it->_value;
 	while (it != ite)
 	{
-		if(it->_key > date)
-		{
-			it--;
+		if(it->_key == date)
 			return it->_value;
+		if(it->_key > date && it == _database.begin())
+			return it->_value;
+		if(it->_key > date && it != _database.begin())
+		{
+			tmpit = it;
+			--tmpit;
+			break;
 		}
-		it++;
+		if(it->_key < date && tmpit->_key < it->_key)
+			tmpit = it;
+		++it;
 	}
-	return result;
+	return tmpit->_value;
 }
 
 void BitcoinExchange::_printError(std::string list, int error) const
@@ -255,17 +263,17 @@ void BitcoinExchange::_printError(std::string list, int error) const
 	int errSwitch = error - ERRORNUM;
 	switch (errSwitch) 
 	{
-			std::cout << "Error: Bad input => " << list << std::endl;
 		case (BADINP):
+			std::cout << "Error: Bad input => " << list << std::endl;
 			break;
 		case (NOTPOS):
 			std::cout << "Error: Not a positive number." << std::endl;
 			break;
 		case (TOOLAR):
-			std::cout << "Error: too large a number." << std::endl;
+			std::cout << "Error: Too large a number." << std::endl;
 			break;
 		case (NOTDIG):
-			std::cout << "Error: not a valid number." << std::endl;
+			std::cout << "Error: Not a valid number." << std::endl;
 			break;
 		default:
 			std::cout << "Error: Bad input => " << std::endl;
@@ -285,12 +293,12 @@ void BitcoinExchange::outputvalue() const
 			_printError(it->_key, it->_value);
 		else
 		{
-			float result = _searchNearestNode(it->_key);
+			float result = it->_value * _searchNearestNode(it->_key);
+			//std::cout << "infile value: " << it->_value << " | nearest value: " << _searchNearestNode(it->_key) << std::endl;
 			std::cout << it->_key << " => " << it->_value << " = " << result << std::endl;
 		}
-		it++;
+		++it;
 	}
-
 }
 
 
