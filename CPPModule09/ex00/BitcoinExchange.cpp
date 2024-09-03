@@ -167,7 +167,7 @@ void BitcoinExchange::_printDatabase(std::list<_myList> database) const
 void BitcoinExchange::_store_data()
 {
 	std::fstream fd;
-	fd.open ("dataa.csv", std::fstream::in);
+	fd.open ("data.csv", std::fstream::in);
 	if(fd.is_open())
 	{
 		//std::cout << "Data found!" << std::endl;
@@ -295,7 +295,10 @@ void BitcoinExchange::outputvalue() const
 		{
 			float result = it->_value * _searchNearestNode(it->_key);
 			//std::cout << "infile value: " << it->_value << " | nearest value: " << _searchNearestNode(it->_key) << std::endl;
-			std::cout << it->_key << " => " << it->_value << " = " << result << std::endl;
+			if(result - static_cast<int>(result) != 0)
+				std::cout << it->_key << " => " << it->_value << " = " << std::fixed << std::setprecision(2) << result << std::endl;
+			else
+				std::cout << it->_key << " => " << it->_value << " = " << static_cast<int>(result) << std::endl;
 		}
 		++it;
 	}
