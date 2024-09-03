@@ -136,7 +136,6 @@ BitcoinExchange::BitcoinExchange(const std::string& inFile)
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& instance)
 {
-	std::cout << "BitcoinExchange Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -144,7 +143,8 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			_database = rhs._database;
+			_inFile = rhs._inFile;
 		}
 	return *this;
 }
@@ -226,12 +226,6 @@ void BitcoinExchange::_storeInFile(std::fstream& fd)
 	//std::cout << "\ninFile size: " << _inFile.size() << std::endl;
 	//_printDatabase(_inFile);
 }
-
-bool BitcoinExchange::myList::operator<(const _myList& other) const
- {
-	 return _key < other._key;
- }
-
 
 float BitcoinExchange::_searchNearestNode(std::string date) const
 {

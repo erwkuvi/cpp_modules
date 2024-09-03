@@ -11,14 +11,10 @@
 class BitcoinExchange 
 {
 private:
-	//float _value;
-	//std::string _date;
 	typedef struct myList
 	{
 		std::string _key;
 		float 			_value;
-		
-		bool operator<(const myList& other) const;
 	} _myList;
 
 	enum _errorType

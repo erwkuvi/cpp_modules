@@ -18,8 +18,9 @@ int main(int argc, char** argv)
 		std::string infile(argv[1]);
 		BitcoinExchange a(infile);
 		a.outputvalue();
-
-		//std::string test("2009-01-08,0");
+		//std::cout << "\n" << std::endl;
+		//BitcoinExchange b = a;
+		//b.outputvalue();
 	}
 	catch(std::exception& e)
 	{
