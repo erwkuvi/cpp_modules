@@ -1,4 +1,5 @@
 #include <cctype>
+#include <cstdlib>
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <stdexcept>
@@ -43,7 +44,7 @@ int BitcoinExchange::_isValueValid(std::string& value)
 		if (p > 1)
 			return NOTDIG;
 	}
-	float val = std::strtof(value.c_str(), NULL);
+	float val = atof(value.c_str());
 	if(val > 1000)
 		return TOOLAR;
 	if(val < 0)
@@ -56,9 +57,9 @@ int BitcoinExchange::_isDateValid(std::string& date)
 	if (date.size() > 10)
 		return BADINP;
 
-	int year = std::stoi(date.substr(0, 4));
-	int month = std::stoi(date.substr(5, 6));
-	int day = std::stoi(date.substr(8, 9));
+	int year = atoi(date.substr(0, 4).c_str());
+	int month = atoi(date.substr(5, 6).c_str());
+	int day = atoi(date.substr(8, 9).c_str());
 	//std::cout << year << std::endl;
 	//std::cout << std::endl;
 	//std::cout << month << std::endl;
@@ -120,7 +121,7 @@ BitcoinExchange::BitcoinExchange(const std::string& inFile)
 	//test = removeSpace(test);
 	//std::cout << "is date valid: " << _isDateValid(test) << std::endl; 
 	std::fstream fd;
-	fd.open (inFile, std::fstream::in);
+	fd.open (inFile.c_str(), std::fstream::in);
 	if(fd.is_open())
 	{
 		//std::cout << "file opened succesfully!" << std::endl;
@@ -180,7 +181,9 @@ void BitcoinExchange::_store_data()
 				if(dataFormatCheck(line, true))
 				{
 					n = line.find(',');
-					_database.push_back({line.substr(0, n),std::strtof(line.substr(n + 1).c_str(), NULL)});
+					float val = atof(line.substr(n + 1).c_str());
+					_myList newNode = {line.substr(0, n), val};
+					_database.push_back(newNode);
 					//std::cout << "(1):\t" << line.substr(0, n) << "\t|\t";
 					//std::cout << "(2):\t" << std::strtof(line.substr(n + 1).c_str(), &end) << std::endl;
 				}
@@ -203,6 +206,7 @@ void BitcoinExchange::_storeInFile(std::fstream& fd)
 	std::string::size_type n;
 	std::string date;
 	float value;
+
 	while(std::getline(fd, line))
 	{
 		line = removeSpace(line);
@@ -211,15 +215,21 @@ void BitcoinExchange::_storeInFile(std::fstream& fd)
 		{
 			n = line.find('|');
 			date = line.substr(0, n);
-			value = std::strtof(line.substr(n + 1).c_str(), NULL);
+			value = atof(line.substr(n + 1).c_str());
 			errorType = _isDataValid(date, line.substr(n + 1));
 		}
 		else
 			date = line;
 		if (errorType == -1)
-			_inFile.push_back({date, value});
+		{
+			_myList newNode = {date, value};
+			_inFile.push_back(newNode);
+		}
 		else
-			_inFile.push_back({date, static_cast<float>(errorType) + ERRORNUM});
+		{
+			_myList newNode = {date, static_cast<float>(errorType) + ERRORNUM};
+			_inFile.push_back(newNode);
+		}
 		//std::cout << _inFile. << "\n" << std::endl;
 		//std::cout << "errorType: " << errorType << std::endl;
 	}

@@ -32,7 +32,7 @@ void printStack(std::deque<std::string>& stack)
 	std::cout << "\n";
 }
 
-int RPN::operation(const char& operand, int a, int b)
+int RPN::_operation(const char& operand, int a, int b)
 {
 	int res = 0;
 	switch (operand)
@@ -48,7 +48,7 @@ int RPN::operation(const char& operand, int a, int b)
 			break;
 		case DIV:
 			if (b == 0) {
-				throw std::runtime_error("Division by zero");
+				throw std::runtime_error("Error: Division by zero");
 			}
 			res = a / b;
 			break;
@@ -62,7 +62,9 @@ int RPN::operation(const char& operand, int a, int b)
 
 bool isOperator(std::string& str)
 {
-	return str[0] == ADD || str[0] == SUB || str[0] == MULT || str[0] == DIV;
+	if(str.size() == 1)
+		return str[0] == ADD || str[0] == SUB || str[0] == MULT || str[0] == DIV;
+	return false;
 }
 // In case you need to pass an  argument
 RPN::RPN(const std::string& arg) //: _init(arg)
@@ -77,15 +79,17 @@ RPN::RPN(const std::string& arg) //: _init(arg)
 		//std::cout << "Input is: " << _ogInput.front() << std::endl;
 		if(isOperator(_ogInput.front()))
 		{
+			if(_stack.size() < 2)
+				throw std::runtime_error("Error: not valid expression");
 			num2 = _stack.back();
 			_stack.pop_back();
 			num1 = _stack.back();
 			_stack.pop_back();
-			result = operation(_ogInput.front()[0], num1, num2);
+			result = _operation(_ogInput.front()[0], num1, num2);
 			_stack.push_back(result);
 		}
 		else
-			_stack.push_back(stoi(_ogInput.front()));
+			_stack.push_back(atoi(_ogInput.front().c_str()));
 		_ogInput.pop_front();
 	}
 	printStackFinal(_stack);
@@ -113,10 +117,14 @@ void checkWord(std::string& wrd)
 {
 	//std::cout << "hello: " << wrd << std::endl;
 	std::string operatorStr("+-/*");
-	if(wrd.size() > 1)
-		throw std::runtime_error("Error: not valid operand/operator.");
-	if(operatorStr.find(wrd) == std::string::npos && !isdigit(wrd[0]))
+	if(wrd.size() > 2)
 		throw std::runtime_error("Error: not valid operand/operator");
+	if(wrd.size() == 2 && wrd[0] != '-')
+		throw std::runtime_error("Error: not valid negative operand/operator");
+	if(wrd.size() == 2 && !isdigit(wrd[1]))
+		throw std::runtime_error("Error: not valid negative operand/operator");
+	if(wrd.size() == 1 && operatorStr.find(wrd) == std::string::npos && !isdigit(wrd[0]))
+		throw std::runtime_error("Error: not valid operand/operator.");
 }
 
 void RPN::_storeInput(const std::string& arg)
@@ -134,7 +142,11 @@ void RPN::_storeInput(const std::string& arg)
 			tmp = arg.substr(pos, found - pos);
 			checkWord(tmp);
 			if (isOperator(tmp))
+			{
+				if(dig < 2)
+					throw std::runtime_error("Error: not valid expression");
 				oprt++;
+			}
 			else
 				dig++;
 			_ogInput.push_back(tmp);

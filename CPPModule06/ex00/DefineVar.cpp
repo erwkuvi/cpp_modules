@@ -32,7 +32,7 @@ void Definer::printChar(const std::string& literal)
 
 void Definer::printInt(const std::string& literal)
 {
-	int i = std::stoi(literal.c_str(), NULL, 10);
+	int i = atoi(literal.c_str());
 	std::cout << "char: ";
 	if(i >= 0 && i <= 127)
 	{
@@ -51,8 +51,8 @@ void Definer::printInt(const std::string& literal)
 
 void Definer::printFloat(const std::string& literal)
 {
-	char* term;
-	float f = std::strtof(literal.c_str(), &term);
+	//char* term;
+	float f = atof(literal.c_str());
 	//To char
 	std::cout << "char: ";
 	if(f >= 0 && f <= 127)
@@ -146,14 +146,22 @@ bool is_inff(const std::string& arg)
 	return false;
 }
 
+//bool Definer::isFloat(const std::string& literal)
+//{
+	//char* term;
+
+	////float val = std::strtof(literal.c_str(), &term);
+	//float val = atof(literal.c_str());
+	//if (((*term == 'f' && *(term + 1) == '\0') && (val != HUGE_VALF)) || is_inff(literal))
+	//	return true;
+	//return false;
+//}
 bool Definer::isFloat(const std::string& literal)
 {
-	char* term;
-
-	float val = std::strtof(literal.c_str(), &term);
-	if (((*term == 'f' && *(term + 1) == '\0') && (val != HUGE_VALF)) || is_inff(literal))
-		return true;
-	return false;
+    double val = atof(literal.c_str());
+    if ((literal.size() >= 2 && literal[literal.size() - 1] == 'f' && val != HUGE_VAL) || is_inff(literal))
+        return true;
+    return false;
 }
 
 bool is_inf(const std::string& arg)
@@ -166,14 +174,19 @@ bool is_inf(const std::string& arg)
 	return false;
 }
 
-bool Definer::isDouble(const std::string& literal)
+
+bool Definer::isDouble(const std::string& literal) 
 {
 	char* term;
 	double val = std::strtod(literal.c_str(), &term);
-	if((*term == '\0' && val != HUGE_VAL) || is_inf(literal))
-		return true;
-	return false;
 
+	if (*term == '\0' && val != HUGE_VAL && val != -HUGE_VAL)
+		return true;
+
+	if (literal == "inf" || literal == "+inf" || literal == "-inf")
+		return true;
+
+	return false;
 }
 
 

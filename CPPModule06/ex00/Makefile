@@ -6,8 +6,7 @@ SRC = main.cpp \
 			DefineVar.cpp
 
 CXX = c++
-STDFLAG = -std=c++98
-CXXFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 RM = rm
 
 OBJ = $(SRC:.cpp=.o)
@@ -15,7 +14,7 @@ OBJ = $(SRC:.cpp=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CXX) $(CXXFLAGS) $(STDFLAG) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean :
 	$(RM) -f $(OBJ)

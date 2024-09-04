@@ -1,9 +1,11 @@
 #include "RPN.hpp"
 #include <exception>
 #include <stdexcept>
+#include <string>
 
 int main(int argc, char** argv)
 {
+
 	try
 	{
 		if(argc < 2)
@@ -19,3 +21,4 @@ int main(int argc, char** argv)
 		std::cerr << e.what() << std::endl;
 	}
 }
+

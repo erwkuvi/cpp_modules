@@ -3,6 +3,7 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <stdlib.h>
 
 int main(int argc, char** argv)
 {
@@ -12,7 +13,7 @@ int main(int argc, char** argv)
 			int b;
 			b = 2;
 			if(argv[1])
-				b = std::stoi(argv[1]);
+				b = atoi(argv[1]);
 			std::list<int> delusional = {9, 2, 8, 42, 21, 24};
 			//std::vector<int> delusional = {9, 2, 8, 42, 21, 24};
 
@@ -30,7 +31,7 @@ int main(int argc, char** argv)
 			int b;
 			b = 21;
 			if(argv[1])
-				b = std::stoi(argv[1]);
+				b = atoi(argv[1]);
 			std::vector<int> delusional = {9, 2, 8, 42, 21, 24};
 
 			int res = easyfind(delusional, b);

@@ -1,5 +1,6 @@
 #ifndef RPN_HPP
 #define RPN_HPP
+#include <stdlib.h> 
 #include <cstddef>
 #include <iostream>
 #include <string>
@@ -19,7 +20,7 @@ private:
 	RPN(void);
 
 	void _storeInput(const std::string& arg);
-	int operation(const char& operand, int a, int b);
+	int _operation(const char& operand, int a, int b);
 
 public:
     RPN(const std::string& arg); // In case you need to pass an  argument
