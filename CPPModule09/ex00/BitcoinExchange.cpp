@@ -57,9 +57,9 @@ int BitcoinExchange::_isDateValid(std::string& date)
 	if (date.size() > 10)
 		return BADINP;
 
-	int year = atoi(date.substr(0, 4).c_str());
-	int month = atoi(date.substr(5, 6).c_str());
-	int day = atoi(date.substr(8, 9).c_str());
+	int year = std::atoi(date.substr(0, 4).c_str());
+	int month = std::atoi(date.substr(5, 6).c_str());
+	int day = std::atoi(date.substr(8, 9).c_str());
 	//std::cout << year << std::endl;
 	//std::cout << std::endl;
 	//std::cout << month << std::endl;

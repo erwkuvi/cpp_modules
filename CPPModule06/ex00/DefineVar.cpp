@@ -32,7 +32,7 @@ void Definer::printChar(const std::string& literal)
 
 void Definer::printInt(const std::string& literal)
 {
-	int i = atoi(literal.c_str());
+	int i = std::atoi(literal.c_str());
 	std::cout << "char: ";
 	if(i >= 0 && i <= 127)
 	{

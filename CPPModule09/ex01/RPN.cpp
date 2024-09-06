@@ -89,7 +89,7 @@ RPN::RPN(const std::string& arg) //: _init(arg)
 			_stack.push_back(result);
 		}
 		else
-			_stack.push_back(atoi(_ogInput.front().c_str()));
+			_stack.push_back(std::atoi(_ogInput.front().c_str()));
 		_ogInput.pop_front();
 	}
 	printStackFinal(_stack);

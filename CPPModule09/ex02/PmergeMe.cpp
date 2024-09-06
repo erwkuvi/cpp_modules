@@ -35,14 +35,96 @@ PmergeMe::~PmergeMe(void) //
 
 	//Further members implementations ..
 
+//void PmergeMe::_insertSort(std::vector<int>& list, int left, int right)
+//{
+//	int key = 0;
+//	int j = 0;
+//	for (int i = left + 1; i <= right; ++i)
+//	{
+//		key = list[i];
+//		j = i - 1;
+//		while (j >= left && list[j] > key) 
+//		{
+//			list[j + 1] = list[j];
+//			--j;
+//		}
+//		list[j + 1] = key;
+//	}
+//}
 
 
-
-	//output operator overload ..
-
-std::ostream& operator<<(std::ostream& output, const PmergeMe& rhs)
+void PmergeMe::_merge(std::vector<int>& list, int left, int mid, int right)
 {
-	output << // implemetation <<;
-	return output;
+	int n1 = mid - left + 1;
+	int n2 = right  - mid;
+
+	std::vector<int> l(n1);
+	std::vector<int> r(n2);
+
+	int i = 0;
+	int j = 0;
+	int k = left;
+
+	for(int i = 0; i < n1; ++i)
+		l[i] = list[left + i];
+	for(int j = 0; j < n2; ++j)
+		r[j] = list[mid + 1 + j];
+
+	while (i < n1 && j < n2) 
+	{
+		if (l[i] <= r[j]) 
+		{
+			list[k] = l[i];
+			++i;
+		} 
+		else 
+		{
+			list[k] = r[j];
+			++j;
+		}
+		++k;
+	}
+
+	while (i < n1) 
+	{
+		list[k] = l[i];
+		++i;
+		++k;
+	}
+
+	while (j < n2) 
+	{
+		list[k] = r[j];
+		++j;
+		++k;
+	}
+}
+
+void PmergeMe::_mergeInsertSort(std::vector<int>& arr, int left, int right)
+{
+//	if (right - left <= 10) {
+//		_insertSort(arr, left, right);
+//		return;
+//	}
+	int mid = left + (right - left) / 2;
+	_mergeInsertSort(arr, left, mid);
+	_mergeInsertSort(arr, mid + 1, right);
+	_merge(arr, left, mid, right);
+}
+
+
+void PmergeMe::sort() 
+{
+	_mergeInsertSort(_sequence, 0, _sequence.size() - 1);
+}
+
+void PmergeMe::setSequence(const std::vector<int>& seq) 
+{
+	_sequence = seq;
+}
+
+const std::vector<int>& PmergeMe::getSequence() const 
+{
+	return _sequence;
 }
 
