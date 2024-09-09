@@ -99,8 +99,12 @@ int main(int argc, char** argv)
 //Handle at least 3000 dif integers
 
 
-//Sequence container: array, vector, deque, list
-//Associative containers (sorted by keys): set, map
-//Unordered associative containers: unordered_set, unordered_map
-//Container adapters: stack, deque
+// Sequence container: array, vector, deque, list
+// Associative containers (sorted by keys): set, map
+// Unordered associative containers: unordered_set, unordered_map
+//
+// Container adapters: stack, deque
+//
+// Split the collection in n/3 pairs of 2 elements and order these elements pairwise. (if the number of elements is odd, the last element isn't paired with any element.)
+// Recursively sort the pairs of elements by their highest value. (if the numbers of elements is odd, the last element is not considered a highest value and is left at the end of the collection)
 //
