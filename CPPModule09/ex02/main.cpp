@@ -13,12 +13,23 @@
 //{
 //};
 
+//void printVector(const std::vector<int> list)
+//{
+//	std::vector<int>::const_iterator it;
+//	std::cout << list.size() << std::endl;
+//
+//	for (it = list.begin(); it != list.end(); it++)
+//	{
+//		std::cout << "List: " << *it << std::endl;
+//	}
+//}
+
 bool isNumber(char* str)
 {
-	std::string tmp(str);
-	for(size_t i = 0; i < tmp.size(); ++i)
+	std::string temp(str);
+	for(size_t i = 0; i < temp.size(); ++i)
 	{
-		if(!isdigit(tmp[i]))
+		if(!isdigit(temp[i]))
 			return false;
 	}
 	return true;
@@ -37,6 +48,7 @@ bool dupNum(int* array, size_t arrSize)
 	return false;
 }
 
+
 int main(int argc, char** argv)
 {
 	try
@@ -51,7 +63,7 @@ int main(int argc, char** argv)
 		int num = 0;
 		size_t arrSize = argc - 1;
 		int* input = new int[arrSize];
-		//std::cout << arrSize << std::endl;
+		std::cout << arrSize << std::endl;
 		for (size_t i = 1; i <= arrSize; ++i) 
 		{
 			if(!isNumber(argv[i]))
@@ -66,7 +78,11 @@ int main(int argc, char** argv)
 			throw std::runtime_error("arguments cannot be duplicated");
 
 		std::cout << "Alles gut mein Lieber" << std::endl;
+		std::vector<int> mainChain(input, input + arrSize);
+
 		delete[] input;
+		PmergeMe a(mainChain);
+		std::cout << "\n";
 		//PmergeMe sorter;
 		//sorter.setSequence(input);
 

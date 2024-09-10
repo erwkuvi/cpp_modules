@@ -1,21 +1,14 @@
 #include "PmergeMe.hpp"
-#include <string>
-#include <iostream>
 
-PmergeMe::PmergeMe(void) //: _init(some)
+PmergeMe::PmergeMe(void) {}
+
+PmergeMe::PmergeMe(std::vector<int>& arr) //: _init(arg)
 {
-	std::cout << "PmergeMe Default constructor called" << std::endl; 
+	fordJohnsonSort(arr);
 }
-
-// In case you need to pass an  argument
-//PmergeMe::PmergeMe(const std::string& arg) //: _init(arg)
-//{
-//	std::cout << "PmergeMe Constructor called" << std::endl; 
-//}
 
 PmergeMe::PmergeMe(const PmergeMe& instance)
 {
-	std::cout << "PmergeMe Copy constructor called" << std::endl; 
 	operator=(instance);
 }
 
@@ -28,103 +21,105 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
 	return *this;
 }
 
-PmergeMe::~PmergeMe(void) //
+PmergeMe::~PmergeMe(void) {}
+
+void printVector(const std::vector<int> list)
 {
-	std::cout << "PmergeMe Destructor called" << std::endl; 
+	std::vector<int>::const_iterator it;
+	std::cout << list.size() << std::endl;
+
+	for (it = list.begin(); it != list.end(); it++)
+	{
+		std::cout << "List: " << *it << std::endl;
+	}
 }
 
-	//Further members implementations ..
-
-//void PmergeMe::_insertSort(std::vector<int>& list, int left, int right)
-//{
-//	int key = 0;
-//	int j = 0;
-//	for (int i = left + 1; i <= right; ++i)
-//	{
-//		key = list[i];
-//		j = i - 1;
-//		while (j >= left && list[j] > key) 
-//		{
-//			list[j + 1] = list[j];
-//			--j;
-//		}
-//		list[j + 1] = key;
-//	}
-//}
-
-
-void PmergeMe::_merge(std::vector<int>& list, int left, int mid, int right)
+void PmergeMe::fordJohnsonSort(std::vector<int>& arr)
 {
-	int n1 = mid - left + 1;
-	int n2 = right  - mid;
+	if (arr.size() <= 1) return;
+	std::vector<int> mainChain;
+	std::vector<int> pends;
+	int standalone;
+	bool hasStandalone = false;
 
-	std::vector<int> l(n1);
-	std::vector<int> r(n2);
-
-	int i = 0;
-	int j = 0;
-	int k = left;
-
-	for(int i = 0; i < n1; ++i)
-		l[i] = list[left + i];
-	for(int j = 0; j < n2; ++j)
-		r[j] = list[mid + 1 + j];
-
-	while (i < n1 && j < n2) 
+	for (size_t i = 0; i < arr.size() - 1; i += 2) 
 	{
-		if (l[i] <= r[j]) 
+		if (arr[i] < arr[i + 1]) 
+			std::swap(arr[i], arr[i + 1]);
+		mainChain.push_back(arr[i]);
+		pends.push_back(arr[i + 1]);
+	}
+	if (arr.size() % 2 != 0) 
+	{
+		standalone = arr[arr.size() - 1];
+		hasStandalone = true;
+	}
+
+	fordJohnsonSort(mainChain);
+
+	fordJohnsonInsert(mainChain, pends);
+
+	if (hasStandalone)
+		binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, standalone);
+	
+	printVector(mainChain);	
+
+	arr = mainChain;
+}
+
+
+void PmergeMe::fordJohnsonInsert(std::vector<int>& mainChain, const std::vector<int>& pends) 
+{
+	if (pends.empty()) return;
+
+	mainChain.insert(mainChain.begin(), pends[0]);
+
+	int j = 1;
+	int k = 3;
+	while (k < static_cast<int>(pends.size())) 
+	{
+		for (int i = k - 1; i >= j; --i) 
+			binaryInsert(mainChain, std::min(k, static_cast<int>(mainChain.size()) - 1), pends[i]);
+
+		j = k;
+		k = jacobsthal(++k);
+	}
+
+	for (int i = static_cast<int>(pends.size()) - 1; i >= j; --i) 
+		binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, pends[i]);
+}
+
+
+void PmergeMe::binaryInsert(std::vector<int>& arr, int right, const int& value) 
+{
+	int left = 0;
+	while (left <= right) 
+	{
+		int mid = left + (right - left) / 2;
+		if (arr[mid] == value) 
 		{
-			list[k] = l[i];
-			++i;
+			arr.insert(arr.begin() + mid, value);
+			return;
 		} 
+		else if (arr[mid] < value) 
+			left = mid + 1;
 		else 
-		{
-			list[k] = r[j];
-			++j;
-		}
-		++k;
+			right = mid - 1;
 	}
+	arr.insert(arr.begin() + left, value);
+}
 
-	while (i < n1) 
+int PmergeMe::jacobsthal(int n) 
+{
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	int a = 0, b = 1, c;
+	for (int i = 2; i <= n; ++i) 
 	{
-		list[k] = l[i];
-		++i;
-		++k;
+		c = b + 2 * a;
+		a = b;
+		b = c;
 	}
-
-	while (j < n2) 
-	{
-		list[k] = r[j];
-		++j;
-		++k;
-	}
-}
-
-void PmergeMe::_mergeInsertSort(std::vector<int>& arr, int left, int right)
-{
-//	if (right - left <= 10) {
-//		_insertSort(arr, left, right);
-//		return;
-//	}
-	int mid = left + (right - left) / 2;
-	_mergeInsertSort(arr, left, mid);
-	_mergeInsertSort(arr, mid + 1, right);
-	_merge(arr, left, mid, right);
-}
-
-
-void PmergeMe::sort() 
-{
-	_mergeInsertSort(_sequence, 0, _sequence.size() - 1);
-}
-
-void PmergeMe::setSequence(const std::vector<int>& seq) 
-{
-	_sequence = seq;
-}
-
-const std::vector<int>& PmergeMe::getSequence() const 
-{
-	return _sequence;
+	return b;
 }
 
