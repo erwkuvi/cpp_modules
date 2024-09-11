@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <array>
+#include <map>
 #include <algorithm>
 
 class PmergeMe 
@@ -21,7 +21,7 @@ public:
 	PmergeMe &operator=(const PmergeMe& rhs);
 	~PmergeMe(void);
 	PmergeMe (std::vector<int>& arr);
-	PmergeMe(std::array<int, std::size_t>& array);
+	PmergeMe(std::map<std::string, int>& array);
 	void fordJohnsonSort(std::vector<int>& arr);
 
 	const std::vector<int>& getSequence()const;

@@ -2,7 +2,7 @@
 
 PmergeMe::PmergeMe(void) {}
 
-PmergeMe::PmergeMe(std::array<int, std::size_t>& array)
+PmergeMe::PmergeMe(std::map<std::string, int>& array)
 {
 	std::cout << "It's a Stack" << std::endl;
 	(void)array;
