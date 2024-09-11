@@ -30,6 +30,6 @@ run1 : $(NAME)
 	./$(NAME) "test1"
 
 val : 
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full ./$(NAME) 3 4 5 1 7
 
 .PHONY: all fclean clean re val

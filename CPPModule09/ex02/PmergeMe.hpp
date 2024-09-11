@@ -1,32 +1,30 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
+#include <cstddef>
 #include <string>
 #include <iostream>
 #include <vector>
-#include <stack>
+#include <array>
 #include <algorithm>
-//#include <functional>
 
-//template<typename T, typename Container>
 class PmergeMe 
 {
 private:
+	std::vector<int> _sequence;
 	PmergeMe(void);
-
-	int jacobsthal(int n);
-
-	void binaryInsert(std::vector<int>& arr, int right, const int& value);
-
+	void binaryInsert(std::vector<int>& mainChain, int right, const int& pendvalue);
 	void fordJohnsonInsert(std::vector<int>& mainChain, const std::vector<int>& pends);
-
+	int jacobsthal(int n);
 
 public:
 	PmergeMe(const PmergeMe& instance);
 	PmergeMe &operator=(const PmergeMe& rhs);
 	~PmergeMe(void);
 	PmergeMe (std::vector<int>& arr);
-
+	PmergeMe(std::array<int, std::size_t>& array);
 	void fordJohnsonSort(std::vector<int>& arr);
+
+	const std::vector<int>& getSequence()const;
 
 };
 #endif // PMERGEME_HPP

@@ -13,16 +13,35 @@
 //{
 //};
 
-//void printVector(const std::vector<int> list)
-//{
-//	std::vector<int>::const_iterator it;
-//	std::cout << list.size() << std::endl;
-//
-//	for (it = list.begin(); it != list.end(); it++)
-//	{
-//		std::cout << "List: " << *it << std::endl;
-//	}
-//}
+void printArray(const int* arr, int size)
+{
+	for (int i = 0; i < size; i++)
+		std::cout << arr[i] << " ";
+	std::cout << "\n";
+}
+
+void printVectorFinal(const std::vector<int> list)
+{
+	std::vector<int>::const_iterator it;
+	//std::cout << list.size() << std::endl;
+
+	for (it = list.begin(); it != list.end(); it++)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << "\n";
+}
+
+void printVectors(const std::vector<int> list)
+{
+	std::vector<int>::const_iterator it;
+	//std::cout << list.size() << std::endl;
+
+	for (it = list.begin(); it != list.end(); it++)
+	{
+		std::cout << "List: " << *it << std::endl;
+	}
+}
 
 bool isNumber(char* str)
 {
@@ -63,7 +82,7 @@ int main(int argc, char** argv)
 		int num = 0;
 		size_t arrSize = argc - 1;
 		int* input = new int[arrSize];
-		std::cout << arrSize << std::endl;
+		std::cout << "Input size: " << arrSize << std::endl;
 		for (size_t i = 1; i <= arrSize; ++i) 
 		{
 			if(!isNumber(argv[i]))
@@ -77,29 +96,27 @@ int main(int argc, char** argv)
 		if(dupNum(input, arrSize)) 
 			throw std::runtime_error("arguments cannot be duplicated");
 
-		std::cout << "Alles gut mein Lieber" << std::endl;
+		std::cout << "Before:\t";
+		printArray(input, arrSize);
 		std::vector<int> mainChain(input, input + arrSize);
-
 		delete[] input;
+
+		clock_t start = clock();
+
 		PmergeMe a(mainChain);
-		std::cout << "\n";
+
+		clock_t end = clock();
+		//std::cout << "\n";
+		std::cout << "After:\t";
+		printVectorFinal(a.getSequence());
 		//PmergeMe sorter;
 		//sorter.setSequence(input);
 
-		//clock_t start = clock();
-		//sorter.sort();
-		//clock_t end = clock();
+		double vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 
-		//double time_taken = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 
-		//std::cout << "Sorted sequence: ";
-		//const std::vector<int>& sorted_sequence = sorter.getSequence();
-		//for (size_t i = 0; i < sorted_sequence.size(); ++i) {
-		//	std::cout << sorted_sequence[i] << " ";
-		//}
-		//std::cout << std::endl;
-
-		//std::cout << "Time taken to sort: " << time_taken << " seconds" << std::endl;
+		std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
+		//std::cout << "Time to process a range of " << arrSize << " elements with std::array<int>: " << arrayTime << " us" << std::endl;
 	}
 	catch (std::exception& e)
 	{
