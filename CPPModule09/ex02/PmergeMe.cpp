@@ -1,13 +1,23 @@
 #include "PmergeMe.hpp"
+#include <algorithm>
 #include <sstream>
 #include <stdexcept>
 
 void printMap(const std::map<std::string, int>& map) 
 {
 	std::map<std::string, int>::const_iterator it;
+	//int j = 1;
 	for(it = map.begin(); it != map.end(); ++it) 
 	{
-		std::cout << "Key: " << it->first << " Value: " << it->second << std::endl;
+		//std::stringstream ssA, ssB;
+		//ssA << "a" << j;
+		//ssB << "b" << j;
+		//if(map[ssA.str()])
+		//	std::cout << "Key: " << ssA.str() << " Value: " << map[ssA.str()] << std::endl;
+		//if(map[ssB.str()])
+		//	std::cout << "Key: " << ssB.str() << " Value: " << map[ssB.str()] << std::endl;
+		//j++;
+			std::cout << "Key: " << it->first << " Value: " << it->second << std::endl;
 	}
 }
 
@@ -34,7 +44,9 @@ std::map<std::string, int> PmergeMe::_conv2Map(int* array, int arrSize)
 		ssC << "b" << arrSize / 2 + 1;
 		newMap[ssC.str()] = array[arrSize - 1];
 	}
-	//printMap(newMap);
+	std::cout << "newMap" << std::endl;
+	std::cout << "map print: " << newMap.size() << std::endl;
+	printMap(newMap);
 	return newMap;
 }
 
@@ -42,6 +54,7 @@ PmergeMe::PmergeMe(int* array, int arrSize)
 {
 	std::cout << "It's a Map" << std::endl;
 	_mSequence = _conv2Map(array, arrSize);
+	std::cout << "size: " << _mSequence.size() << std::endl;
 	//printMap(_mSequence);
 	_mfordJohnsonSort(_mSequence);
 	(void)array;
@@ -86,27 +99,24 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	if (map.size() <= 1) return;
 	std::map<std::string, int> masterChain;
 
-	std::cout << "map print: " << map.size() << std::endl;
-	printMap(map);
+	//std::cout << "map print: " << map.size() << std::endl;
+	std::cout << "FJALgo " << map.size() << std::endl;
+	//printMap(map);
 	int j = 1;
-	for (size_t i = 0; i < map.size() / 2 - 1; i++) 
+	for (size_t i = 0; i < map.size() / 2 - 1; i += 2) 
 	{
-		//{12 1 32 14 5 9 88}
-		std::stringstream ssA;
-		std::stringstream ssNext;
-		std::stringstream ssOG;
+		std::stringstream ssA, ssNext, ssOG;
 
 		ssA << "a" << j;
 		ssNext << "a" << j + 1;
 		if (map[ssA.str()] < map[ssNext.str()]) 
-		{
-			std::cout << "swap" << std::endl;
 			std::swap(map[ssA.str()], map[ssNext.str()]);
-		}
+
 		masterChain[ssA.str()] = map[ssA.str()];
+
 		if(!masterChain[ssA.str()])
 			throw std::runtime_error("Something bad happened :(");
-		j += 2;
+		j += 1;
 	}
 	std::cout << "FJSort" << std::endl;
 	printMap(masterChain);
@@ -115,19 +125,24 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	for(size_t i = 0; i < map.size() / 2 - 1; i += 2)
 	{
 		std::stringstream ssB;
-		std::stringstream ssNextB;
+		std::stringstream ssNextA;
 		ssB << "b" << j;
-		ssNextB << "b" << j + 1;
-		masterChain[ssA.str()] = map[ssA.str()];
-		
+		ssNextA << "a" << j + 2;
+		masterChain[ssB.str()] = map[ssNextA.str()];
 		j++;
 	}
-	//_mfordJohnsonInsert(masterChain);
+	std::cout << "Added B" << std::endl;
+	printMap(masterChain);
+	_mfordJohnsonInsert(masterChain);
 
 	if (map.size() % 2 != 0) 
 	{
 		std::stringstream ss;
-		ss << "b" << map.size() / 2 + 1;
+		ss << "b" << j;
+		std::stringstream ssU;
+		ssU << "b" << static_cast<int>(map.size() / 2 + 1);
+		int standalone = map[ssU.str()];
+		(void)standalone;
 		//int standalone = map[ss.str()];
 		//_mbinaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, standalone);
 	}
@@ -168,6 +183,26 @@ void PmergeMe::_fordJohnsonSort(std::vector<int>& arr)
 		_binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, standalone);
 
 	arr = mainChain;
+}
+
+void PmergeMe::_mfordJohnsonInsert(std::map<std::string, int>& map)
+{
+	if (!map["b1"]) return;
+	//std::map<std::string, int>::const_iterator it;
+	//it = std::lower_bound(map.begin(), map.end(), map["b1"]);
+	//mainChain.insert(mainChain.begin(), pends[0]);
+
+	//int j = 0;
+	//int k = 3;
+	//while (k < static_cast<int>(pends.size())) 
+	//{
+	//	for (int i = k - 1; i >= j; --i) 
+	//		_binaryInsert(mainChain, k, pends[i]);
+	//	j = k;
+	//	k = _jacobsthal(++k);
+	//}
+	//for (int i = static_cast<int>(pends.size()) - 1; i >= j; --i) 
+	//	_binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, pends[i]);
 }
 
 
