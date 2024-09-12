@@ -24,7 +24,7 @@ fclean : clean
 re : fclean all
 
 run : $(NAME)
-	./$(NAME) 2 1 3 4 5
+	./$(NAME) 12 1 32 14 5 9 88
 
 run1 : $(NAME)
 	./$(NAME) "test1"

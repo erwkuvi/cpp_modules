@@ -11,59 +11,30 @@ class PmergeMe
 {
 private:
 	std::vector<int> _sequence;
+	std::map<std::string, int> _mSequence;
+
 	PmergeMe(void);
-	void binaryInsert(std::vector<int>& mainChain, int right, const int& pendvalue);
-	void fordJohnsonInsert(std::vector<int>& mainChain, const std::vector<int>& pends);
-	int jacobsthal(int n);
+	void _fordJohnsonSort(std::vector<int>& arr);
+	void _mfordJohnsonSort(std::map<std::string, int>& map);
+
+	void _binaryInsert(std::vector<int>& mainChain, int right, const int& pendvalue);
+	void _fordJohnsonInsert(std::vector<int>& mainChain, const std::vector<int>& pends);
+
+	//void _mbinaryInsert(std::map<std::string, int>& chain, int right, const std::string& pendvalue);
+	void _mfordJohnsonInsert(std::map<std::string, int>& mainChain);
+
+	int _jacobsthal(int n);
+	std::map<std::string, int> _conv2Map(int* array, int arrSize);
 
 public:
 	PmergeMe(const PmergeMe& instance);
 	PmergeMe &operator=(const PmergeMe& rhs);
+	PmergeMe (std::vector<int>& vector);
+	PmergeMe(int* array, int arrSize);
 	~PmergeMe(void);
-	PmergeMe (std::vector<int>& arr);
-	PmergeMe(std::map<std::string, int>& array);
-	void fordJohnsonSort(std::vector<int>& arr);
 
 	const std::vector<int>& getSequence()const;
-
+	const std::map<std::string, int>& getMapSequence()const;
 };
 #endif // PMERGEME_HPP
 
-// Specialization for std::stack
-//template<typename T>
-//class FordJohnsonSort<int, std::stack<T> > {
-//	public:
-//		static void sort(std::stack<int>& s) {
-//			std::vector<int> v;
-//			while (!s.empty()) {
-//				v.push_back(s.top());
-//				s.pop();
-//			}
-//			FordJohnsonSort<int, std::vector<int> >::sort(v);
-//			for (typename std::vector<int>::reverse_iterator it = v.rbegin(); it != v.rend(); ++it) {
-//				s.push(*it);
-//			}
-//		}
-//};
-
-//	//template<typename T>
-//class PmergeMe 
-//{
-//private:
-//	std::vector<int> _sequence;
-//
-//	//void _insertSort(std::vector<int>& list, int left, int right);
-//	void _merge(std::vector<int>& list, int left, int mid, int right);
-//	void _mergeInsertSort(std::vector<int>& arr, int left, int right);
-//
-//
-//public:
-//    PmergeMe(void);
-//    PmergeMe(const PmergeMe& instance);
-//    PmergeMe &operator=(const PmergeMe& rhs);
-//    ~PmergeMe(void);
-//
-//    void sort();
-//    void setSequence(const std::vector<int>& seq) ;
-//    const std::vector<int>& getSequence() const ;
-//};

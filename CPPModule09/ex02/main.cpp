@@ -96,27 +96,26 @@ int main(int argc, char** argv)
 		if(dupNum(input, arrSize)) 
 			throw std::runtime_error("arguments cannot be duplicated");
 
-		std::cout << "Before:\t";
-		printArray(input, arrSize);
-		std::vector<int> mainChain(input, input + arrSize);
+		//std::cout << "Before:\t";
+		//printArray(input, arrSize);
+		//std::vector<int> mainChain(input, input + arrSize);
+
+
+		//PmergeMe a(mainChain);//for vector
+		PmergeMe a(input, arrSize);//for map
 		delete[] input;
 
-		clock_t start = clock();
-
-		PmergeMe a(mainChain);
-
-		clock_t end = clock();
+		//clock_t start = clock();
+		//clock_t end = clock();
 		//std::cout << "\n";
-		std::cout << "After:\t";
-		printVectorFinal(a.getSequence());
-		//PmergeMe sorter;
-		//sorter.setSequence(input);
+		//std::cout << "After:\t";
+		//printVectorFinal(a.getSequence());
 
-		double vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		//double vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 
 
-		std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
-		//std::cout << "Time to process a range of " << arrSize << " elements with std::array<int>: " << arrayTime << " us" << std::endl;
+		//;std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
+		//std::cout << "Time to process a range of " << arrSize << " elements with std::array<int>: " << mapTime << " us" << std::endl;
 	}
 	catch (std::exception& e)
 	{
