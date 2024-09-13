@@ -21,7 +21,8 @@ private:
 	void _fordJohnsonInsert(std::vector<int>& mainChain, const std::vector<int>& pends);
 
 	//void _mbinaryInsert(std::map<std::string, int>& chain, int right, const std::string& pendvalue);
-	void _mfordJohnsonInsert(std::map<std::string, int>& mainChain);
+	//void _mfordJohnsonInsert(std::map<std::string, int>& mainChain);
+	std::vector<int> _mfordJohnsonInsert(std::map<std::string, int>& map);
 
 	int _jacobsthal(int n);
 	std::map<std::string, int> _conv2Map(int* array, int arrSize);
