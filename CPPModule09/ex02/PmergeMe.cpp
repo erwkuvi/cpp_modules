@@ -192,7 +192,7 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	std::map<std::string, int> recMap = _prerecursion(masterChain);
 	std::cout << "\nafter pre" << std::endl;
 	printMap(recMap);
-	//_mfordJohnsonSort(recMap);
+	_mfordJohnsonSort(recMap);
 	masterChain = _postrecursion(recMap);
 	std::cout << "\nafter post" << std::endl;
 	printMap(masterChain);
@@ -208,7 +208,8 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	}
 	std::cout << "After adding B" << std::endl;
 	printMap(masterChain);
-	_mfordJohnsonInsert(masterChain);
+	std::vector<int> sortedMap;
+	sortedMap =	_mfordJohnsonInsert(masterChain);
 
 	if (map.size() % 2 != 0) 
 	{
@@ -217,12 +218,14 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 		std::stringstream ssU;
 		ssU << "a" << static_cast<int>(map.size() / 2 + 1);
 		int standalone = map[ssU.str()];
-		std::cout << " last" << std::endl;
+		std::cout << "last: ";
 		std::cout << standalone << std::endl;
 		(void)standalone;
 		//int standalone = map[ss.str()];
-		//_mbinaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, standalone);
+		_binaryInsert(sortedMap, static_cast<int>(sortedMap.size()) - 1, standalone);
 	}
+	std::cout << "\n ";
+	printVector(sortedMap);
 	map = masterChain;
 }
 
@@ -270,28 +273,38 @@ std::vector<int> PmergeMe::_mfordJohnsonInsert(std::map<std::string, int>& map)
 	//mainChain.insert(mainChain.begin(), pends[0]);
 
 	std::vector<int> sortedMap; 
-	for(int i = 0; i < map.size() / 2; i++)
+	for(int i = 0; i < static_cast<int>(map.size()) / 2; i++)
 	{
 		std::stringstream ssA;
 		ssA << "a" << i + 1;
 		sortedMap.push_back(map[ssA.str()]);
 	}
-	sortedMap.insert(sortedMap.begin(), map["b1"]);
+	sortedMap.insert(sortedMap.begin(), map["b1"]);//inserting b1 before a1
 
-	int j = 0;
+	printVector(sortedMap);
+
+	int j = 1;
 	int k = 3;
-	std::stringstream ssK;
-	ssK << "b" << 1;
 	//std::lower_bound(map.begin(), map.begin() + map.size() / 2, map[ssK.str()]);
 	while (k < static_cast<int>(map.size()) / 2) 
 	{
 		for (int i = k - 1; i >= j; --i) 
-			//_binaryInsert(sortedMap, k, map[i]);
+		{
+			std::stringstream ssK;
+			ssK << "b" << i;
+			_binaryInsert(sortedMap, k, map[ssK.str()]);//binary insertion
+		}
 		j = k;
 		k = _jacobsthal(++k);
 	}
-	for (int i = static_cast<int>(map.size()) - 1; i >= j; --i) 
-		//_binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, map[i]);
+	for (int i = static_cast<int>(map.size()) / 2 - 1; i >= j; --i) 
+	{
+		std::cout << "map size: " << map.size() / 2 << std::endl;
+		std::stringstream ssK;
+		ssK << "b" << i + 1;
+		_binaryInsert(sortedMap, static_cast<int>(sortedMap.size()) - 1, map[ssK.str()]);
+	}
+	printVector(sortedMap);
 	return sortedMap;
 }
 
