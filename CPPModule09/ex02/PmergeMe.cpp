@@ -6,19 +6,9 @@
 void printMap(const std::map<std::string, int>& map) 
 {
 	std::map<std::string, int>::const_iterator it;
-	//int j = 1;
+
 	for(it = map.begin(); it != map.end(); ++it) 
-	{
-		//std::stringstream ssA, ssB;
-		//ssA << "a" << j;
-		//ssB << "b" << j;
-		//if(map[ssA.str()])
-		//	std::cout << "Key: " << ssA.str() << " Value: " << map[ssA.str()] << std::endl;
-		//if(map[ssB.str()])
-		//	std::cout << "Key: " << ssB.str() << " Value: " << map[ssB.str()] << std::endl;
-		//j++;
 			std::cout << "Key: " << it->first << " Value: " << it->second << std::endl;
-	}
 }
 
 PmergeMe::PmergeMe(void) {}
@@ -50,19 +40,27 @@ std::map<std::string, int> PmergeMe::_conv2Map(int* array, int arrSize)
 	return newMap;
 }
 
-PmergeMe::PmergeMe(int* array, int arrSize) 
-{
-	std::cout << "It's a Map" << std::endl;
-	_mSequence = _conv2Map(array, arrSize);
-	//printMap(_mSequence);
-	_mfordJohnsonSort(_mSequence);
-	(void)array;
-}
+//PmergeMe::PmergeMe(int* array, int arrSize) 
+//{
+//	std::cout << "It's a Map" << std::endl;
+//	_mSequence = _conv2Map(array, arrSize);
+//	//printMap(_mSequence);
+//	_mfordJohnsonSort(_mSequence);
+//	(void)array;
+//}
 
-PmergeMe::PmergeMe(std::vector<int>& arr) : _sequence(arr)
+PmergeMe::PmergeMe(std::vector<int>& arr, int container) : _sequence(arr)
 {
-	std::cout << "It's a Vector" << std::endl;
-	_fordJohnsonSort(_sequence);
+	if (container == VECTOR)
+	{
+		std::cout << "It's a Vector" << std::endl;
+		_fordJohnsonSort(_sequence);
+	}
+	else if(container == MAP)
+	{
+		std::cout << "It's a Map" << std::endl;
+		_mSequence = _conv2Map(_sequence);
+	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe& instance)
@@ -213,19 +211,16 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 
 	if (map.size() % 2 != 0) 
 	{
-		std::stringstream ss;
-		ss << "a" << j;
 		std::stringstream ssU;
 		ssU << "a" << static_cast<int>(map.size() / 2 + 1);
 		int standalone = map[ssU.str()];
-		std::cout << "last: ";
-		std::cout << standalone << std::endl;
-		(void)standalone;
-		//int standalone = map[ss.str()];
+		//std::cout << "last: ";
+		//std::cout << standalone << std::endl;
 		_binaryInsert(sortedMap, static_cast<int>(sortedMap.size()) - 1, standalone);
 	}
 	std::cout << "\n ";
 	printVector(sortedMap);
+
 	map = masterChain;
 }
 
@@ -257,11 +252,16 @@ void PmergeMe::_fordJohnsonSort(std::vector<int>& arr)
 
 	_fordJohnsonSort(mainChain);
 
+	//std::cout << "before insert" << std::endl;
+	//printVector(mainChain);
 	_fordJohnsonInsert(mainChain, pends);
-
 	if (hasStandalone)
 		_binaryInsert(mainChain, static_cast<int>(mainChain.size()) - 1, standalone);
 
+//	std::cout << "last/standalone: ";
+//	std::cout << standalone << std::endl;
+//	std::cout << "after insert" << std::endl;
+//	printVector(mainChain);
 	arr = mainChain;
 }
 

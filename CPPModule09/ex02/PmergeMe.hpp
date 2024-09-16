@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#define MAP 1
+#define VECTOR 2
 
 class PmergeMe 
 {
@@ -30,8 +32,8 @@ private:
 public:
 	PmergeMe(const PmergeMe& instance);
 	PmergeMe &operator=(const PmergeMe& rhs);
-	PmergeMe (std::vector<int>& vector);
-	PmergeMe(int* array, int arrSize);
+	PmergeMe (std::vector<int>& vector, int container);
+	//PmergeMe(int* array, int arrSize);
 	~PmergeMe(void);
 
 	const std::vector<int>& getSequence()const;

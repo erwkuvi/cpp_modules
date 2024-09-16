@@ -98,11 +98,10 @@ int main(int argc, char** argv)
 
 		//std::cout << "Before:\t";
 		//printArray(input, arrSize);
-		//std::vector<int> mainChain(input, input + arrSize);
+		std::vector<int> mainChain(input, input + arrSize);
+		PmergeMe a(mainChain);//for vector
 
-
-		//PmergeMe a(mainChain);//for vector
-		PmergeMe a(input, arrSize);//for map
+		//PmergeMe a(input, arrSize);//for map
 		delete[] input;
 
 		//clock_t start = clock();
