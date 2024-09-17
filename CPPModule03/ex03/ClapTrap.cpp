@@ -90,7 +90,7 @@ unsigned int ClapTrap::getter(std::string prop) const
 
 void ClapTrap::setDamagePowerUp(int amount)
 {
-	if (amount < 0 && -amount <= _attackDamage)
+	if (amount < 0 && -amount <= static_cast<int>(_attackDamage))
 		_attackDamage -= -amount;
 	else
 		_attackDamage += amount;

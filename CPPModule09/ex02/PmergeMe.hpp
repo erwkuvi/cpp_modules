@@ -1,11 +1,14 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
+#include <algorithm>
+#include <sstream>
+#include <stdexcept>
+#include <vector>
 #include <cstddef>
 #include <string>
 #include <iostream>
-#include <vector>
 #include <map>
-#include <algorithm>
+
 #define MAP 1
 #define VECTOR 2
 
@@ -27,7 +30,7 @@ private:
 	std::vector<int> _mfordJohnsonInsert(std::map<std::string, int>& map);
 
 	int _jacobsthal(int n);
-	std::map<std::string, int> _conv2Map(int* array, int arrSize);
+	std::map<std::string, int> _conv2Map(std::vector<int>& array);
 
 public:
 	PmergeMe(const PmergeMe& instance);
@@ -36,8 +39,9 @@ public:
 	//PmergeMe(int* array, int arrSize);
 	~PmergeMe(void);
 
-	const std::vector<int>& getSequence()const;
+	const std::vector<int>& getVectorSequence()const;
 	const std::map<std::string, int>& getMapSequence()const;
+	void printsortedMap() const;
 };
 #endif // PMERGEME_HPP
 

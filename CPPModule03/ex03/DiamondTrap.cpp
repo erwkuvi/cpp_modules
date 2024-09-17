@@ -1,12 +1,15 @@
 #include <iostream>
 #include "DiamondTrap.hpp"
+#include "FragTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name) : _name(name), ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name) 
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), FragTrap(name), ScavTrap(name) , _name(name), _tmpEp(ScavTrap::_energyPoints), _tmpAd(FragTrap::_attackDamage)
 {
 	std::cout << "DiamondTrap constructor called" << std::endl;
-	FragTrap::_hitPoints = 100; //100
-	ScavTrap::_energyPoints = 50;//50
-	FragTrap::_attackDamage = 30;//30
+	//FragTrap::_hitPoints = 100; //100
+	ScavTrap::_energyPoints = _tmpEp;//50
+	FragTrap::_attackDamage = _tmpAd;//30
+																	 //
+																	 //
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& rhs) : ClapTrap(rhs), FragTrap(rhs), ScavTrap(rhs)

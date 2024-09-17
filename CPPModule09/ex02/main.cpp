@@ -1,17 +1,7 @@
 #include "PmergeMe.hpp"
 #include <cctype>
-#include <cstddef>
 #include <exception>
-#include <iostream>
-#include <stdexcept>
-#include <vector>
-#include <algorithm>
 #include <ctime>
-
-//template<typename T>
-//class Sequence 
-//{
-//};
 
 void printArray(const int* arr, int size)
 {
@@ -78,11 +68,9 @@ int main(int argc, char** argv)
 				throw std::runtime_error("no arguments given.");
 			throw std::runtime_error("there should be more than 1 argument given.");
 		}
-
 		int num = 0;
 		size_t arrSize = argc - 1;
 		int* input = new int[arrSize];
-		std::cout << "Input size: " << arrSize << std::endl;
 		for (size_t i = 1; i <= arrSize; ++i) 
 		{
 			if(!isNumber(argv[i]))
@@ -96,25 +84,24 @@ int main(int argc, char** argv)
 		if(dupNum(input, arrSize)) 
 			throw std::runtime_error("arguments cannot be duplicated");
 
-		//std::cout << "Before:\t";
 		//printArray(input, arrSize);
 		std::vector<int> mainChain(input, input + arrSize);
-		PmergeMe a(mainChain);//for vector
-
-		//PmergeMe a(input, arrSize);//for map
 		delete[] input;
 
-		//clock_t start = clock();
-		//clock_t end = clock();
-		//std::cout << "\n";
-		//std::cout << "After:\t";
 		//printVectorFinal(a.getSequence());
+		clock_t startMap = clock();
+		PmergeMe a(mainChain, MAP);//for map
+		clock_t endMap = clock();
+		double mapTime = static_cast<double>(endMap - startMap) / CLOCKS_PER_SEC;
 
-		//double vectorTime = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+		//a.printsortedMap();
+		clock_t startVec = clock();
+		PmergeMe b(mainChain, VECTOR);//for vector
+		clock_t endVec = clock();
+		double vectorTime = static_cast<double>(endVec - startVec);
 
-
-		//;std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
-		//std::cout << "Time to process a range of " << arrSize << " elements with std::array<int>: " << mapTime << " us" << std::endl;
+		std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
+		//std::cout << "Time to process a range of " << arrSize << " elements with std::map<std::string, int>: " << mapTime << " us" << std::endl;
 	}
 	catch (std::exception& e)
 	{
