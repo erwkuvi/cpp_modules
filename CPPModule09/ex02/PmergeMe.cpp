@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+//int counter = 0;
 
 void printMap(const std::map<std::string, int>& map) 
 {
@@ -29,7 +30,7 @@ std::map<std::string, int> PmergeMe::_conv2Map(std::vector<int>& array)
 		ssC << "a" << array.size() / 2 + 1;
 		newMap[ssC.str()] = array[array.size() - 1];
 	}
-//	printMap(newMap);
+	//printMap(newMap);
 	return newMap;
 }
 
@@ -42,9 +43,9 @@ PmergeMe::PmergeMe(std::vector<int>& arr, int container) : _sequence(arr)
 	}
 	else if(container == MAP)
 	{
-		//std::cout << "It's a Map" << std::endl;
 		_mSequence = _conv2Map(_sequence);
 		_mfordJohnsonSort(_mSequence);
+		//std::cout << "It's a Map, counter: " << counter << std::endl;
 	}
 }
 
@@ -57,7 +58,8 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs)
 {
 	if (this != &rhs)
 		{
-			//implementation of the copying
+			_sequence = rhs._sequence;
+			_mSequence = rhs._mSequence;
 		}
 	return *this;
 }
@@ -80,29 +82,40 @@ std::map<std::string, int> _prerecursion(std::map<std::string, int>& masterChain
 	//std::cout << "RecMap " << masterChain.size() << std::endl;
 	std::map<std::string, int> recMap;
 	int i = 1;
-	for(int j = 0; j < static_cast<int>(masterChain.size()) / 2; j++)
+	for(int j = 0; j < static_cast<int>(masterChain.size());)
 	{
+		std::stringstream ss;
+		ss << "a" << j + 1;
 		std::stringstream ssA;
 		ssA << "a" << i;
-		recMap[ssA.str()] = masterChain[ssA.str()];
-		i++;
-	}
-	i = 1;
-	for(int j = 0; j < static_cast<int>(masterChain.size()) / 2; j++)
-	{
-		std::stringstream ssA, ssB;
-		ssA << "a" << i + static_cast<int>(masterChain.size() / 2);
+		recMap[ssA.str()] = masterChain[ss.str()];
+		j++;
+		if(j >= static_cast<int>(masterChain.size()))
+			continue;
+		std::stringstream sss;
+		sss << "a" << j + 1;
+		std::stringstream ssB;
 		ssB << "b" << i;
-		recMap[ssB.str()] = masterChain[ssA.str()];
+		recMap[ssB.str()] = masterChain[sss.str()];
+		j++;
 		i++;
 	}
-	if (masterChain.size() % 2 != 0) 
-	{
-		std::stringstream ssU, ssA;
-		ssU << "a" << static_cast<int>(masterChain.size() / 2 + 1);
-		ssA << "a" << static_cast<int>(masterChain.size());
-		recMap[ssU.str()] = masterChain[ssA.str()];
-	}
+	//i = 1;
+	//for(int j = 0; j < static_cast<int>(masterChain.size()) / 2; j++)
+	//{
+	//	std::stringstream ssA, ssB;
+	//	ssA << "a" << i + static_cast<int>(masterChain.size() / 2);
+	//	ssB << "b" << i;
+	//	recMap[ssB.str()] = masterChain[ssA.str()];
+	//	i++;
+	//}
+	//if (masterChain.size() % 2 != 0) 
+	//{
+	//	std::stringstream ssU, ssA;
+	//	ssU << "a" << static_cast<int>(masterChain.size() / 2 + 1);
+	//	ssA << "a" << static_cast<int>(masterChain.size());
+	//	recMap[ssU.str()] = masterChain[ssA.str()];
+	//}
 
 	return recMap;
 }
@@ -151,7 +164,8 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	if (map.size() <= 1) return;
 	std::map<std::string, int> masterChain;
 
-	//printMap(map);
+	std::cout << "first map:" << std::endl;
+	printMap(map);
 	int j = 1;
 	for (size_t i = 0; i < map.size() - 1; i += 2) 
 	{
@@ -160,22 +174,25 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 		ssA << "a" << j;
 		ssNext << "b" << j;
 		if (map[ssA.str()] < map[ssNext.str()]) 
+		{
 			std::swap(map[ssA.str()], map[ssNext.str()]);
+		}
 
 		masterChain[ssA.str()] = map[ssA.str()];
+		//counter;
 
 		if(!masterChain[ssA.str()])
 			throw std::runtime_error("Something bad happened :(");
 		j += 1;
 	}
-	//std::cout << "\n" << std::endl;
-	//printMap(masterChain);
-	std::map<std::string, int> recMap = _prerecursion(masterChain);
-	//printMap(recMap);
-	_mfordJohnsonSort(recMap);
-	masterChain = _postrecursion(recMap);
-	//printMap(masterChain);
-
+	//printMap(map);
+	std::cout << "Pre masterChain:" << std::endl;
+	masterChain = _prerecursion(masterChain);
+	printMap(masterChain);
+	_mfordJohnsonSort(masterChain);
+	masterChain = _postrecursion(masterChain);
+	std::cout << "Post masterChain:" << std::endl;
+	printMap(masterChain);
 	
 	for(size_t i = 0; i < map.size() / 2; i++)
 	{
@@ -185,8 +202,6 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 
 		masterChain[ssB.str()] = map[ssB.str()];
 	}
-	//std::cout << "After adding B" << std::endl;
-	//printMap(masterChain);
 	std::vector<int> sortedMap;
 	sortedMap =	_mfordJohnsonInsert(masterChain);
 
@@ -195,11 +210,12 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 		std::stringstream ssU;
 		ssU << "a" << static_cast<int>(map.size() / 2 + 1);
 		int standalone = map[ssU.str()];
+	//std::cout << "Last num:" << map[ssU.str()] << std::endl;
 		_binaryInsert(sortedMap, static_cast<int>(sortedMap.size()) - 1, standalone);
 	}
-	masterChain = _conv2Map(sortedMap);
-	//std::cout << "\n Sorted Map" << std::endl;
+
 	//printVector(sortedMap);
+	masterChain = _conv2Map(sortedMap);
 	map = masterChain;
 }
 
@@ -243,6 +259,7 @@ std::vector<int> PmergeMe::_mfordJohnsonInsert(std::map<std::string, int>& map)
 {
 	if (!map["b1"]) throw std::runtime_error("Something awful happened, no b1");
 
+	//std::cout << map.size() << std::endl;
 	std::vector<int> sortedMap; 
 	for(int i = 0; i < static_cast<int>(map.size()) / 2; i++)
 	{
@@ -250,9 +267,16 @@ std::vector<int> PmergeMe::_mfordJohnsonInsert(std::map<std::string, int>& map)
 		ssA << "a" << i + 1;
 		sortedMap.push_back(map[ssA.str()]);
 	}
-	sortedMap.insert(sortedMap.begin(), map["b1"]);//inserting b1 before a1
-
+	if(map.size() % 2 != 0)
+	{
+		std::stringstream ssA;
+		ssA << "a" << map.size() / 2 + 1;
+		sortedMap.push_back(map[ssA.str()]);
+	}
+	//sortedMap.insert(sortedMap.begin(), map["b1"]);//inserting b1 before a1
+	//std::cout << "map b1: " << map["b1"] << std::endl;
 	//printVector(sortedMap);
+	//printMap(map);
 
 	int j = 1;
 	int k = 3;
@@ -268,11 +292,12 @@ std::vector<int> PmergeMe::_mfordJohnsonInsert(std::map<std::string, int>& map)
 		j = k;
 		k = _jacobsthal(++k);
 	}
-	for (int i = static_cast<int>(map.size()) / 2 - 1; i >= j; --i) 
+	for (int i = static_cast<int>(map.size()) / 2; i >= j; --i) 
 	{
 		//std::cout << "map size: " << map.size() / 2 << std::endl;
 		std::stringstream ssK;
-		ssK << "b" << i + 1;
+		ssK << "b" << i;
+		//std::cout << ssK.str() << ": " << map[ssK.str()] << std::endl;
 		_binaryInsert(sortedMap, static_cast<int>(sortedMap.size()) - 1, map[ssK.str()]);
 	}
 	//printVector(sortedMap);
@@ -304,6 +329,7 @@ void PmergeMe::_binaryInsert(std::vector<int>& mainChain, int right, const int& 
 	int left = 0;
 	while (left <= right) 
 	{
+		//counter;
 		int mid = left + (right - left) / 2;
 		if (mainChain[mid] < pendvalue) 
 			left = mid + 1;
@@ -336,7 +362,7 @@ const std::map<std::string, int>& PmergeMe::getMapSequence()const {return _mSequ
 void PmergeMe::printsortedMap() const
 {
 	if(_mSequence.empty())
-		throw std::runtime_error("Error: Map hasn't been sorted.");
+		throw std::runtime_error("Map hasn't been sorted.");
 
 	//std::cout << "here" << std::endl;
 	std::map<std::string, int>::const_iterator ita = _mSequence.begin();
@@ -358,4 +384,5 @@ void PmergeMe::printsortedMap() const
 	if (_mSequence.size() % 2 != 0)
 		std::cout << ita->second << " ";
 		//std::cout << "Key: " << ita->first << " Value: " << ita->second << std::endl;
+	//std::cout << "\n" << std::endl;
 }

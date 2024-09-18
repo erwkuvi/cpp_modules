@@ -121,18 +121,20 @@ BitcoinExchange::BitcoinExchange(const std::string& inFile)
 	//test = removeSpace(test);
 	//std::cout << "is date valid: " << _isDateValid(test) << std::endl; 
 	std::fstream fd;
-	fd.open (inFile.c_str(), std::fstream::in);
+	fd.open(inFile.c_str(), std::fstream::in);
+	//if(fd.fail()) 
+	//	throw std::runtime_error("Error: File could not be opened");
 	if(fd.is_open())
 	{
 		//std::cout << "file opened succesfully!" << std::endl;
 		if(fd.peek() != EOF)
 			_storeInFile(fd);
 		else
-			std::runtime_error("Error: file seems to be empty");
+			throw std::runtime_error("Error: file seems to be empty");
 		fd.close();
 	}
 	else
-		std::runtime_error("Error: could not open file");
+		throw std::runtime_error("Error: could not open file");
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& instance)
@@ -190,11 +192,11 @@ void BitcoinExchange::_store_data()
 			}
 		}
 		else
-			std::runtime_error("Error: data seems to be empty");
+			throw std::runtime_error("Error: data seems to be empty");
 		fd.close();
 	}
 	else
-		std::runtime_error("Error: could not open/find data file");
+		throw std::runtime_error("Error: could not open/find data file");
 	//_printDatabase(_database);
 }
 
