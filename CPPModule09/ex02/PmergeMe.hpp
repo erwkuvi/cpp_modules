@@ -42,7 +42,7 @@ public:
 
 	const std::vector<int>& getVectorSequence()const;
 	const std::map<std::string, int>& getMapSequence()const;
-	void printsortedMap() const;
+	void printsortedMap();
 };
 #endif // PMERGEME_HPP
 

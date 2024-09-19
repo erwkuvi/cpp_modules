@@ -44,6 +44,7 @@ PmergeMe::PmergeMe(std::vector<int>& arr, int container) : _sequence(arr)
 	else if(container == MAP)
 	{
 		_mSequence = _conv2Map(_sequence);
+		//printsortedMap();
 		_mfordJohnsonSort(_mSequence);
 		//std::cout << "It's a Map, counter: " << counter << std::endl;
 	}
@@ -133,7 +134,7 @@ std::map<std::string, int> _postrecursion(std::map<std::string, int>& masterChai
 		ssA << "a" << i;
 		ssM << "a" << j + 1;
 		postRecMap[ssM.str()] = masterChain[ssA.str()];
-		i ++;
+		i++;
 		j += 2;
 	}
 	i = 1;
@@ -164,9 +165,10 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 	if (map.size() <= 1) return;
 	std::map<std::string, int> masterChain;
 
-	std::cout << "first map:" << std::endl;
-	printMap(map);
+	//std::cout << "first map:" << std::endl;
+	//printMap(map);
 	int j = 1;
+	//swap the values if b1 is bigger than a1
 	for (size_t i = 0; i < map.size() - 1; i += 2) 
 	{
 		std::stringstream ssA, ssNext, ssOG;
@@ -186,13 +188,13 @@ void PmergeMe::_mfordJohnsonSort(std::map<std::string, int>& map)
 		j += 1;
 	}
 	//printMap(map);
-	std::cout << "Pre masterChain:" << std::endl;
+	//std::cout << "Pre masterChain:" << std::endl;
 	masterChain = _prerecursion(masterChain);
-	printMap(masterChain);
+	//printMap(masterChain);
 	_mfordJohnsonSort(masterChain);
 	masterChain = _postrecursion(masterChain);
-	std::cout << "Post masterChain:" << std::endl;
-	printMap(masterChain);
+	//std::cout << "Post masterChain:" << std::endl;
+	//printMap(masterChain);
 	
 	for(size_t i = 0; i < map.size() / 2; i++)
 	{
@@ -359,30 +361,61 @@ const std::vector<int>& PmergeMe::getVectorSequence()const {return _sequence;}
 const std::map<std::string, int>& PmergeMe::getMapSequence()const {return _mSequence;}
 
 
-void PmergeMe::printsortedMap() const
+void PmergeMe::printsortedMap()
 {
 	if(_mSequence.empty())
 		throw std::runtime_error("Map hasn't been sorted.");
 
 	//std::cout << "here" << std::endl;
-	std::map<std::string, int>::const_iterator ita = _mSequence.begin();
-	std::map<std::string, int>::const_iterator itb = _mSequence.begin();
-	std::advance(itb, (_mSequence.size() / 2));
-
-	if (_mSequence.size() % 2 != 0)
-		std::advance(itb, 1);
-
-	for(;itb != _mSequence.end();) 
+	int j = 1;
+	for(int i = 0; i < static_cast<int>(_mSequence.size()) / 2; i++)
 	{
-		//std::cout << "Key: " << ita->first << " Value: " << ita->second << std::endl;
-		//std::cout << "Key: " << itb->first << " Value: " << itb->second << std::endl;
-		std::cout << ita->second << " ";
-		std::cout << itb->second << " ";
-		ita++;
-		itb++;
+		std::stringstream ssA, ssB;
+		ssA << "a" << j;
+		ssB << "b" << j;
+		//std::cout << "Key: " << ssA.str() << " Value: " << _mSequence[ssA.str()] << std::endl;
+		//std::cout << "Key: " << ssB.str() << " Value: " << _mSequence[ssB.str()] << std::endl;
+		std::cout << _mSequence[ssA.str()] << " ";
+		std::cout << _mSequence[ssB.str()] << " ";
+		j++;
 	}
+
 	if (_mSequence.size() % 2 != 0)
-		std::cout << ita->second << " ";
-		//std::cout << "Key: " << ita->first << " Value: " << ita->second << std::endl;
-	//std::cout << "\n" << std::endl;
+	{
+		int k = static_cast<int>((_mSequence.size() / 2) + 1);
+		std::stringstream ssA;
+		ssA << "a" << k;
+		//std::cout << "Key: " << ssA.str() << " Value: " << _mSequence[ssA.str()]<< std::endl;
+		std::cout << _mSequence[ssA.str()] << " ";
+		std::cout << "\n" << std::endl;
+	}
 }
+
+
+//void PmergeMe::printsortedMap()
+//{
+//	if(_mSequence.empty())
+//		throw std::runtime_error("Map hasn't been sorted.");
+//
+//	//std::cout << "here" << std::endl;
+//	std::map<std::string, int>::const_iterator ita = _mSequence.begin();
+//	std::map<std::string, int>::const_iterator itb = _mSequence.begin();
+//	std::advance(itb, (_mSequence.size() / 2));
+//
+//	if (_mSequence.size() % 2 != 0)
+//		std::advance(itb, 1);
+//
+//	for(;itb != _mSequence.end();) 
+//	{
+//		std::cout << "Key: " << ita->first << " Value: " << ita->second << std::endl;
+//		std::cout << "Key: " << itb->first << " Value: " << itb->second << std::endl;
+//		//std::cout << ita->second << " ";
+//		//std::cout << itb->second << " ";
+//		ita++;
+//		itb++;
+//	}
+//	if (_mSequence.size() % 2 != 0)
+//		std::cout << "Key: " << ita->first << " Value: " << ita->second << std::endl;
+//		//std::cout << ita->second << " ";
+//	//std::cout << "\n" << std::endl;
+//}

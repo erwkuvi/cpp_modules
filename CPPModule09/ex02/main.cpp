@@ -106,28 +106,28 @@ int main(int argc, char** argv)
 		delete[] input; //free initial array
 
 		//Sorting algorithm in MAP begin----------------------------------------------------------------------------------
-		//clock_t startMap = clock();
+		clock_t startMap = clock();
 		PmergeMe a(inVector, MAP);//for map
-		//clock_t endMap = clock();
-		//double mapTime = static_cast<double>(endMap - startMap) / CLOCKS_PER_SEC;
+		clock_t endMap = clock();
+		double mapTime = static_cast<double>(endMap - startMap) / CLOCKS_PER_SEC;
 		////Sorting algorithm in MAP end------------------------------------------------------------------------------------
 
 
 		////Sorting algorithm in VECTOR begin-------------------------------------------------------------------------------
-		//clock_t startVec = clock();
+		clock_t startVec = clock();
 		PmergeMe b(inVector, VECTOR);//for vector
-		//clock_t endVec = clock();
-		//double vectorTime = static_cast<double>(endVec - startVec);
+		clock_t endVec = clock();
+		double vectorTime = static_cast<double>(endVec - startVec);
 		//Sorting algorithm in VECTOR end---------------------------------------------------------------------------------
 
-		//std::cout << "After:\t";
-		std::cout << "\n";
+		std::cout << "After:\t";
 		a.printsortedMap();
-		std::cout << "\n\n";
-		printVectorFinal(b.getVectorSequence());
+		std::cout << "\n";
+		//std::cout << "\n\n";
+		//printVectorFinal(b.getVectorSequence());
 
-		//std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
-		//std::cout << "Time to process a range of " << arrSize << " elements with std::map<std::string, int>: " << mapTime << " us" << std::endl;
+		std::cout << "Time to process a range of " << arrSize << " elements with std::vector<int>: " << vectorTime << " us" << std::endl;
+		std::cout << "Time to process a range of " << arrSize << " elements with std::map<std::string, int>: " << mapTime << " us" << std::endl;
 		//PmergeMe copy(a);
 		//std::cout << "copy" << std::endl;
 		//copy.printsortedMap();
