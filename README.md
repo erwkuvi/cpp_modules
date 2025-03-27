@@ -80,3 +80,5 @@ This module is designed to help you understand templated containers, iterators, 
 ### CPP Module 09
 
 This module is designed to help you understand containers in C++. 
+
+![C++ Compiler](https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F86bhuqzj51891.jpg)
